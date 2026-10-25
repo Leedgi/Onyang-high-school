@@ -1,0 +1,13 @@
+/* Radix Colors Sage / Grass: subdued surfaces, clear typography. */
+.stApp { background-color: #f7f9f8; color: #1a211e; }
+h1, h2, h3 { color: #203c25; letter-spacing: -0.035em; }
+h1 { font-size: clamp(1.8rem, 4vw, 2.5rem) !important; line-height: 1.3 !important; }
+[data-testid="stMainBlockContainer"] { max-width: 900px; padding-top: 3rem; }
+[data-testid="stFileUploader"] { background: #eef1f0; border: 1px solid #d7dad9; border-radius: 10px; padding: 1rem; }
+[data-testid="stTextArea"] textarea { background: #fbfdfc; color: #1a211e; border-radius: 6px; }
+[data-testid="stBaseButton-primary"] { background: #2a7e3b; border-color: #2a7e3b; color: white; border-radius: 6px; }
+[data-testid="stBaseButton-primary"]:hover { background: #203c25; border-color: #203c25; }
+[data-testid="stCaptionContainer"] { color: #5f6563; }
+@media (max-width: 600px) {
+  [data-testid="stMainBlockContainer"] { padding-top: 1.5rem; }
+}

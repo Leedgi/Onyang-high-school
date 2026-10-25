@@ -100,3 +100,23 @@ def test_sessions_keep_results_separate():
     second = app()
     assert first.session_state["result"] is not None
     assert second.session_state["result"] is None
+
+
+def test_donut_keeps_unknowns_and_does_not_invent_safety_grades():
+    import json
+
+    page = app()
+    assert page.title[0].value == "친환경 제품 성분 정보 분석"
+    page.text_area(key="input_text").set_value("정제수, 미등록성분").run()
+    assert not page.get("vega_lite_chart")
+    page.button(key="confirm").click().run()
+    assert not page.exception
+    spec = json.loads(page.get("vega_lite_chart")[0].proto.spec)
+    assert spec["layer"][0]["mark"]["type"] == "arc"
+    assert spec["layer"][0]["mark"]["innerRadius"] > 0
+    assert "확인 필요" in spec["layer"][0]["encoding"]["color"]["scale"]["domain"]
+    assert page.session_state["result"].count_ratio.denominator == 2
+    assert page.session_state["result"].count_ratio.values["확인 필요"] == 50
+    assert any("자료 부족" in info.value for info in page.info)
+    page.text_area(key="input_text").set_value("정제수").run()
+    assert not page.get("vega_lite_chart")
