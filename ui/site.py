@@ -9,6 +9,8 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
+from ui.presentation import intro, upload_help, ratio_summary, footer
+
 from core.database import load_ingredients
 from core.ocr import OCREngine
 from features.analysis import analyze_confirmed
@@ -34,13 +36,7 @@ def reset_source(key) -> None:
     st.session_state.source_key = key
 
 
-def render_result(result) -> None:
-    if result.status == "no_data":
-        st.info("분석할 성분이 없습니다.")
-        return
-    st.subheader("성분 분석 결과")
-    ratio = result.count_ratio
-    st.caption(f"{ratio.label} · 중복을 제외한 {int(ratio.denominator)}개 기준. 배합 함량이나 안전성 점수가 아닙니다.")
+def render_chart(ratio) -> None:
     frame = pd.DataFrame({"유래": ratio.values.keys(), "비율 (%)": ratio.values.values()})
     # Radius follows the available view size, including narrow phone screens.
     base = alt.Chart(frame).encode(
@@ -53,8 +49,8 @@ def render_result(result) -> None:
     ).encode(
         color=alt.Color("유래:N", scale=alt.Scale(
             domain=["석유계", "식물성", "기타", "확인 필요"],
-            range=["#385b49", "#2a7e3b", "#94ce9a", "#d7eadb"],
-        ), legend=alt.Legend(title="원료 유래", orient="bottom", columns=2)),
+            range=["#356351", "#7f9d68", "#b5c7a2", "#e5e7df"],
+        ), legend=None),
         tooltip=[alt.Tooltip("유래:N"), alt.Tooltip("비율 (%):Q", format=".1f")],
     )
     labels = base.transform_calculate(
@@ -65,51 +61,75 @@ def render_result(result) -> None:
     ).encode(
         text="percentage:N",
         color=alt.condition(
-            "datum['유래'] === '석유계' || datum['유래'] === '식물성'",
+            "datum['유래'] === '석유계'",
             alt.value("#ffffff"), alt.value("#1a3524"),
         ),
     )
     total = alt.Chart(pd.DataFrame({"표시": [f"{int(ratio.denominator)}개 성분"]})).mark_text(
-        fontSize=18, fontWeight=600, color="#203c25",
+        fontSize=18, fontWeight=600, color="#183f31",
     ).encode(text="표시:N")
     st.altair_chart(
-        (chart + labels + total).properties(height=320, padding={"left": 16, "right": 16, "top": 16, "bottom": 16}, background="#f0f7f0")
+        (chart + labels + total).properties(height=340, padding={"left": 16, "right": 16, "top": 16, "bottom": 16}, background="#ffffff")
         .configure_view(stroke=None), width="stretch",
     )
-    st.dataframe(frame, hide_index=True, width="stretch")
-    st.dataframe([{
-        "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
-    } for row in result.rows], hide_index=True, width="stretch")
-    with st.expander("성분별 근거와 출처 보기"):
-        st.dataframe([{
-            "성분": row.canonical_name, "확인 필요 원인": row.uncertainty_reason,
-            "근거": row.reason, "출처": row.source_url,
-        } for row in result.rows], hide_index=True, width="stretch")
-    cautions = [asdict(record) for records in result.cautions.values() for record in records]
-    if cautions:
-        st.subheader("사용상 주의 정보")
-        st.dataframe(cautions, hide_index=True)
-    else:
-        st.info("주의 등급 · 자료 부족\n\n등록된 사용상 주의 자료와 등급 기준이 없어 초록·주황·빨강으로 판정하지 않습니다. 자료가 없다는 것이 안전하다는 뜻은 아닙니다.")
-    st.caption("원료 유래는 안전성·환경성의 판정 기준이 아닙니다. 일부 근거는 2019년 자료이며 최신 규제 검토를 대신하지 않습니다.")
-    scan = st.session_state.scan_output
-    audit = {"result": asdict(result), "recognition": asdict(scan.result) if scan else None,
-             "review_text": st.session_state.input_text}
-    st.download_button("분석 기록 받기", json.dumps(audit, ensure_ascii=False, indent=2),
-                       file_name="ingredient-analysis.json", mime="application/json")
+
+
+def render_result(result) -> None:
+    if result.status == "no_data":
+        st.info("분석할 성분이 없습니다.")
+        return
+    with st.container(key="results"):
+        st.html('<div id="results" class="result-heading"><p class="eyebrow">내 성분 리포트</p></div>')
+        st.subheader("성분 분석 결과")
+        st.caption("직접 확인한 목록을 바탕으로 정리했습니다. 성분을 수정하면 이전 결과가 지워지고 다시 확인하게 됩니다.")
+        with st.container(key="ratio-card"):
+            visual, summary = st.columns([1, 1.1], gap="large", vertical_alignment="center")
+            with visual:
+                render_chart(result.count_ratio)
+            with summary:
+                ratio_summary(result.count_ratio)
+        ingredients, cautions_tab, evidence = st.tabs(["성분 목록", "주의 정보", "자료 안내"])
+        with ingredients:
+            st.caption("성분별 유래와 기능을 확인하세요. 표의 기능 표기는 자료에 기록된 내용을 따릅니다.")
+            st.dataframe([{
+                "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
+            } for row in result.rows], hide_index=True, width="stretch")
+        with cautions_tab:
+            cautions = [asdict(record) for records in result.cautions.values() for record in records]
+            if cautions:
+                st.dataframe(cautions, hide_index=True, width="stretch")
+            else:
+                st.info("주의 등급 · 자료 부족\n\n등록된 사용상 주의 자료가 없습니다. 안전하다는 뜻은 아니며, 근거 없이 초록·주황·빨강 등급을 매기지 않습니다.")
+            st.caption("원료 유래로 안전성·환경성을 판정하지 않습니다. 제품의 사용 부위와 농도 등도 함께 확인해야 합니다.")
+        with evidence:
+            st.write("확인이 필요한 이유와 원문 출처")
+            st.dataframe([{
+                "성분": row.canonical_name, "확인 필요 원인": row.uncertainty_reason,
+                "근거": row.reason, "출처": row.source_url, "확인일": row.checked_on,
+            } for row in result.rows], hide_index=True, width="stretch")
+            st.caption("일부 근거는 2019년 자료입니다. 최신 규제·안전성 검토를 대신하지 않으며, 이름 등재만으로 유래·사용 허용을 판단하지 않습니다.")
+        scan = st.session_state.scan_output
+        audit = {"result": asdict(result), "recognition": asdict(scan.result) if scan else None,
+                 "review_text": st.session_state.input_text}
+        st.download_button("내 분석 기록 저장", json.dumps(audit, ensure_ascii=False, indent=2),
+                           file_name="ingredient-analysis.json", mime="application/json", icon=":material/download:")
 
 
 def main() -> None:
-    st.set_page_config(page_title="친환경 제품 성분 정보 분석", page_icon="🌿", layout="centered")
+    st.set_page_config(page_title="친환경 제품 성분 정보 분석", page_icon="🌿", layout="wide")
     st.html("<style>" + Path(__file__).with_name("styles.css").read_text(encoding="utf-8") + "</style>")
     for name, value in SESSION_DEFAULTS.items():
         st.session_state.setdefault(name, value)
-    st.caption("성분표에서 시작하는 꼼꼼한 선택")
-    st.title("친환경 제품 성분 정보 분석")
-    st.write("성분표를 올리면 자동으로 읽어 정리합니다. 목록을 확인하면 유래와 근거를 보여드립니다.")
-    st.caption("성분 정보 제공 서비스입니다. 제품의 친환경성이나 안전성을 인증하지 않습니다.")
-    st.divider()
-    uploaded = st.file_uploader("성분표 사진", type=["jpg", "jpeg", "png", "heic", "heif"], key="photo")
+    intro()
+    with st.container(key="upload-panel"):
+        upload, tips = st.columns([1.35, 1], gap="large", vertical_alignment="center")
+        with upload:
+            st.html('<div class="panel-label"><span>01</span><h3>성분표 사진 올리기</h3></div>')
+            st.caption("JPG · PNG · HEIC · HEIF / 최대 10MB, 2천만 화소")
+            uploaded = st.file_uploader("성분표 사진", type=["jpg", "jpeg", "png", "heic", "heif"], key="photo")
+            st.caption("사진을 올리면 자동 인식이 시작됩니다. 서버의 공용 캐시나 로그에 사진을 남기지 않습니다.")
+        with tips:
+            upload_help()
     try:
         database = load_ingredients()
     except (OSError, ValueError) as exc:
@@ -142,7 +162,8 @@ def main() -> None:
             st.error(st.session_state.source_error)
         output = st.session_state.scan_output
         if output is not None:
-            st.image(output.image, caption="자동으로 보정한 성분표", width=550)
+            with st.expander("자동 보정한 사진 보기", expanded=False):
+                st.image(output.image, caption="자동으로 보정한 성분표", width="stretch")
             if output.result.status != "ok":
                 st.warning(output.result.message or "성분 목록을 읽지 못했습니다. 아래에 직접 입력할 수 있습니다.")
             for warning in output.result.warnings:
@@ -157,42 +178,50 @@ def main() -> None:
             st.rerun()
     elif st.session_state.source_key is not None:
         reset_source(None)
-    text = st.text_area("성분 목록 확인·수정", key="input_text", height=160,
-                        placeholder="사진을 올리거나 성분명을 쉼표 또는 줄바꿈으로 구분해 입력하세요.")
-    try:
-        drafts = prepare_review(text)
-    except (ValueError, OSError) as exc:
-        st.error(f"성분 이름을 대조하지 못했습니다: {exc}")
-        return
-    review_signature = digest([text, database.fingerprint, st.session_state.source_key])
-    if review_signature != st.session_state.review_signature:
-        st.session_state.result = None
-        st.session_state.review_signature = review_signature
-        st.session_state.stage = "review" if text.strip() else "idle"
-    names = []
-    for i, draft in enumerate(drafts):
-        if draft.status in {"exact", "alias"}:
-            names.append(draft.name)
-            continue
-        choices = [draft.name, *(candidate.name for candidate in draft.candidates if candidate.name != draft.name)]
-        chosen = st.selectbox(f"{i + 1}. {draft.raw_text} · 일치하는 이름을 확인해 주세요", choices,
-                              key=f"candidate_{review_signature}_{i}")
-        if draft.candidates:
-            st.caption("이름 유사도: " + ", ".join(f"{c.name} {c.score:.1f}점" for c in draft.candidates) + " · 정답 확률이 아닙니다.")
-        names.append(chosen)
-    selection_key = digest([review_signature, names])
-    if st.session_state.get("selection_key") != selection_key:
-        st.session_state.result = None
-        st.session_state.selection_key = selection_key
-    if drafts and st.button("목록 확인 완료 · 분석 보기", type="primary", key="confirm"):
-        try:
-            with st.spinner("성분 정보를 정리하고 있습니다"):
-                request = AnalysisRequest(tuple(ConfirmedIngredient(name) for name in names))
-                st.session_state.result = analyze_confirmed(request)
-                st.session_state.stage = "complete"
-        except (ValueError, OSError) as exc:
-            st.session_state.result = None
-            st.session_state.stage = "error"
-            st.error(f"분석하지 못했습니다: {exc}")
+    review_open = bool(st.session_state.input_text.strip() or uploaded is not None)
+    with st.container(key="review-panel"):
+        st.html('<div id="review" class="panel-label"><span>02</span><h3>읽어낸 성분을 확인해 주세요</h3></div>')
+        with st.expander("성분 목록 확인 · 직접 입력", expanded=review_open):
+            st.caption("틀린 이름은 수정하고, 불확실한 항목만 후보를 선택하세요. 사진 없이 직접 입력해도 됩니다.")
+            text = st.text_area("성분 목록 확인·수정", key="input_text", height=180,
+                                placeholder="사진을 올리거나 성분명을 쉼표 또는 줄바꿈으로 구분해 입력하세요.")
+            try:
+                drafts = prepare_review(text)
+            except (ValueError, OSError) as exc:
+                st.error(f"성분 이름을 대조하지 못했습니다: {exc}")
+                return
+            review_signature = digest([text, database.fingerprint, st.session_state.source_key])
+            if review_signature != st.session_state.review_signature:
+                st.session_state.result = None
+                st.session_state.review_signature = review_signature
+                st.session_state.stage = "review" if text.strip() else "idle"
+            names = []
+            for i, draft in enumerate(drafts):
+                if draft.status in {"exact", "alias"}:
+                    names.append(draft.name)
+                    continue
+                choices = [draft.name, *(candidate.name for candidate in draft.candidates if candidate.name != draft.name)]
+                chosen = st.selectbox(f"{i + 1}. {draft.raw_text} · 일치하는 이름을 확인해 주세요", choices,
+                                      key=f"candidate_{review_signature}_{i}")
+                if draft.candidates:
+                    st.caption("이름 유사도: " + ", ".join(f"{c.name} {c.score:.1f}점" for c in draft.candidates) + " · 정답 확률이 아닙니다.")
+                names.append(chosen)
+            selection_key = digest([review_signature, names])
+            if st.session_state.get("selection_key") != selection_key:
+                st.session_state.result = None
+                st.session_state.selection_key = selection_key
+            if drafts:
+                st.caption(f"{len(names)}개 항목입니다. 원본과 비교하고 한 번만 확인해 주세요.")
+            if drafts and st.button("목록 확인 완료 · 분석 보기", type="primary", key="confirm", width="stretch"):
+                try:
+                    with st.spinner("성분 정보를 정리하고 있습니다"):
+                        request = AnalysisRequest(tuple(ConfirmedIngredient(name) for name in names))
+                        st.session_state.result = analyze_confirmed(request)
+                        st.session_state.stage = "complete"
+                except (ValueError, OSError) as exc:
+                    st.session_state.result = None
+                    st.session_state.stage = "error"
+                    st.error(f"분석하지 못했습니다: {exc}")
     if st.session_state.result is not None:
         render_result(st.session_state.result)
+    footer()

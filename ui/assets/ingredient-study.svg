@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 430" role="img" aria-labelledby="title desc">
+<title id="title">성분표를 살펴보는 화장품 용기 일러스트</title><desc id="desc">식물 잎과 성분표가 붙은 용기. 실제 제품이나 분석 결과를 나타내지 않는 장식 그림입니다.</desc>
+<rect width="520" height="430" rx="12" fill="#e7eddf"/>
+<circle cx="280" cy="209" r="155" fill="#d7e1cc"/>
+<path d="M85 383C105 300 114 202 107 90M111 219C45 186 52 129 54 119C113 130 128 176 111 219M108 167C170 145 181 103 174 82C122 100 106 122 108 167M103 293C35 268 30 224 32 204C83 209 110 250 103 293" fill="#99ad8d" stroke="#7e9674" stroke-width="2"/>
+<ellipse cx="305" cy="374" rx="120" ry="13" fill="#c7d2bb"/>
+<g transform="rotate(7 300 240)">
+<rect x="228" y="82" width="112" height="39" rx="5" fill="#254637"/>
+<path d="M233 119H335L351 162V341Q351 361 330 361H237Q216 361 216 341V162Z" fill="#faf9f2" stroke="#ccd3c3" stroke-width="2"/>
+<path d="M230 166V333" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+<rect x="231" y="193" width="105" height="118" fill="#e5eadc"/>
+<text x="284" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" letter-spacing="2" fill="#254637">INGREDIENTS</text>
+<path d="M249 242H318M249 254H306M249 266H318M249 278H293" stroke="#a0b098" stroke-width="3"/>
+</g>
+<g transform="rotate(-8 399 310)"><rect x="365" y="246" width="74" height="115" rx="8" fill="#829776"/><rect x="362" y="235" width="80" height="23" rx="4" fill="#254637"/><rect x="378" y="278" width="48" height="57" fill="#f2f1e7"/><path d="M387 293H418M387 303H418M387 313H410" stroke="#9ba992" stroke-width="2"/></g>
+<g transform="translate(33 329)"><rect width="146" height="52" rx="4" fill="#fffefa"/><circle cx="25" cy="26" r="11" fill="#e7eddf"/><path d="M20 26L24 30L31 22" fill="none" stroke="#254637" stroke-width="2"/><text x="46" y="31" font-family="sans-serif" font-size="12" fill="#254637">Read the label.</text></g>
+<path d="M464 56V82M451 69H477" stroke="#829776" stroke-width="2"/>
+</svg>
