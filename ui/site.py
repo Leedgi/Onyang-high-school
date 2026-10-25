@@ -2,6 +2,9 @@
 from dataclasses import asdict
 import hashlib
 import json
+from pathlib import Path
+
+import altair as alt
 
 import pandas as pd
 import streamlit as st
@@ -39,7 +42,19 @@ def render_result(result) -> None:
     ratio = result.count_ratio
     st.caption(f"{ratio.label} · 중복을 제외한 {int(ratio.denominator)}개 기준. 배합 함량이나 안전성 점수가 아닙니다.")
     frame = pd.DataFrame({"유래": ratio.values.keys(), "비율 (%)": ratio.values.values()})
-    st.bar_chart(frame, x="유래", y="비율 (%)", horizontal=True)
+    chart = alt.Chart(frame).mark_arc(innerRadius=82, outerRadius=120).encode(
+        theta=alt.Theta("비율 (%):Q", stack=True),
+        color=alt.Color("유래:N", scale=alt.Scale(
+            domain=["석유계", "식물성", "기타", "확인 필요"],
+            range=["#7c8481", "#2a7e3b", "#94ce9a", "#d7dad9"],
+        ), legend=alt.Legend(title="원료 유래", orient="bottom")),
+        tooltip=[alt.Tooltip("유래:N"), alt.Tooltip("비율 (%):Q", format=".1f")],
+    )
+    total = alt.Chart(pd.DataFrame({"표시": [f"{int(ratio.denominator)}개 성분"]})).mark_text(
+        fontSize=20, fontWeight=600, color="#203c25",
+    ).encode(text="표시:N")
+    st.altair_chart((chart + total).properties(height=300).configure_view(stroke=None),
+                     width="stretch")
     st.dataframe(frame, hide_index=True, width="stretch")
     st.dataframe([{
         "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
@@ -50,7 +65,7 @@ def render_result(result) -> None:
         st.subheader("사용상 주의 정보")
         st.dataframe(cautions, hide_index=True)
     else:
-        st.caption("등록된 사용상 주의 자료가 없습니다. 안전하다는 뜻은 아닙니다.")
+        st.info("주의 등급 · 자료 부족\n\n등록된 사용상 주의 자료와 등급 기준이 없어 초록·주황·빨강으로 판정하지 않습니다. 자료가 없다는 것이 안전하다는 뜻은 아닙니다.")
     st.caption("원료 유래는 안전성·환경성의 판정 기준이 아닙니다. 일부 근거는 2019년 자료이며 최신 규제 검토를 대신하지 않습니다.")
     scan = st.session_state.scan_output
     audit = {"result": asdict(result), "recognition": asdict(scan.result) if scan else None,
@@ -60,11 +75,15 @@ def render_result(result) -> None:
 
 
 def main() -> None:
-    st.set_page_config(page_title="성분표 분석", page_icon="🌿", layout="centered")
+    st.set_page_config(page_title="친환경 제품 성분 정보 분석", page_icon="🌿", layout="centered")
+    st.html("<style>" + Path(__file__).with_name("styles.css").read_text(encoding="utf-8") + "</style>")
     for name, value in SESSION_DEFAULTS.items():
         st.session_state.setdefault(name, value)
-    st.title("사진으로 살펴보는 화장품 성분")
+    st.caption("성분표에서 시작하는 꼼꼼한 선택")
+    st.title("친환경 제품 성분 정보 분석")
     st.write("성분표를 올리면 자동으로 읽어 정리합니다. 목록을 확인하면 유래와 근거를 보여드립니다.")
+    st.caption("성분 정보 제공 서비스입니다. 제품의 친환경성이나 안전성을 인증하지 않습니다.")
+    st.divider()
     uploaded = st.file_uploader("성분표 사진", type=["jpg", "jpeg", "png", "heic", "heif"], key="photo")
     try:
         database = load_ingredients()
