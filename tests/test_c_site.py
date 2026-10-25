@@ -106,7 +106,7 @@ def test_donut_keeps_unknowns_and_does_not_invent_safety_grades():
     import json
 
     page = app()
-    assert page.title[0].value == "친환경 제품 성분 정보 분석"
+    assert " ".join(page.title[0].value.split()) == "친환경 제품 성분 정보 분석"
     page.text_area(key="input_text").set_value("정제수, 미등록성분").run()
     assert not page.get("vega_lite_chart")
     page.button(key="confirm").click().run()
@@ -116,8 +116,8 @@ def test_donut_keeps_unknowns_and_does_not_invent_safety_grades():
     assert isinstance(spec["padding"], dict)
     assert "min(width, height)" in spec["layer"][0]["mark"]["innerRadius"]["expr"]
     assert spec["layer"][1]["encoding"]["text"]["field"] == "percentage"
-    assert list(page.dataframe[1].value.columns) == ["성분", "유래", "기능"]
-    assert "출처" in page.dataframe[2].value.columns
+    assert list(page.dataframe[0].value.columns) == ["성분", "유래", "기능"]
+    assert "출처" in page.dataframe[1].value.columns
     assert "확인 필요" in spec["layer"][0]["encoding"]["color"]["scale"]["domain"]
     assert page.session_state["result"].count_ratio.denominator == 2
     assert page.session_state["result"].count_ratio.values["확인 필요"] == 50
