@@ -113,7 +113,11 @@ def test_donut_keeps_unknowns_and_does_not_invent_safety_grades():
     assert not page.exception
     spec = json.loads(page.get("vega_lite_chart")[0].proto.spec)
     assert spec["layer"][0]["mark"]["type"] == "arc"
-    assert spec["layer"][0]["mark"]["innerRadius"] > 0
+    assert isinstance(spec["padding"], dict)
+    assert "min(width, height)" in spec["layer"][0]["mark"]["innerRadius"]["expr"]
+    assert spec["layer"][1]["encoding"]["text"]["field"] == "percentage"
+    assert list(page.dataframe[1].value.columns) == ["성분", "유래", "기능"]
+    assert "출처" in page.dataframe[2].value.columns
     assert "확인 필요" in spec["layer"][0]["encoding"]["color"]["scale"]["domain"]
     assert page.session_state["result"].count_ratio.denominator == 2
     assert page.session_state["result"].count_ratio.values["확인 필요"] == 50
