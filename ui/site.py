@@ -42,24 +42,49 @@ def render_result(result) -> None:
     ratio = result.count_ratio
     st.caption(f"{ratio.label} · 중복을 제외한 {int(ratio.denominator)}개 기준. 배합 함량이나 안전성 점수가 아닙니다.")
     frame = pd.DataFrame({"유래": ratio.values.keys(), "비율 (%)": ratio.values.values()})
-    chart = alt.Chart(frame).mark_arc(innerRadius=82, outerRadius=120).encode(
+    # Radius follows the available view size, including narrow phone screens.
+    base = alt.Chart(frame).encode(
         theta=alt.Theta("비율 (%):Q", stack=True),
+        order=alt.Order("유래:N", sort="ascending"),
+    )
+    chart = base.mark_arc(
+        innerRadius=alt.ExprRef(expr="min(width, height) * 0.22"),
+        outerRadius=alt.ExprRef(expr="min(width, height) * 0.43"),
+    ).encode(
         color=alt.Color("유래:N", scale=alt.Scale(
             domain=["석유계", "식물성", "기타", "확인 필요"],
-            range=["#7c8481", "#2a7e3b", "#94ce9a", "#d7dad9"],
-        ), legend=alt.Legend(title="원료 유래", orient="bottom")),
+            range=["#385b49", "#2a7e3b", "#94ce9a", "#d7eadb"],
+        ), legend=alt.Legend(title="원료 유래", orient="bottom", columns=2)),
         tooltip=[alt.Tooltip("유래:N"), alt.Tooltip("비율 (%):Q", format=".1f")],
     )
+    labels = base.transform_calculate(
+        percentage="datum['비율 (%)'] > 0 ? format(datum['비율 (%)'], '.1f') + '%' : ''",
+    ).mark_text(
+        radius=alt.ExprRef(expr="min(width, height) * 0.33"),
+        fontSize=13, fontWeight=600,
+    ).encode(
+        text="percentage:N",
+        color=alt.condition(
+            "datum['유래'] === '석유계' || datum['유래'] === '식물성'",
+            alt.value("#ffffff"), alt.value("#1a3524"),
+        ),
+    )
     total = alt.Chart(pd.DataFrame({"표시": [f"{int(ratio.denominator)}개 성분"]})).mark_text(
-        fontSize=20, fontWeight=600, color="#203c25",
+        fontSize=18, fontWeight=600, color="#203c25",
     ).encode(text="표시:N")
-    st.altair_chart((chart + total).properties(height=300).configure_view(stroke=None),
-                     width="stretch")
+    st.altair_chart(
+        (chart + labels + total).properties(height=320, padding={"left": 16, "right": 16, "top": 16, "bottom": 16}, background="#f0f7f0")
+        .configure_view(stroke=None), width="stretch",
+    )
     st.dataframe(frame, hide_index=True, width="stretch")
     st.dataframe([{
         "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
-        "확인 필요 원인": row.uncertainty_reason, "근거": row.reason, "출처": row.source_url,
     } for row in result.rows], hide_index=True, width="stretch")
+    with st.expander("성분별 근거와 출처 보기"):
+        st.dataframe([{
+            "성분": row.canonical_name, "확인 필요 원인": row.uncertainty_reason,
+            "근거": row.reason, "출처": row.source_url,
+        } for row in result.rows], hide_index=True, width="stretch")
     cautions = [asdict(record) for records in result.cautions.values() for record in records]
     if cautions:
         st.subheader("사용상 주의 정보")
