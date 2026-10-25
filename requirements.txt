@@ -1,0 +1,15 @@
+# Windows x64 / Python 3.12 CPU를 기본 대상으로 한다. Linux CPU에서도 회귀 검증한다.
+--extra-index-url https://download.pytorch.org/whl/cpu
+streamlit==1.66.1
+pandas==3.1.0
+altair==6.3.0
+Pillow==13.0.0
+pillow-heif==1.8.1
+pytest==9.1.1
+easyocr==1.7.2
+rapidfuzz==3.14.6
+torch==2.10.0+cpu
+torchvision==0.25.0+cpu
+numpy==2.5.4
+opencv-python-headless==5.0.0.93
+tesserocr==2.12.0

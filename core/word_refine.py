@@ -1,0 +1,97 @@
+"""불확실한 성분의 실제 픽셀 영역만 AI로 다시 읽는다. 원문을 덮어쓰거나 이름을 확정하지 않는다."""
+from dataclasses import replace, asdict
+import math
+import re
+import unicodedata
+
+from PIL import Image
+from rapidfuzz.distance import Levenshtein
+
+from core.ingredient_text import ingredient_drafts
+from core.normalize import normalize_key, search_view
+
+
+def _units(text: str) -> float:
+    return sum(0.3 if char.isspace() else 1.0 if unicodedata.east_asian_width(char) in {"W", "F"} else 0.55 for char in text)
+
+
+def word_image(image, ocr, text):
+    """OCR 줄 좌표와 문자 위치로 단어 범위를 근사한다. 줄을 넘긴 이름은 실제 조각을 이어 붙인다."""
+    blocks = {block.source_index: block for block in ocr.blocks}
+    compact, mapping, lines = [], [], []
+    for i, line in enumerate(ocr.lines):
+        content, key, positions = search_view(line.raw_text)
+        lines.append(content)
+        compact.extend(key)
+        mapping.extend((i, j) for j in positions)
+    query = normalize_key(text)
+    start = "".join(compact).find(query)
+    if start < 0:
+        return None
+    groups = {}
+    for i, j in mapping[start:start + len(query)]:
+        groups.setdefault(i, []).append(j)
+    pieces, boxes = [], []
+    for i, positions in groups.items():
+        line = ocr.lines[i]
+        points = [p for index in line.source_indices if index in blocks for p in blocks[index].bbox]
+        if not points:
+            return None
+        xs, ys = zip(*points)
+        x, y, right, bottom = min(xs), min(ys), max(xs), max(ys)
+        content = lines[i]
+        total = max(1, _units(content))
+        pad = max(3, (bottom - y) * 0.18)
+        box = (max(0, math.floor(x + (right - x) * _units(content[:min(positions)]) / total - pad)),
+               max(0, math.floor(y - pad)),
+               min(image.width, math.ceil(x + (right - x) * _units(content[:max(positions) + 1]) / total + pad)),
+               min(image.height, math.ceil(bottom + pad)))
+        if box[2] <= box[0] or box[3] <= box[1]:
+            return None
+        boxes.append(box)
+        pieces.append(image.crop(box))
+    if not pieces:
+        return None
+    height = 96
+    resized = [piece.resize((max(4, round(piece.width * height / piece.height)), height), Image.Resampling.LANCZOS) for piece in pieces]
+    patch = Image.new("RGB", (sum(piece.width for piece in resized) + 8 * (len(pieces) - 1), height), "white")
+    cursor = 0
+    for piece in resized:
+        patch.paste(piece, (cursor, 0))
+        cursor += piece.width + 8
+    patch.thumbnail((1800, 160))
+    return patch, tuple(boxes)
+
+
+def refine_words(image, ocr, drafts, engine, database, progress, limit=12):
+    replacements, passes = {}, []
+    candidates = [(i, draft) for i, draft in enumerate(drafts)
+                  if draft.status in {"needs_review", "unmatched"} and 3 <= len(normalize_key(draft.raw_text)) <= 120]
+    candidates.sort(key=lambda item: -(item[1].candidates[0].score if item[1].candidates else 0))
+    for i, draft in candidates[:limit]:
+        found = word_image(image, ocr, draft.raw_text)
+        if found is None:
+            continue
+        patch, boxes = found
+        progress(f"불확실한 성분 영역을 AI로 다시 읽고 있습니다 · {len(passes) + 1}/{min(limit, len(candidates))}")
+        reread = engine.recognize(patch, "rows", accurate=True)
+        proposed = ingredient_drafts(reread, database) if reread.status == "ok" else ()
+        score = sum(block.confidence for block in reread.blocks) / max(1, len(reread.blocks))
+        query = normalize_key(draft.raw_text)
+        target = "".join(normalize_key(item.raw_text) for item in proposed)
+        allow = (
+            bool(proposed) and score >= 0.55
+            and all(item.status in {"exact", "alias"} for item in proposed)
+            and re.findall(r"\d+", query) == re.findall(r"\d+", target)
+            and Levenshtein.distance(query, target) <= max(2, int(len(query) * 0.2))
+        )
+        if allow:
+            replacements[i] = tuple(replace(item, raw_text=draft.raw_text, status="ai_reread_proposed",
+                                           source_indices=draft.source_indices,
+                                           transformations=(*draft.transformations, "실제 단어 픽셀 AI 재인식 기반 제안·미확정")) for item in proposed)
+        passes.append({"stage": "word_reread", "draft_index": i, "source_text": draft.raw_text,
+                       "crop_boxes_in_selected_image": boxes, "image_size": patch.size,
+                       "ocr": asdict(reread), "applied_as_unconfirmed_proposal": allow,
+                       "proposed_names": [item.name for item in proposed]})
+    result = tuple(item for i, draft in enumerate(drafts) for item in replacements.get(i, (draft,)))
+    return result, tuple(passes)

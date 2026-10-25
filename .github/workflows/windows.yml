@@ -1,0 +1,45 @@
+name: Windows setup and OCR checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: cmd
+        working-directory: project with spaces
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: project with spaces
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          architecture: x64
+          cache: pip
+          cache-dependency-path: |
+            project with spaces/requirements.txt
+            project with spaces/requirements-windows.txt
+      - name: Install using the Windows setup entry point
+        run: setup_windows.bat --no-pause
+      - name: Run tests, real CPU OCR, and server checks
+        run: check_windows.bat --no-pause
+      - name: Upload diagnostic reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-check-reports
+          path: project with spaces/artifacts/
+          if-no-files-found: ignore
