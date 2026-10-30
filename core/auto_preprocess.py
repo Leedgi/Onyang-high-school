@@ -137,3 +137,90 @@ def prepare_region(original: Image.Image, region: Region) -> tuple[Image.Image, 
                 "deskew_degrees": angle, "scale": scale, "image_size": resized.size,
                 "bbox_coordinate_system": "selected processed image pixels"}
     return resized, enhanced, metadata, tuple(warnings)
+
+
+def curved_text_variant(image: Image.Image, text_height: float) -> tuple[Image.Image, dict]:
+    """인접 글자 줄의 휨을 추정하고 제한된 원통 가설을 대안 영상으로 만든다.
+
+    원본을 대체하지 않는다. 실제 원통 반지름 측정이나 없어진 글자 복원이 아니다.
+    """
+    rgb = np.asarray(image.convert("RGB"))
+    height, width = rgb.shape[:2]
+    if min(height, width) < 16:
+        raise ValueError("곡면 보정에 필요한 영상 크기가 부족합니다.")
+    line_height = float(np.clip(text_height, 12, max(12, height / 3)))
+    gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
+    block = max(15, int(line_height * 2) | 1)
+    ink = 255 - cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                      cv2.THRESH_BINARY, block, 13)
+    profiles = []
+    centers = np.linspace(-.85, .85, 9)
+    for center in centers:
+        x = int((center + 1) * .5 * width)
+        half = max(4, width // 13)
+        profile = ink[:, max(0, x-half):min(width, x+half)].mean(axis=1).astype(np.float32)
+        profile = cv2.GaussianBlur(profile.reshape(-1, 1), (1, 5), 0).ravel()
+        profiles.append(profile)
+    reference = profiles[4]
+    distance = max(5, int(line_height * .8))
+    maxima = cv2.dilate(reference.reshape(-1, 1), np.ones((distance, 1), np.uint8)).ravel()
+    peaks = np.flatnonzero((reference >= maxima - .01) & (reference > max(8, float(reference.max()) * .3)))
+    merged = []
+    for peak in peaks:
+        if not merged or peak - merged[-1] > distance:
+            merged.append(int(peak))
+        elif reference[peak] > reference[merged[-1]]:
+            merged[-1] = int(peak)
+    max_shift = max(3, int(line_height * .55))
+    radius = max(5, int(line_height * .65))
+    fits = []
+    for peak in merged:
+        start, stop = peak-radius, peak+radius+1
+        if start-max_shift < 0 or stop+max_shift > height:
+            continue
+        target = reference[start:stop] - reference[start:stop].mean()
+        xs, shifts = [], []
+        for center, profile in zip(centers, profiles):
+            best = (-1., 0)
+            for shift in range(-max_shift, max_shift+1):
+                sample = profile[start+shift:stop+shift]
+                sample = sample - sample.mean()
+                denominator = float(np.linalg.norm(target) * np.linalg.norm(sample))
+                correlation = float(np.dot(target, sample) / denominator) if denominator > 1 else 0.
+                # 동점이면 원래 위치를 우선한다.
+                if correlation > best[0] + .001 or abs(correlation-best[0]) <= .001 and abs(shift) < abs(best[1]):
+                    best = (correlation, shift)
+            if best[0] >= .5:
+                xs.append(center)
+                shifts.append(best[1])
+        if len(xs) < 7:
+            continue
+        fit = np.polyfit(xs, shifts, 2)
+        error = float(np.sqrt(np.mean((np.polyval(fit, xs)-shifts)**2)))
+        if error < line_height * .16:
+            fits.append(fit)
+    coefficients = np.zeros(3)
+    detected = False
+    if len(fits) >= 2:
+        coefficients = np.median(fits, axis=0)
+        agreement = np.mean([np.sign(f[0]) == np.sign(coefficients[0]) for f in fits])
+        detected = abs(coefficients[0]) >= 3 and agreement >= .9
+        if not detected:
+            coefficients[:] = 0
+    y, x = np.mgrid[0:height, 0:width].astype(np.float32)
+    output_u = x / max(1, width-1) * 2 - 1
+    theta = .65  # Bounded alternative, not a measured camera/cylinder parameter.
+    source_u = np.sin(output_u * theta) / math.sin(theta)
+    source_x = (source_u+1) * .5 * (width-1)
+    offsets = np.clip(np.polyval(coefficients, source_u), -max_shift, max_shift)
+    source_y = y + offsets
+    map1, map2 = cv2.convertMaps(source_x.astype(np.float32), source_y.astype(np.float32), cv2.CV_16SC2)
+    corrected = cv2.remap(rgb, map1, map2, cv2.INTER_CUBIC,
+                          borderMode=cv2.BORDER_CONSTANT, borderValue=(255, 255, 255))
+    return Image.fromarray(corrected), {
+        "curve_detected": bool(detected), "supporting_rows": len(fits),
+        "vertical_curve_coefficients": coefficients.tolist(),
+        "max_vertical_shift": float(np.max(np.abs(offsets))),
+        "horizontal_hypothesis_radians": theta,
+        "note": "제한된 곡면 보정 가설이며 실제 측정 기하나 정답 확률이 아닙니다.",
+    }

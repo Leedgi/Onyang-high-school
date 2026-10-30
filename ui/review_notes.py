@@ -3,10 +3,10 @@ from core.models import AnalysisResult
 
 
 def review_notes(result: AnalysisResult) -> tuple[tuple[str, str], ...]:
-    buffering = [r.canonical_name for r in result.rows if "BUFFERING" in r.functions]
+    buffering = [r.canonical_name for r in result.rows if any(f in {"BUFFERING", "pH조절제", "pH 조절제", "pH 조정제"} for f in r.functions)]
     ph = "성분명과 배열 순서만으로 완제품의 pH를 계산하거나 산성·염기성을 판정할 수 없습니다. 제조사가 공개한 완제품 pH 또는 측정값을 확인해 주세요."
     if buffering:
-        ph += " 기존 DB에 완충(BUFFERING) 기능이 기록된 성분: " + ", ".join(buffering) + ". 이 표기는 완제품의 pH나 자극성을 뜻하지 않습니다."
+        ph += " DB에 pH 조절·완충 기능이 기록된 성분: " + ", ".join(buffering) + ". 이 표기는 완제품의 pH나 자극성을 뜻하지 않습니다."
     cautions = [record for records in result.cautions.values() for record in records]
     human = any(record.reason.startswith("[인체") for record in cautions)
     environment = any(record.reason.startswith("[환경") for record in cautions)

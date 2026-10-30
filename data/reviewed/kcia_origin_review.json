@@ -1,0 +1,2393 @@
+{
+  "format_version": 1,
+  "checked_on": "2026-10-30",
+  "policy": "식물성=공개 정의로 확인된 육상 식물 원료. 석유계=석유/광물계 탄화수소 왁스. 조류·균류·동물·무기는 기타. 화학명만으로 공급원 판단 안함.",
+  "entries": [
+    {
+      "kcia_id": "1572",
+      "name": "쌀겨수",
+      "inci": "Oryza Sativa (Rice) Bran Water",
+      "functions": [
+        "착향제",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1572",
+      "response_sha256": "1fe9763e71b7f43a092f6732d473adda06ab699e699a91ca85830be314cd32d1",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "f95c9adacd5a7a56e76aab489d0d38e5b036a33fb2f2fa14fd36b9244576b091",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "4940",
+      "name": "호호바에스터",
+      "inci": "Jojoba Esters",
+      "functions": [
+        "연마제",
+        "피부컨디셔닝제(유연제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=4940",
+      "response_sha256": "3f8129977785d1d016ce6e312d387a7ec5fbb431ba78f43d9df8fb9bb6029746",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "6b1d47f6c639944834e877151cccfaf220971ecb9b7bd0c8585910b269462675",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "1890",
+      "name": "알진",
+      "inci": "Algin",
+      "functions": [
+        "결합제",
+        "착향제",
+        "점증제(수용성)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1890",
+      "response_sha256": "1bf2d9c82d30d9abcee51804b0328176e47b5f4f6c55875c16b566af30026a5e",
+      "origin": "확인 필요",
+      "reason": "공개 정의는 알지닉애씨드의 소듐염이라고 설명합니다. 이 설명만으로 실제 원료의 해조류/미생물 등 공급원을 확정하지 않습니다.",
+      "definition_sha256": "610a5b3412b9f18270fc28292e7c9a38b7130ab4df6aa1f31bdf9d6062d0f21e",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "1265",
+      "name": "소듐하이알루로네이트",
+      "inci": "Sodium Hyaluronate",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1265",
+      "response_sha256": "7c9769f08be2c2d2e6df99ad44566931da501551a4683f0d164e29bbf183cbbf",
+      "origin": "확인 필요",
+      "reason": "공개 정의는 하이알루로닉애씨드의 소듐염입니다. 제조사의 동물성/미생물 발효 등 공급원과 제조 경로는 원료 자료가 필요합니다.",
+      "definition_sha256": "0035a8b4dd4cea03257c65c7c2800c99dee35dfea8df1c350b2c33bd4c7a9bc5",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3729",
+      "name": "폴리글루타믹애씨드",
+      "inci": "Polyglutamic Acid",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3729",
+      "response_sha256": "4475fed54296e2e0439a1b7e507421e2724cd36c504335154de0fe5ae6eceacc",
+      "origin": "확인 필요",
+      "reason": "공개 정의는 글루타믹애씨드의 고분자라는 설명입니다. 이 이름만으로 발효 또는 화학 제조 경로·공급원을 확정하지 않습니다.",
+      "definition_sha256": "10ea7300128e3d563381101a38cae323ff1e4b5efd63517b709d3af5bbf0870c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3559",
+      "name": "팔미틱애씨드",
+      "inci": "Palmitic Acid",
+      "functions": [
+        "착향제",
+        "불투명화제",
+        "계면활성제(세정제)",
+        "계면활성제(유화제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3559",
+      "response_sha256": "cdccb1172b553942d039e737b65ad932bcda96c7b4722caf8472ff508ab3bb89",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "8acee861823181af376d5afae094a42cfe97130832f6bee745453ca92b437148",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "1465",
+      "name": "스테아릭애씨드",
+      "inci": "Stearic Acid",
+      "functions": [
+        "착향제",
+        "계면활성제(세정제)",
+        "계면활성제(유화제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1465",
+      "response_sha256": "53ce6077ce0db1ed77ddd8bbfcc7070c5385a2837920e7eb52225c1e267b8e60",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "8acee861823181af376d5afae094a42cfe97130832f6bee745453ca92b437148",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "2922",
+      "name": "카프릴릭/카프릭트라이글리세라이드",
+      "inci": "Caprylic/Capric Triglyceride",
+      "functions": [
+        "착향제",
+        "피부컨디셔닝제(수분차단제)",
+        "용제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2922",
+      "response_sha256": "3de6ccf03b243a8158d2a3c4b0287447bee0f30514e639dcf7c777136ccc0900",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "3455bfe0186a00bfcfe6f16f7c0b600560e3c340368d73a21a53771a0e7cf884",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "4282",
+      "name": "피이지-100스테아레이트",
+      "inci": "PEG-100 Stearate",
+      "functions": [
+        "계면활성제-세정제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=4282",
+      "response_sha256": "74c37a6b977661d4594b1263afbf7530fd9da196b918d5b2f3e0afc52a188981",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "79868b395741c1381355959bc5c712806e3970f7ee7557f192806e4b907b044c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3861",
+      "name": "폴리솔베이트80",
+      "inci": "Polysorbate 80",
+      "functions": [
+        "변성제",
+        "착향제",
+        "계면활성제(유화제)",
+        "계면활성제(용해보조제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3861",
+      "response_sha256": "94ae1b51e13cdf5527844b5678e48d7a0fe5d53f329aee95cae700374a0db401",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "733bc61e6848c7e7a1c40867ac188f95c7c78f3e056ee65fd5e43bbec94c952d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3709",
+      "name": "포타슘하이드록사이드",
+      "inci": "Potassium Hydroxide",
+      "functions": [
+        "pH 조정제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3709",
+      "response_sha256": "57c7575689b8bd0fabf0e37101187d31dc12258c80408688511573022cb3c70d",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "d8804f6ee07ddf08146b794fbd0a86fd6934ff0c5f93f63631e15790c721fdde",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3992",
+      "name": "프로필렌글라이콜",
+      "inci": "Propylene Glycol",
+      "functions": [
+        "착향제",
+        "보습제",
+        "피부보습제",
+        "피부컨디셔닝제",
+        "용제",
+        "점도감소제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3992",
+      "response_sha256": "7e2e2566d1d944c2470e821712ee60a306f979a3f8da7314ae890e466833829f",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "233fa6ff49e1c652fd1027f5befb6412162f47ab969ed9e0cff6dc20f401e056",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "1013",
+      "name": "글리세린",
+      "inci": "Glycerin",
+      "functions": [
+        "변성제",
+        "착향제",
+        "헤어컨디셔닝제",
+        "보습제",
+        "피부보호제",
+        "피부컨디셔닝제(보습제)",
+        "점도감소제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1013",
+      "response_sha256": "73b2276bdb850c952dc8c32d6880d965d48cbc79a78c41c3e1d7a196ccc903b1",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "242488ae77be2388f5cd11d9b777dd05a24cc99e88999ff8f2d61a162de1a38b",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "996",
+      "name": "세틸알코올",
+      "inci": "Cetyl Alcohol",
+      "functions": [
+        "유화안정제",
+        "향료",
+        "불투명화제",
+        "계면활성제-유화제",
+        "계면활성제-거품형성제",
+        "점증제-수용성",
+        "점증제-비수용성"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=996",
+      "response_sha256": "105c12aea0bd1a4fda91107b4e7ab84d63017060b7307c26ea4181f9e8dcee1e",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "07ee5da2b6c761f8b9dd1b8b55ffbcf797fd9877923e5b4b6510ff89b66cf583",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "1288",
+      "name": "솔비탄스테아레이트",
+      "inci": "Sorbitan Stearate",
+      "functions": [
+        "착향제",
+        "계면활성제(유화제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1288",
+      "response_sha256": "fbc00295bfe10071b03e3876066eeaaac0ff8e69f59f082828c35d9007466ac2",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "bbbca7c4333fffce337043dc0a49fa7f297ea7846d09f23d08f0e6692f34efb0",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "1373",
+      "name": "수크로오스스테아레이트",
+      "inci": "Sucrose Stearate",
+      "functions": [
+        "피부컨디셔닝제(유연제)",
+        "계면활성제(유화제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1373",
+      "response_sha256": "60bf7d180959cac37b5f5080599186dea3ea3303bee57789e22db55a1e0caf11",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "bc6c13c438e9f962500c374095223ea53e9e1bf2f7546c971f0fee67f6848c13",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "2075",
+      "name": "에틸헥실글리세린",
+      "inci": "Ethylhexylglycerin",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2075",
+      "response_sha256": "450f3aafa10e540fd86afe9e6c34c28007fd9e09e6cac1b2d3b3b47d385855b7",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "781cb11e48c901ad10177876ae743d5b1b0c3aee0ab9b8965d45ea16c94fde5c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "4877",
+      "name": "1,2-헥산다이올",
+      "inci": "1,2-Hexanediol",
+      "functions": [
+        "용제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=4877",
+      "response_sha256": "725d53fde915cdae48a9021ab6a49a668f2867b9b0a7843d4870ba0f208bab7d",
+      "origin": "확인 필요",
+      "reason": "공개 정의로 화학 물질·염·지방산·에스터·알코올·고분자의 종류는 확인했지만 실제 제조 원료 공급원은 특정되지 않습니다. 합성이라는 이유로 석유계, 지방산이라는 이유로 식물성으로 정하지 않습니다.",
+      "definition_sha256": "8d3609a7ad2ddabeef95d55c9ad094a209a057e272d254b129f3e73e4056d979",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "912",
+      "name": "세레신",
+      "inci": "Ceresin",
+      "functions": [
+        "결합제",
+        "점증제-비수용성"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=912",
+      "response_sha256": "b18862ed71c8faee3ecc435a4315a5dd600e826d86c49728ec985554b6aa641d",
+      "origin": "석유계",
+      "reason": "공개 정의에서 석유 탄화수소 또는 광물/석유 유래 탄화수소 왁스와 그 정제물로 설명됩니다. 이 사이트의 석유계 원료군에는 이런 지질성 탄화수소 왁스를 포함하며, 식물성 여부나 위험성 점수로 바꾸지 않습니다.",
+      "definition_sha256": "e198d99b53763044d8f02cde41d8d24ff9eea2d39a689e7c224e99cb1e1a401a",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3477",
+      "name": "파라핀",
+      "inci": "Paraffin",
+      "functions": [
+        "향료",
+        "수분증발차단제",
+        "점증제-비수용성"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3477",
+      "response_sha256": "d6f47798e160216137c1fafb711210aac6500e20bb9a6a846183d30cab310bd1",
+      "origin": "석유계",
+      "reason": "공개 정의에서 석유 탄화수소 또는 광물/석유 유래 탄화수소 왁스와 그 정제물로 설명됩니다. 이 사이트의 석유계 원료군에는 이런 지질성 탄화수소 왁스를 포함하며, 식물성 여부나 위험성 점수로 바꾸지 않습니다.",
+      "definition_sha256": "128e9f2ec78a09cb498b7ae5f8ec8179f6aec1a9a057c9f98c9cda4f511a07eb",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3602",
+      "name": "페트롤라툼",
+      "inci": "Petrolatum",
+      "functions": [
+        "헤어컨디셔닝제",
+        "수분증발차단제",
+        "피부보호제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3602",
+      "response_sha256": "4036ced15b0d2bbe9ece110a7447a93bec706690e4faee93889c8aff459767e7",
+      "origin": "석유계",
+      "reason": "공개 정의에서 석유 탄화수소 또는 광물/석유 유래 탄화수소 왁스와 그 정제물로 설명됩니다. 이 사이트의 석유계 원료군에는 이런 지질성 탄화수소 왁스를 포함하며, 식물성 여부나 위험성 점수로 바꾸지 않습니다.",
+      "definition_sha256": "db62e88c345574cf6a957e99a34185ef2a25544d93ca6dc9fdc57915a17aad8d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "317",
+      "name": "미네랄오일",
+      "inci": "Mineral Oil",
+      "functions": [
+        "착향제",
+        "헤어컨디셔닝제",
+        "피부보호제",
+        "피부컨디셔닝제(유연제)",
+        "피부컨디셔닝제(수분차단제)",
+        "용제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=317",
+      "response_sha256": "aa37932967da8023a19564bdce677f7f76ba047baa4cc5d65ac0063279f78fde",
+      "origin": "석유계",
+      "reason": "공개 정의에서 석유 탄화수소 또는 광물/석유 유래 탄화수소 왁스와 그 정제물로 설명됩니다. 이 사이트의 석유계 원료군에는 이런 지질성 탄화수소 왁스를 포함하며, 식물성 여부나 위험성 점수로 바꾸지 않습니다.",
+      "definition_sha256": "c7e62610ceefed8bf01cace19209790d009fb3b2bddf1552799543700d61e877",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "2178",
+      "name": "오조케라이트",
+      "inci": "Ozokerite",
+      "functions": [
+        "결합제",
+        "유화안정제",
+        "점증제-비수용성"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2178",
+      "response_sha256": "3dca118fe7b7d401e6e996d380848296f42fd3303fc49b41e356d91229ea58fb",
+      "origin": "석유계",
+      "reason": "공개 정의에서 석유 탄화수소 또는 광물/석유 유래 탄화수소 왁스와 그 정제물로 설명됩니다. 이 사이트의 석유계 원료군에는 이런 지질성 탄화수소 왁스를 포함하며, 식물성 여부나 위험성 점수로 바꾸지 않습니다.",
+      "definition_sha256": "d037592aee35e68548c2f6fa24b35dfbb627959fb56e3e145244be1587ed5eb9",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "86",
+      "name": "마이크로크리스탈린왁스",
+      "inci": "Microcrystalline Wax",
+      "functions": [
+        "결합제",
+        "벌킹제(증량제)",
+        "유화안정제",
+        "점도증가제(비수성)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=86",
+      "response_sha256": "1d68c4aa84603db4bd7edd47e08926c8097a0c8de51279e55cf4060ef07fa124",
+      "origin": "석유계",
+      "reason": "공개 정의에서 석유 탄화수소 또는 광물/석유 유래 탄화수소 왁스와 그 정제물로 설명됩니다. 이 사이트의 석유계 원료군에는 이런 지질성 탄화수소 왁스를 포함하며, 식물성 여부나 위험성 점수로 바꾸지 않습니다.",
+      "definition_sha256": "4baaaafdd846acac9a20a6d471fb7e268418a4b3ff6fb32d039109f4a7c2da55",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "2",
+      "name": "가지열매추출물",
+      "inci": "Solanum Melongena (Eggplant) Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2",
+      "response_sha256": "a86a1544a67843bb5e00b0830c4d2f5a7d3f5460b7cb85ea3b5da5b6b55ffda8",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "fad7873c3b26ca185bccdca3f67d14335ad2f4ed30d958bd2db8dac2772ab0ce",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "3",
+      "name": "구멍쇠미역추출물",
+      "inci": "Agarum Cribrosum Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3",
+      "response_sha256": "228862ce23a71a6fab3a6783c0eb4a48d9b2ea59d7b0f52f0e5a3453a14b2c3e",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "27819e100ba9d6deec8c2d134691befdb730bc5b209bb137a2a9e5a16656751a",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "7",
+      "name": "백혈구추출물",
+      "inci": "Leukocyte Extract",
+      "functions": [],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=7",
+      "response_sha256": "e02cccdbc2cb8d8547437a95eb07ddf38d762cc98b35a8311a917f4a66a78a0d",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "e46fd84fd7b1937b55b34b921be5a2e07480b53bf35f97f9d3ba16a270cb3ecc",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "8",
+      "name": "리나칸투스 콤무니스추출물",
+      "inci": "Rhinacanthus Communis Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=8",
+      "response_sha256": "17cc53a95422a78cdb20924f8174f515b5e1e053a7697b254e4a06de51f18538",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "3072b1ce0de2af069b518ef37360978c9a7e0912fd1a780a6906575987e0dcc5",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "19",
+      "name": "리마콩씨추출물",
+      "inci": "Phaseolus Lunatus (Green Bean) Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=19",
+      "response_sha256": "bf032fbe07a9200186a290bb23a195b135506e4647d1970210d05556a482ad0f",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "9081b8f45ad527d061c75694e2667787851af3a2294b7a2b1d8f963adca5353d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "23",
+      "name": "구상나무잎추출물",
+      "inci": "Abies Koreana Leaf Extract",
+      "functions": [
+        "헤어컨디셔닝제",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=23",
+      "response_sha256": "092269c61d6d42bc6ea113b6134b5ace9d4afd7320320ba3dc8199284fa037e5",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "381fbd0ada66dc42061093e1d87cfbfc4f7d3e4e0a153b75e5a733294b70de79",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "25",
+      "name": "리치과피추출물",
+      "inci": "Litchi Chinensis Pericarp Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=25",
+      "response_sha256": "d775a4b71b4e0922350f784c59ee7212fd2cb2c4094855da0b8cf19fa6448506",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "4ce0cfc5673f441c369386b948253d485571817eaaa986975021a2fbea792774",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "26",
+      "name": "리치씨추출물",
+      "inci": "Litchi Chinensis Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=26",
+      "response_sha256": "d0fcf5e8a532ea9a71d22b277318089b52139193be3f57725e26b126d9ee68e0",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "dc093bf93975faf5459144371ccf0e0f318082218220fa6f43127d162d327eaf",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "27",
+      "name": "리치추출물",
+      "inci": "Litchi Chinensis Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=27",
+      "response_sha256": "f8ab10a1cc9df09d2694a3c59a761d14ed9abd0406aa17dd7b46971891a7fc2f",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "46dfc3c8a19925e28fbc180a00e8b27679ac8520720ae2e0135027b5af5a74ca",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "31",
+      "name": "글루티너스리트세아나무껍질추출물",
+      "inci": "Litsea Glutinosa Bark Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=31",
+      "response_sha256": "4f959444a9e7ea0bb9b223d7f8e3b5e68ebd67aa0707febf38bd6019d3f36d01",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b2891f6c1b3b502f324fd7f050d03399caffd9ab8d2fa9d85315c0f8d8ad34ae",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "35",
+      "name": "유럽피나무꽃추출물",
+      "inci": "Tilia Europaea Flower Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=35",
+      "response_sha256": "2ac82f82e441578ad63dbd60f48d301c59ac7a3753029d447fc88923468e4642",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b460bdde33145e6010a16167c8e9696badb1580314a9a106a6403b5968125c5c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "36",
+      "name": "마가목추출물",
+      "inci": "Sorbus Commixta Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=36",
+      "response_sha256": "71cef8681eb3cfd54815d81ff4b389aa289ed30e8dee2f41abdc04f1d65970cc",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "7fc74bd191166042d28e0c06a3fc033266e1706bd5aa59044e76ef10da212100",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "66",
+      "name": "황목련꽃추출물",
+      "inci": "Magnolia Acuminata Flower Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=66",
+      "response_sha256": "535feaabd7ce62484ff26c3bdf5dcaf9deca9d016846f94f6ac292d350f34831",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "8c5d55f7319aa9ad85b40125741ae700f7368780d566dc2383d510d0a19c6d34",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "69",
+      "name": "마늘추출물",
+      "inci": "Allium Sativum (Garlic) Bulb Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=69",
+      "response_sha256": "efcd0ecba9d49e7eaddbb998dd9e08f52d6bb5a716a3ab798920acca67757318",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "daeced971f760d4c818aa971706927e85d660b3400ee3e10052dfd377818e7d0",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "72",
+      "name": "마돈나백합꽃수",
+      "inci": "Lilium Candidum Flower Water",
+      "functions": [
+        "피부컨디셔닝제(유연제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=72",
+      "response_sha256": "bb3d077c5ace0239da02a196ac8ec4b59581f23922392c3882e7ade940feb85e",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "a740e2c8591101a83d54491d2a5cdd5dbca3639141ffc04004794a65c67c3cc7",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "73",
+      "name": "마돈나백합꽃추출물",
+      "inci": "Lilium Candidum Flower Extract",
+      "functions": [
+        "산화방지제",
+        "수렴제",
+        "피부보호제",
+        "피부컨디셔닝제(유연제)",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=73",
+      "response_sha256": "fc72b244385542cdb23054e1a3e802fe44aeb21bd4418b92330a0f83dac070ad",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "c465f80bb48accd857ea324f0c59f34111b4d4471f27c208a86f9cde642d00f7",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "74",
+      "name": "마돈나백합비늘줄기추출물",
+      "inci": "Lilium Candidum Bulb Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=74",
+      "response_sha256": "4c146a65d389fbf6c1cf9b597c4a5d0c93fd737e7cd48fabc84fce8a06e55ce7",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b307ff76ec60a7ad0793fde743f55406c57260c259b93f116e1eb62612900946",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "75",
+      "name": "가시칠엽수껍질추출물",
+      "inci": "Aesculus Hippocastanum (Horse Chestnut) Bark Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=75",
+      "response_sha256": "932cfe50cc690ebe3f3c48ddd640e428ee2bb60918262626fa4a60d42e9a3cdd",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b8522940e0edf77a3c67e35a8132997c405d843f21304dd5b2aa657c2fb220ae",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "76",
+      "name": "가시칠엽수씨추출물",
+      "inci": "Aesculus Hippocastanum (Horse Chestnut) Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=76",
+      "response_sha256": "f8725d402fb9b4a66beac4d0c468bea2aed7a419223b269167d0acd554f8fd04",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "da7b7981b2e7e4dd35fca13d0c66d25a52ec04d8201aa1597100bed81823cdca",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "77",
+      "name": "마뿌리추출물",
+      "inci": "Dioscorea Oppositifolia (Wild Yam) Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=77",
+      "response_sha256": "b162b062ad551c46c92f7392091c00669c071976b62bb9eb4b1d505648dd96e3",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "2d34d8b62ecc568818ab93f8985e12038e1901694f766e03d7b89d0899495d13",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "78",
+      "name": "구아바잎추출물",
+      "inci": "Psidium Guajava Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=78",
+      "response_sha256": "f3968e91251aa213cd5f8fd351120cb65b7afdd9355698c88504445f10a38355",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "377ab01d81325078f4a04d1ab2d41157d80e933d25a278dd2892e125a3067252",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "80",
+      "name": "마시멜로뿌리추출물",
+      "inci": "Althaea Officinalis Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=80",
+      "response_sha256": "5b179772e581c695299571792d03a581bdb38223c88a514876b0a5865d3034f9",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "bf03e2238827916960372e2127f75b8bd926e9f93b52fb094635dc730b423d48",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "81",
+      "name": "마시멜로잎/뿌리추출물",
+      "inci": "Althaea Officinalis Leaf/Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=81",
+      "response_sha256": "4277311183f809109a5594eb0c9f64ae30c18052197228448d69c4ae8f3f5603",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "f4026c1d7d2a3ddb3415d06a1e7bfb2d3df9a31b5fea1b8977a38a1b0aeb0201",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "82",
+      "name": "마시멜로잎추출물",
+      "inci": "Althaea Officinalis Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=82",
+      "response_sha256": "eaffd6f1b3026266e563c7d4fbc04f4b9be5b0799e36e4ce8d119a161459fd0f",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "64b79317f99f181177960e394101f46ac62c1d05d068413875bbf196f7ce368d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "88",
+      "name": "쇠비름추출물",
+      "inci": "Portulaca Oleracea Extract",
+      "functions": [
+        "피부컨디셔닝제(보습제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=88",
+      "response_sha256": "f6a32fac8666b5f3d1c21e4ff9e182e760b66094a00d530ef36f535a107c11d6",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "da60df06d4a5f3406eecea37a77c38f3240d1fd4ae1debe89e7f41a4b86a6993",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "89",
+      "name": "구아바열매추출물",
+      "inci": "Psidium Guajava Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=89",
+      "response_sha256": "662597d2939c82e1c12883783a3b38211d14f386ff6e10ce85221bf6d6963264",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "50e75e82afc446b90b06bf317f084f8cd13b2784c862e97dfb4a1ca5ec0b8741",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "91",
+      "name": "마카다미아씨추출물",
+      "inci": "Macadamia Ternifolia Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=91",
+      "response_sha256": "aad00a0e3cf071cb169fdcf1dc9c1120fdea82d2b81913b2c44564d4b32fe7ce",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "93afe2f794056b07d0829563e22361de8411f92071898438fc8ab16c3d23c474",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "92",
+      "name": "마카뿌리추출물",
+      "inci": "Lepidium Meyenii Root Extract",
+      "functions": [
+        "피부컨디셔닝제(보습제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=92",
+      "response_sha256": "cfded4246edc5f63e3915c6c487672d8bf57fc94c6e4c92bbb0faaf9318827a7",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "5b36bf94dde1012cd5fc873fbe1bded76fefd02fecca7d9adc274bd70067fe8c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "93",
+      "name": "마테잎추출물",
+      "inci": "Ilex Paraguariensis Leaf Extract",
+      "functions": [
+        "헤어컨디셔닝제",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=93",
+      "response_sha256": "dda13073690b0abf10f8d7dfa2a60ea5ef44370e15506ade64fd46d17d7c3933",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "00968240a227177729d0c93fae6f746e8198097b2351bc8db9f22a0470216f9d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "95",
+      "name": "마텔잎수",
+      "inci": "Myrtus Communis Leaf Water",
+      "functions": [
+        "착향제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=95",
+      "response_sha256": "d073a09e7661b6f6328658ee814c7bee2378bdfcb8b11959a7a3c8ba9a3d7920",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "fa529ec934b7b6a12a90e9d8e9f3664e239d0a35f029b87fa445361e14b17cc3",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "96",
+      "name": "마텔추출물",
+      "inci": "Myrtus Communis Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=96",
+      "response_sha256": "2baaa0661aa7f542a608f3b6cd8946ff1240516173ee649162764c3d32333ac5",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "7343f39048d7cd6c6524d3832977ef3560aebe46e1aba0ca1af966d9549a1138",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "97",
+      "name": "초마황추출물",
+      "inci": "Ephedra Sinica Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=97",
+      "response_sha256": "ebddd8173b2d100000c883159d9fe7f5b7e1cc2a4af7471a5d6aebedfe4dd9cb",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "a7676f3d97a0638f77b86d5d75bf21f992ea559f7f0bfadf09e2296bdd678b92",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "102",
+      "name": "필리핀오렌지껍질추출물",
+      "inci": "Citrus Nobilis (Mandarin Orange) Peel Extract",
+      "functions": [
+        "착향제",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=102",
+      "response_sha256": "4b6074a298441d87f8f05e3e8eb96ba7d236dabf80b5aeb21758b0e173abed83",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "ff8aebfff8e2b8d7192a158081db5f38e1549498b057ce1122360dc9b3bf679c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "104",
+      "name": "필리핀오렌지추출물",
+      "inci": "Citrus Nobilis (Mandarin Orange) Fruit Extract",
+      "functions": [
+        "착향제",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=104",
+      "response_sha256": "7fe20cb8c9173a080ce296511ec65a961d95e7793139292953deec222b2316eb",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "8a74ceecf10d02650ec7054c361b0599fdd43db509e8938118fc9cadd1e6d8db",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "106",
+      "name": "만주곰슬껍질추출물",
+      "inci": "Pinus Tabuliformis Bark Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=106",
+      "response_sha256": "e94f7389d88f8ff4a72222404b205da7f2accc6706f1e01563ca62130bcb612d",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "d786415eeb03c5f40b38c486115dcd6a07d63a630b357d0ab3b6f7ada299263b",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "107",
+      "name": "튜베로즈추출물",
+      "inci": "Polianthes Tuberosa Extract",
+      "functions": [
+        "피막형성제",
+        "향료",
+        "피부컨디셔닝제",
+        "수분증발차단제",
+        "피부보호제",
+        "점도조절제",
+        "점증제-수용성"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=107",
+      "response_sha256": "9984f7a2c864c85d969fa25b03a9204411bc64ff02c69e6f6c0c7359ab918207",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "f2e396b6009a8e3ebeb808d639e8e7c1a90bdcdd8d029fa029c3bf6de9226a4a",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "108",
+      "name": "말굽잔나비버섯추출물",
+      "inci": "Fomes Officinalis (Mushroom) Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=108",
+      "response_sha256": "2262b4c15e6a58b2607c007f4c4fa2730bd55ad390feedd61eba01dfee5e639f",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "eeb77cbb1850cd5f37c3927a213a8f335dfd0cffa0de19d1c13ebdeaf491aea2",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "110",
+      "name": "힙네아 무스키포르미스추출물",
+      "inci": "Hypnea Musciformis Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=110",
+      "response_sha256": "0635373364c647c212b494ee0504ca68d4b075cb80fe2fc16b0f2008a95be85f",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "b8ca68e34eca6a7c67361ace2a2fb10a20b617171cda07868576824d8c3b6d99",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "112",
+      "name": "말라카이트추출물",
+      "inci": "Malachite Extract",
+      "functions": [
+        "산화방지제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=112",
+      "response_sha256": "39579bb773a19d31244860a9ae18788300c2909605aa85a97fb598a9de379212",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "b44e290a6ab38782d039f9abdcc408fbfdc55fc36e0ac2c0b72ca569be27898d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "114",
+      "name": "당아욱꽃/잎/줄기추출물",
+      "inci": "Malva Sylvestris (Mallow) Flower/Leaf/Stem Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=114",
+      "response_sha256": "a0ba42d3c7463c3d91f2006736afd0cbb7dd125d2569c2b5f93a5c210b9e9656",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "29652337bae5290b2a454b05b7c90d84aa60e1b9dd35701833f25ae314009ee6",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "116",
+      "name": "당아욱잎추출물",
+      "inci": "Malva Sylvestris (Mallow) Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=116",
+      "response_sha256": "ca61acb8f4dbd2404f0b48a7c65bab17775b5253a9d8c9d13dcb9e24c33ad14a",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "643b7d829c9b5276bf86397b3d1215f173cd78b8d30307107e8be4870e8ff273",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "117",
+      "name": "당아욱추출물",
+      "inci": "Malva Sylvestris (Mallow) Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=117",
+      "response_sha256": "124cfbae8b360a08b3f1338d90b945e6e11463a262a8e8a84bb5a7009b6b35ab",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "43375cb11ed6f7de995df1604ae4a2353a3c23379c9361299716d5864112e6e0",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "120",
+      "name": "아라비안자스민꽃추출물",
+      "inci": "Jasminum Sambac (Jasmine) Flower Extract",
+      "functions": [
+        "착향제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=120",
+      "response_sha256": "4a8dcf92190d566ffc3ceee6e115179161bfd8b704fbcce0ef39a5b417379d2d",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "c72f2dd24e4bab3fbd1cb1951b52d088790417dd4e1f76cec6a8038d5efd939f",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "121",
+      "name": "아라비안자스민잎세포추출물",
+      "inci": "Jasminum Sambac (Jasmine) Leaf Cell Extract",
+      "functions": [
+        "감미제",
+        "착향제",
+        "피부보호제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=121",
+      "response_sha256": "6e07a7a44556cefb59f10fac39226cc6a969e539e0140db4a3caefd984d2f2d4",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "0f0fdb0d6bd95cd0eb0e4087f5f832cfa8790faa7ce05b9f7eb5d1ef7bc5ade3",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "122",
+      "name": "구절초추출물",
+      "inci": "Chrysanthemum Sibiricum Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=122",
+      "response_sha256": "e3c9299f016ba9659d877a981b11e857c3cf69ca5540939911196b093c352e7d",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "ab37ad17e078a37f0569b6cdbac421a3de3ee1a12e239ebbb898886b474e5206",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "136",
+      "name": "망고스틴껍질추출물",
+      "inci": "Garcinia Mangostana Peel Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=136",
+      "response_sha256": "1beab1f591721d4b0e1863a9fd20324e4e1b249a64a65a489248308508030ce1",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "d85231012ebafe70db0223f85641bf21e8f6fec9e0c726a1f75b9a25ae23905d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "138",
+      "name": "망고씨버터",
+      "inci": "Mangifera Indica (Mango) Seed Butter",
+      "functions": [
+        "피부컨디셔닝제(수분차단제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=138",
+      "response_sha256": "44d575f751a0bb44c3044c8f75fd241d95f1a402e019741b188418e333e81482",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "f7028e54a924b0e1f00512163ec3a1227db1480f3e972e7e94d6175c50905e29",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "139",
+      "name": "망고씨오일",
+      "inci": "Mangifera Indica (Mango) Seed Oil",
+      "functions": [
+        "수분증발차단제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=139",
+      "response_sha256": "2afaa12cdf32b83bdbb36e0fb555aea2e523d736fd623ae01d93e2a2e7dbc061",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "ff890c8676d8a0a626ded52308c1406670f6c929f3679a1cdd5dbe216771c7e1",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "140",
+      "name": "망고잎추출물",
+      "inci": "Mangifera Indica (Mango) Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=140",
+      "response_sha256": "d2fb1533fa2981ab4b1fe1f03015324b0f3b0151c98cb48f9bd91635bc5a04e8",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "1a3ae6019cfb771d7ee370f4b16d2f15712001313994f600bf3951c3e64fdaac",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "142",
+      "name": "구주물푸레잎추출물",
+      "inci": "Fraxinus Excelsior Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=142",
+      "response_sha256": "42907e0b85d53a20d7fbe82d40e72b3d21a9fd13f5e00ba51cc6513d0070c73e",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "4d28164cb37035ac9313868cd533a404c0288c295efa94f7272a60ee7bf750a8",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "143",
+      "name": "망고추출물",
+      "inci": "Mangifera Indica (Mango) Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=143",
+      "response_sha256": "a2a7a54b1b245ce993ee61521f2b3f20652b97cddb08e32c291d2e7c282782bf",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "77ccf0aa72d8421ee6d45b9bffabb17ff51192c7fa0dd146e102b669e95fcd01",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "144",
+      "name": "메도우스위트꽃추출물",
+      "inci": "Spiraea Ulmaria Flower Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=144",
+      "response_sha256": "baa7d0728c8853d20954ffff5c853a94ca9b529007c7ffe2530cd141574ae34d",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "498d69341f82baef7211b2a4c7ab03570891f00d252f4e3cc6c27feae6207183",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "145",
+      "name": "메도우스위트잎추출물",
+      "inci": "Spiraea Ulmaria Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=145",
+      "response_sha256": "c2b84a22429711d5fee62ddcfc8c618b78b763ad2d3af31d297bb788ca1474c8",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b9efb4da7e2fecb4a17bf457bfaf86a9a6cb8971658252e99e3a498ffd484fbd",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "146",
+      "name": "메도우스위트추출물",
+      "inci": "Spiraea Ulmaria Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=146",
+      "response_sha256": "2df4119a286297b007abed3b575f3c79d5e8bcb3d61ee7cb9c928c1b5a51eb29",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "37bb07e9e480cb6eae2189a4a10f903cd789f7f595b85c214b2f73f1f9e6e25d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "147",
+      "name": "매생이추출물",
+      "inci": "Capsosiphon Fulvescens Extract",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=147",
+      "response_sha256": "5c7117feb3f3ed3bc7558ffdc7a28b8bedc7e84e23df59de4f782a79d0410412",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "0dfb33d44f770bc8582f468b8f1f8e0dadc65e54c367815441eef749e9247f06",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "150",
+      "name": "매실추출물",
+      "inci": "Prunus Mume Fruit Extract",
+      "functions": [
+        "보습제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=150",
+      "response_sha256": "9d3ba39ec1ff2f7c0020835bd42d8b5acf6b47693bf92bc583b09f922e97622f",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "51b55760ff2fffdecccaa92a295ca892a6b2587f2c3dd14e380cd0a1cd1e2758",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "151",
+      "name": "매실나무꽃수",
+      "inci": "Prunus Mume Flower Water",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=151",
+      "response_sha256": "6e7e5aae3c133f3961a8686588d58e5268c788ffce414ea8b42ff7ce9dc6c3aa",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "482c914dcf05faf5649d9082f0abf477c0a1d88796846ffe68dfe38dd6e862e7",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "152",
+      "name": "매실나무꽃추출물",
+      "inci": "Prunus Mume Flower Extract",
+      "functions": [
+        "산화방지제",
+        "피부보호제",
+        "피부컨디셔닝제(유연제)",
+        "피부컨디셔닝제(보습제)",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=152",
+      "response_sha256": "e15458cd15370581dfff7ff7113fdf6b29801e4332b062f2d12b0d8ff0b76ef9",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "31ce1608671dc0430b5ded246a8dba1aef42e9881634d5ede4de26ba04bcd2c1",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "153",
+      "name": "구주소나무껍질추출물",
+      "inci": "Pinus Sylvestris Bark Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=153",
+      "response_sha256": "f51ecd0b9a2d482df7a8ffb1edc2646bb59300d625a315f766e5f88ba1e867a6",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b34831071a3852122d160f27ec431422ff33b6403ea5c0a498a98abca33cdc2a",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "154",
+      "name": "소엽맥문동뿌리추출물",
+      "inci": "Ophiopogon Japonicus Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=154",
+      "response_sha256": "48cc21e08e47b1190957ceb29a62ff69201659b00da86bed09ddee7ee5823ee9",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "51a1ddf165aea67a9e49a43c30961fa704a218887a680117442ff4b3e90ff7ae",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "155",
+      "name": "맥아추출물",
+      "inci": "Malt Extract",
+      "functions": [
+        "피부컨디셔닝제",
+        "피부보호제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=155",
+      "response_sha256": "46df97945e8116e765b50adefea3830e26a5b0d3c297043785328e1616b34bc2",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "4e48513d9514ddc5a971aae270d8bfdd6f2965ece290748af9589fe204d92ac0",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "156",
+      "name": "머위뿌리추출물",
+      "inci": "Petasites Japonicus Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=156",
+      "response_sha256": "2c884fc1be309b77231f96f3a9ec95b381a2ff1e5e973c83767cd7924d93646e",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "364a5dad4165587aae70c1885675d8d43e6d7a2ae28cd73d47f38f55f68c84e7",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "157",
+      "name": "머위잎/줄기추출물",
+      "inci": "Petasites Japonicus Leaf/Stem Extract",
+      "functions": [
+        "피부유연화제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=157",
+      "response_sha256": "6fb4cc464d962257a3a3f149ba188ab890d8dd157ac178514e4a97ad59917f8e",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "8e8c0dfd3db05f91c8e719adf9b57a8f8a0b27e95c1469c1099d336760694dcc",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "158",
+      "name": "우단담배풀추출물",
+      "inci": "Verbascum Thapsus Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=158",
+      "response_sha256": "113332716ae1b1f865b7352b783eca094e35d222563eaa9889a3e76e1976a338",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "e9eced1d6e0e76a22e99d04260c546b26099c317d1333de98af3bad430e2e5d9",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "159",
+      "name": "멍석딸기추출물",
+      "inci": "Rubus Parvifolius Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=159",
+      "response_sha256": "21842ff7c4209d800f40e05df8e5de00fa72776a10512cebd122062a927316c8",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "eab02d20ea530b04d36175cc1332857f0884ead859d97c611c7f3caf0e98f6e5",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "161",
+      "name": "메도우폼씨오일",
+      "inci": "Limnanthes Alba (Meadowfoam) Seed Oil",
+      "functions": [
+        "수분증발차단제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=161",
+      "response_sha256": "94f75fde5754e53f0ef714fadf7a44ef7868aa8f6ce9a35f0aa3ae20e5a658ff",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "5a45ecfd5a5b4739c0c45c1284e604163a4e07c751e1829a4319b632e8ee1f6e",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "162",
+      "name": "메밀씨추출물",
+      "inci": "Polygonum Fagopyrum (Buckwheat) Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=162",
+      "response_sha256": "d77f57724bc1d60854da590b2f4f19337d4e6a63a8f39b65cff124ed90b02271",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "a9a354cc4c6bb80411f64df5c344f40675e72defb655a619bcc6ed09a7ec7987",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "163",
+      "name": "메밀잎추출물",
+      "inci": "Polygonum Fagopyrum (Buckwheat) Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=163",
+      "response_sha256": "07e6b2fa2daf4903be5ee829fe66a56db754a36dd78d520102a885169cdf864e",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "3970c133efcf46e0c20be51c7ee6e870d61bebf4dcd3933666ee71862e284dfc",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "164",
+      "name": "구주소나무솔방울추출물",
+      "inci": "Pinus Sylvestris Cone Extract",
+      "functions": [
+        "착향제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=164",
+      "response_sha256": "a7f07b5c2597d8077d4e2d3e4afebe3d25216d75f4af78e829fe0d8bcae3af89",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "d62132ccce6c4ebf8dc1fa0200aa08a41e0341e1bfa141cac41b9b46c431813b",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "175",
+      "name": "구주소나무싹추출물",
+      "inci": "Pinus Sylvestris Bud Extract",
+      "functions": [
+        "산화방지제",
+        "수렴제",
+        "피부보호제",
+        "피부컨디셔닝제(유연제)",
+        "피부컨디셔닝제(보습제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=175",
+      "response_sha256": "ad4d51a033bc46da85ef75837830bfa2db3a8f8f3cad2eeff2e7c76e330b682a",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "f9a660534ef5fcac9de691ac3f324950d85053c4f3154d74b2008bae59c9559b",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "196",
+      "name": "구주소나무잎추출물",
+      "inci": "Pinus Sylvestris Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=196",
+      "response_sha256": "d399df8113124bba644b446b0d0e0c545ce7b0a0f38a43e6c99b3f9a2c2e7aa8",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "d1ce09d94db5345d155304dd5cdf7fa41219da9c57bb03b627e5411063f7c9ec",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "207",
+      "name": "암브레트씨추출물",
+      "inci": "Hibiscus Abelmoschus Seed Extract",
+      "functions": [
+        "착향제",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=207",
+      "response_sha256": "ee0017da75240c25b294e4374fe9d2cfcd2e3c391eab56f531a6b1f37d5a76d0",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "719462e091d069130b3bf744a692b8adcfc8c6f26abb2492146244cca829ff99",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "219",
+      "name": "암브레트추출물",
+      "inci": "Hibiscus Abelmoschus Extract",
+      "functions": [
+        "착향제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=219",
+      "response_sha256": "4d6de518126a0665d30414cbf61ec44422f1ed152be4440813e28c32357121ec",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "8ee85baf48ccb82be0bbd1dde5121a597fd700c78b86d76e869f902e62fa81d6",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "230",
+      "name": "국화추출물",
+      "inci": "Chrysanthemum Morifolium Flower Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=230",
+      "response_sha256": "07c38568ed5cc4a64449ddd8d825e73e4e3a628f439ca3f9d59afc794198d86a",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "e0c397dfc0e457ef735b02c9f16691ea23e9031ba2bbaac76fbde2078b8fe664",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "240",
+      "name": "멕시코야생얌뿌리추출물",
+      "inci": "Dioscorea Composita Root Extract",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=240",
+      "response_sha256": "5a4ed349becf8c6ae52c019b4393ef5cc9eea75057d8e8beae332c23822a4071",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "ee525f49cee529cb877e3c16b7e0301f163c7c3c6caf2c212b2eca080ece9272",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "251",
+      "name": "멜로트리아뿌리추출물",
+      "inci": "Melothria Heterophylla Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=251",
+      "response_sha256": "442aaaa6037a42ab40cd76e971819dd0a11ee3f4bcd6aa7561b4431343f63781",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "4e583db1fb54413910f6232b2bb0e3b9ed1a93186bcda21d444a8a5d860817f8",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "252",
+      "name": "굴추출물",
+      "inci": "Oyster Extract",
+      "functions": [],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=252",
+      "response_sha256": "9f0cac23f720d2579782ffa1b7d7ad0a7c9585814cd7e895dd05a9ae797fb0c4",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "bf43427d6b9ddc8f585cd2820370ac0e1d3e65d21a5969c6191e2dbb7feaeeca",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "255",
+      "name": "멜론추출물",
+      "inci": "Cucumis Melo (Melon) Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=255",
+      "response_sha256": "c5356415a0a23b15ea9f02a8b58cf3036a7966cfc8e9426b42456652e4b71e92",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "e5ccc5ff75b97bf91e8016156fe561244d57842f5d5e09106e8517d2e689fd40",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "258",
+      "name": "흰명아주꽃추출물",
+      "inci": "Chenopodium Album Flower Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=258",
+      "response_sha256": "8793aeaee7f22163679a5fd0964608377393889cd291399c5b54ac0f272ba8ae",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "63fdb8b2070242ae078be2cf83b3d21674669b1b80a8f6c30edb96f04622aec5",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "259",
+      "name": "신선초잎/줄기추출물",
+      "inci": "Angelica Keiskei Leaf/Stem Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=259",
+      "response_sha256": "da57ea85f90cb4c4a36364e3456ed3416f414cedc90e93713b023713c2aec8d2",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "d9dda109a9ac23769efa20bae6eb2bc5f5aa67a06eae91e9f96be95c67360d1a",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "260",
+      "name": "신선초추출물",
+      "inci": "Angelica Keiskei Extract",
+      "functions": [
+        "산화방지제",
+        "수렴제",
+        "피부보호제",
+        "피부컨디셔닝제(유연제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=260",
+      "response_sha256": "640192ee8b6384f1a4a147ac5ed0d838e7253ec0d10ea3e09a8e54870cbdbb8c",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b7eb4f5c1097f8c8d6c6619fb2ee37a3c3a3bcc5741b56462f3d8d395e52de23",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "261",
+      "name": "모과추출물",
+      "inci": "Chaenomeles Sinensis Fruit Extract",
+      "functions": [
+        "산화방지제",
+        "수렴제",
+        "모발컨디셔닝제",
+        "피부유연화제",
+        "피부보습제",
+        "피부컨디셔닝제",
+        "피부보호제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=261",
+      "response_sha256": "cbbc14d56602c55e8d123e6cf633713c0be887486aeacc9c0f8e89ec27fa646a",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "0ef6a6c869fe2614d2fa5d08073277a8b9c7298ac5a53d66a37af339e6e8e0af",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "262",
+      "name": "띠뿌리추출물",
+      "inci": "Imperata Cylindrica Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=262",
+      "response_sha256": "fd64ef482caf94e6e28afdd074a20f017659fb65b750636fc93b100cd2d7b84e",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "741630bdbf7cfe16c52bc955b021e3f6156e1a1becd22f2d2addb3bc90389c36",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "263",
+      "name": "굴피나무열매추출물",
+      "inci": "Platycarya Strobilacea Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=263",
+      "response_sha256": "b67cb9ed808021e5e39be039b3df5be5703d2076c97abbf3bb4b5fe3f32a9541",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "51314d783cce544a60a741e0a6303501c4e62fd4b60faf91fb1869c134315053",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "265",
+      "name": "모란껍질추출물",
+      "inci": "Paeonia Suffruticosa Bark Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=265",
+      "response_sha256": "cfb5129763ca89cb3de8b59e7365786205a935506a7c69d4b2a0a90cf13cf61d",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "c1983d08a033d098c70b314d0a859ce02220c89b55648f672419970cf9a5ca9c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "266",
+      "name": "모란뿌리추출물",
+      "inci": "Paeonia Suffruticosa Root Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=266",
+      "response_sha256": "df3ec028fee84224a661f8f1535615f600671dbe4272c966ef31a471c8f51a5a",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "a096f7e860ba5da475ef591dfafb846763324bc705889dd5bbba5cb3b79f7314",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "268",
+      "name": "굴껍질추출물",
+      "inci": "Oyster Shell Extract",
+      "functions": [],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=268",
+      "response_sha256": "fba6d580581f7a11b0e250c857bbeb7355759b2271850c8669bf10efcb29c244",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "03dfd8598e319574666dd47a7464bb2ff210efb6ad44d05a2bb0cc8f52e6832c",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "270",
+      "name": "몰로키아잎추출물",
+      "inci": "Corchorus Olitorius Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=270",
+      "response_sha256": "a80d4fba2571454ff8dc46ab34f56ac80f1f3e3c6418e0d816dab609a65ce05f",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b13f12ba67cdb63cdf3e987cbda7b09aaa6e674b09b6cd20b0c2dceeebea7904",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "272",
+      "name": "모스빈씨추출물",
+      "inci": "Vigna Aconitifolia Seed Extract",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=272",
+      "response_sha256": "b1100c2f65f72abc520d2e6f6e9ec081d2207679c1670240ae7b30e5f77ac7c4",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "7268d5b6cf92e793e8cb0da48ed842cc33f22d9f0e8c83f31caaf387f2ab231d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "273",
+      "name": "모우라버터트리씨버터",
+      "inci": "Bassia Latifolia Seed Butter",
+      "functions": [
+        "피부컨디셔닝제(수분차단제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=273",
+      "response_sha256": "684a1db6fb78f8fd2c06beba4e79a0cccf1002f257e94cc02e5bc15c86e2faca",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "1855d01b6f28ddf208be0ea8dfa697110e341b8572bd04a231188b1233fbb3ea",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "274",
+      "name": "굴피나무추출물",
+      "inci": "Platycarya Strobilacea Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=274",
+      "response_sha256": "29248f2003b0e13fddfb903cd474382512c0f9fd4e2366a09e90b8968fc49fdb",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "be22f5479846d088acedf61ab94d0501731740136fb18e0129c71018870edd2b",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "275",
+      "name": "모우레라 플루비아틸리스추출물",
+      "inci": "Mourera Fluviatilis Extract",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=275",
+      "response_sha256": "0e5d968942d2cf89f39e4f757249b89a0b959c0ab321e130e7678d4a58bdc038",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "bbcc7b507f761112d49160466f61bf00efb8550f33f5411b89608c834b56437f",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "276",
+      "name": "모자반추출물",
+      "inci": "Sargassum Fulvellum Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=276",
+      "response_sha256": "9fe986c52b72d2f39b151650999787c2ef1ee19fa8de2549540318da3012215e",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "5dc2dd29d4c7201d3af46a6210324de773d55800ab55be4add067ce29259a8c6",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "277",
+      "name": "목련가지/꽃/잎추출물",
+      "inci": "Magnolia Kobus Branch/Flower/Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=277",
+      "response_sha256": "c6b0d609b83f717786c2518bf825fc19425e65b46be8068e3a90479bcb8a8427",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "0968aa868b4924fac6d27b8bb0a08a8d5832b12067fd3648dc2bee3e963e7ff7",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "278",
+      "name": "목련나무껍질추출물",
+      "inci": "Magnolia Kobus Bark Extract",
+      "functions": [
+        "피부보습제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=278",
+      "response_sha256": "258e5d27278b5589a810f8e3d7750aca8371c3f51f8083015e18bc517f2acf70",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "f1aa0d6cc5060b7ae4abfdcada44978ce90827b00396efc3e83537fde0f563a0",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "279",
+      "name": "목서꽃추출물",
+      "inci": "Osmanthus Fragrans Flower Extract",
+      "functions": [
+        "감미제",
+        "향료"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=279",
+      "response_sha256": "4c9cbe29515a3ec10ea3c6745ddb08279ad02e5a39195b0e6f346f081f7b1fd3",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "7fbefca1f3cefdd28694041310a2bdeb0c5a62121052b16435a1ae39fcc04a46",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "281",
+      "name": "으름덩굴줄기추출물",
+      "inci": "Akebia Quinata Stem Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=281",
+      "response_sha256": "2fd632a6decabf640f3ac314b331fe74a3f6eb57b38d89d1d6ef1b083318e195",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "6240688fccd94e050896c7715e1b331eb729404e7809e026d9a0d8746e1d2c56",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "282",
+      "name": "목향추출물",
+      "inci": "Inula Helenium Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=282",
+      "response_sha256": "839281e15481676dc31060a155c53f59ec85b49fc625ffcc95cc43f7f3c8ef89",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b20e0dae3785f5ec31e1351902ad9bccdeb6c5415763eb54079dc559d6059216",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "285",
+      "name": "중국당귀뿌리추출물",
+      "inci": "Angelica Polymorpha Sinensis Root Extract",
+      "functions": [
+        "피부컨디셔닝제(유연제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=285",
+      "response_sha256": "a6281ca2ff387a9054c4a01b71fc5580443b50b90fcd9b5270f2dc5ac757e3fc",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "df30209309c4394bce64e55c04a7377575ad480f1fe51674cb0ebd8443e5e6a5",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "286",
+      "name": "코튼씨오일",
+      "inci": "Gossypium Herbaceum (Cotton) Seed Oil",
+      "functions": [
+        "피부컨디셔닝제(수분차단제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=286",
+      "response_sha256": "ac12c0bedf78f7164bdc1ab2d4bda323c662dcfbac79a82c0850245c6b5c2cbb",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "f0f221d43557ad3515da0b33cdef80fc9f082f9845bb1f1174e79bd2bc2c5923",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "287",
+      "name": "코튼씨추출물",
+      "inci": "Gossypium Herbaceum (Cotton) Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=287",
+      "response_sha256": "0cf18e8efb1adc4decc56ce35401eda538dab8c8b7340a52c16d97136fdd0dfa",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "ce8137c14beb4537b24c66d0e998e42df3becb126bb2bdba3ebc26793207e6e5",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "289",
+      "name": "코튼추출물",
+      "inci": "Gossypium Herbaceum (Cotton) Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=289",
+      "response_sha256": "3799f8a7a64eaff1cd0f6990e9d9a34e6cef0db006c8699ae921d87f64a68e14",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "0c9de733cd1ce5a004158f67cd4f2365703c43889748e59b727af03ed5c08fd9",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "292",
+      "name": "라디아타소나무껍질추출물",
+      "inci": "Pinus Radiata Bark Extract",
+      "functions": [
+        "산화방지제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=292",
+      "response_sha256": "d1965cd5650260c6dc36db8895d674cda57012e0adf0afc56bb2cca11b169f60",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b6028b072a05c70f8ff4c3a79a4bbed5a0b91b3a937b7c0db68c8c0d241c6dc0",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "294",
+      "name": "아라비안몰약추출물",
+      "inci": "Commiphora Abyssinica Resin Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=294",
+      "response_sha256": "5dc247f5dfafa3d5d0b9299972be2506c99a3b49215c2a076f796bbc5a446ebb",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "0c76a88e4d799b9f289c80bf4d4d89dd01ac4fb0a0e0039d4d96f84dbd6e933b",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "295",
+      "name": "치스투스 몬스펠리엔시스추출물",
+      "inci": "Cistus Monspeliensis Extract",
+      "functions": [
+        "착향제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=295",
+      "response_sha256": "732b425f311f36cd6ad917aa03c7e6bb74f47a5f9ee39d67e1ecde3b8968e834",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "87a61d188f7dc7f4b072b63d4a0d3b7aa2c165587548ef97387fccf1a619368d",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "296",
+      "name": "바위손추출물",
+      "inci": "Selaginella Tamariscina Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=296",
+      "response_sha256": "058fd2d96af4de07d487f81ff13f5d8cc367aa714144ae7ca884e7d6c37c4155",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "eb3bcea5b68f15714dd0ec92148c4212dbc20e0dce96e8ddd33236ccb49062aa",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "298",
+      "name": "무씨추출물",
+      "inci": "Raphanus Sativus (Radish) Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=298",
+      "response_sha256": "709e2b5228f0acfbd8b722becdcf01973729a0ce44f12d75ab7c634e2fb0c62c",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "9e363f5edd77b1b33e9488d6c5cea987e784742482d4b96c45af46fa36b9177f",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "299",
+      "name": "무추출물",
+      "inci": "Raphanus Sativus (Radish) Root Extract",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=299",
+      "response_sha256": "4ecfdf217c8f087c42b572602184f02dda2c6a61f8e50209bb8ab59d0819c281",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "60d0a43d0c53234ce4bdf822a350a810a12ba64d4fa16383aedd4dc6d43ed342",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "300",
+      "name": "리조무코르 미에헤이추출물",
+      "inci": "Mucor Miehei Extract",
+      "functions": [
+        "수렴제",
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=300",
+      "response_sha256": "ad5be0617b0ee4134ff0b3291e103e786f3de9db3ae03dcfc2c742e9cb06a2a9",
+      "origin": "기타",
+      "reason": "공개 정의에 무기물·동물성 세포/조개·조류 또는 균류 유래로 명시된 원료입니다. 이 분류에서는 육상 식물과 구분해 기타로 두며 안전성·환경성 판정은 아닙니다.",
+      "definition_sha256": "82d323cedcbbc74d4dc6c6f59f8eae07e620fadf0eba1876f00f728ec01f7d5f",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "301",
+      "name": "무탐바잎추출물",
+      "inci": "Guazuma Ulmifolia Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=301",
+      "response_sha256": "cb3987e301beb68f09298acb5af5fdbbe267f4e35f8219af613a4ce852b0f7a7",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "ebfe260a1108da5c2b3afcc6f3a5297a0b710cf0a893137d0b2e4a53969e7431",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "303",
+      "name": "무화과나무열매/잎추출물",
+      "inci": "Ficus Carica (Fig) Fruit/Leaf Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=303",
+      "response_sha256": "bb57d8aaf792a17388a9bc0d2554cce7f3c0cc688dd8c8eaaa9acb7933de96eb",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다. 공개 정의에는 무화과 잎 앱솔루트 관련 별도 주의문도 있습니다. 식물성 분류는 사용 허용 판정이 아니므로 원문과 현행 규정을 별도로 확인해야 합니다.",
+      "definition_sha256": "9f64422e77fdb5f8218668e43d0f495e348528283fdae64e8628dadd35ac70ea",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "305",
+      "name": "무화과추출물",
+      "inci": "Ficus Carica (Fig) Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=305",
+      "response_sha256": "a6a6bef3cd1c3db5f076f187c0072dc6bda55ded0b6796bedf40fa6a325fb742",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "219a9b05328c364eed13a8c1fffc473c83abe737a7948c2b6e42ac02c7df6f55",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "306",
+      "name": "무환자나무열매껍질추출물",
+      "inci": "Sapindus Mukorossi Peel Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=306",
+      "response_sha256": "f006b2a9dfba33bbb937dbfc28cad6522fcce977f7eebc894af919ae3d3e751c",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "0f3d624ca2bfc2a8f5b0909d3443b30316f7e9fb2e5b8f065d07c439e347ebe2",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "308",
+      "name": "무환자나무열매추출물",
+      "inci": "Sapindus Mukorossi Fruit Extract",
+      "functions": [
+        "피부컨디셔닝제",
+        "용제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=308",
+      "response_sha256": "556266c634e502e00157353fd751d0e222fedefe1946e215c31333191c7606f1",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "d0ccda687406b29a65379f3c371479166d55b8216eaf9cbd86b9662af38df505",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "309",
+      "name": "문주란씨추출물",
+      "inci": "Crinum Asiaticum Seed Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=309",
+      "response_sha256": "563198760440597108cb27f3514315378253bac6079b7c4fbbde6a4c7f026287",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "8ea6810dc38a1053e0bc616074203df0e9e2ee0c71149ff035bafad9b7e31998",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "310",
+      "name": "문주란추출물",
+      "inci": "Crinum Asiaticum Extract",
+      "functions": [
+        "피부컨디셔닝제(기타)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=310",
+      "response_sha256": "fad895437fbfc916431a2b09953b46bc6223aadb856732c2eb5e66a09331beca",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "9de3fe8c8b2343184fd9f03125247e5c8029cfbb835312546862263657555b02",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "311",
+      "name": "물냉이꽃/잎추출물",
+      "inci": "Nasturtium Officinale Flower/Leaf Extract",
+      "functions": [
+        "향료",
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=311",
+      "response_sha256": "9033a16af52836b0fd881b285cb93973a3cce5f5e701c65bf3660ea7ed5e7b48",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "b15b7750e522119b2a06883a389e97735fef93b1a93be72e29d51c276e5622ad",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "312",
+      "name": "물냉이추출물",
+      "inci": "Nasturtium Officinale Extract",
+      "functions": [
+        "향료",
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=312",
+      "response_sha256": "7f71f539f4f367e60b824e53802267f43868a2914007536e7f35059cf9a0ab19",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "9b62a6c282adcfe928039ff56d503e43298c23e81373ae71cf0e7a8d15307e16",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "313",
+      "name": "물푸레나무추출물",
+      "inci": "Fraxinus Rhynchophylla Extract",
+      "functions": [
+        "피부컨디셔닝제"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=313",
+      "response_sha256": "505ccbbb760834e6c3cbdad55c384189355f7e9fe8b8ddb1d9e83374d5c53f0e",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "4a87449985dd38d38c2a6400d92bc745ec7f83a5c3fd0a1b607ab0d366d35f31",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    },
+    {
+      "kcia_id": "314",
+      "name": "아메리카헤이즐넛씨오일",
+      "inci": "Corylus Americana (Hazelnut) Seed Oil",
+      "functions": [
+        "피부컨디셔닝제(수분차단제)"
+      ],
+      "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=314",
+      "response_sha256": "7bf04f2148c4980fe0eaed8ec41c89a041b025266eae0f8a87fe9b19f7ceaf94",
+      "origin": "식물성",
+      "reason": "공개 정의에서 식물의 특정 부위·세포에서 추출·증류·압착하거나 식물 오일을 처리하여 얻는 원료로 확인했습니다. 추출 용매·담체·복합 원료 전체가 식물성임을 보증하지 않습니다.",
+      "definition_sha256": "81db72a5df0c95498aa462783125fc90373a918a7b3c12d94c20724350d1d105",
+      "definition_reviewed": true,
+      "checked_on": "2026-10-30",
+      "access_scope": "공개 기원 및 정의만 열람. 회원사 전용 성분의 기원은 열람하지 않음."
+    }
+  ]
+}

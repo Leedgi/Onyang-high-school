@@ -101,7 +101,11 @@ def test_hyphen_formatting_changes_but_numeric_identity_does_not():
     database = load_ingredients()
     assert find_candidates('피 이 지/피 피 지－2 5/2 5 다 이 메 티 콘', database).status == 'exact'
     match = find_candidates('폴 리 쿼 터 늄－1 2', database)
-    assert match.status not in {'exact', 'alias'}
+    # 확장 사전에 12번이 등록돼도 다른 숫자의 성분으로 확정하면 안 된다.
+    if match.status in {'exact', 'alias'}:
+        assert match.candidates[0].name in {'POLYQUATERNIUM-12', '폴리쿼터늄-12'}
+    absent = find_candidates('폴리쿼터늄-999999', database)
+    assert absent.status not in {'exact', 'alias'}
 
 
 def test_spaced_numeric_comma_remains_part_of_one_name():

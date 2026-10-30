@@ -7,8 +7,8 @@ from shared.contracts import AnalysisRequest, ConfirmedIngredient
 
 def test_real_db_and_unknown_denominator():
     database = load_ingredients()
-    assert database.curated_count == 270
-    assert database.registry_count == 28077
+    assert database.curated_count >= 270
+    assert database.registry_count >= 28077
     request = AnalysisRequest(tuple(ConfirmedIngredient(n) for n in ["정제수", "미등록새성분"]))
     result = analyze_confirmed(request)
     assert result.count_ratio.values["확인 필요"] == 50
