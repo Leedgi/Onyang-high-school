@@ -3,3 +3,6 @@
 *.py text eol=lf
 *.png binary
 *.heic binary
+# 검토 자료의 SHA-256은 OS와 Git autocrlf 설정에 관계없이 동일해야 한다.
+*.csv text eol=lf
+*.json text eol=lf
