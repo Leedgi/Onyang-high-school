@@ -88,7 +88,10 @@ def build(root=ROOT):
                   source_url=r.source_url,checked_on=r.checked_on,uncertainty_reason=r.uncertainty_reason) for r in overlay]
     write_csv(data/'kcia_ingredients.csv',list(entries[0]),entries)
     write_csv(data/'kcia_import_conflicts.csv',['kcia_id','alias','target','existing','reason'],conflicts)
-    manifest={'format_version':1,**metadata,'source_definition_reviews':len(reviewed),
+    manifest={'format_version':1,**metadata,
+              'base_files':{name:hashlib.sha256((data/name).read_bytes()).hexdigest()
+                            for name in ['ingredients.csv','ingredient_names.csv','sources.json']},
+              'source_definition_reviews':len(reviewed),
               'reviewed_unique_records':len(reviewed_positions),'review_origin_counts':dict(Counter(r['origin'] for r in reviewed.values())),
               'overlay_records':len(overlay),'added_records':len(records)-base_size,
               'merged_records':len(records),'merged_curated_count':len(records)-len(name_only),
