@@ -102,6 +102,13 @@ def render_result(result) -> None:
             st.caption("성분을 유래별로 묶었습니다. 각 묶음 안에서는 원래 목록 순서를 유지합니다.")
             for origin, rows in ingredient_groups(result):
                 st.subheader(f"{origin} · {len(rows)}개")
+                if origin == "확인 필요" and rows:
+                    reasons = {"origin_uncertain": "제조 원료 공급원 확인 필요",
+                               "evidence_insufficient": "이름은 등록됐지만 유래 근거 부족",
+                               "db_missing": "DB 미등록", "name_unresolved": "이름 대조 미확정"}
+                    st.caption(" · ".join(f"{label} {sum(r.uncertainty_reason == code for r in rows)}개"
+                                          for code, label in reasons.items()
+                                          if any(r.uncertainty_reason == code for r in rows)))
                 if rows:
                     st.dataframe([{
                         "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
@@ -153,6 +160,7 @@ def main() -> None:
     try:
         database = load_ingredients()
     except (OSError, ValueError) as exc:
+        clear_result()
         st.error(f"성분 자료를 불러오지 못했습니다: {exc}")
         footer()
         return
@@ -209,8 +217,9 @@ def main() -> None:
             try:
                 drafts = prepare_review(text)
             except (ValueError, OSError) as exc:
+                clear_result()
                 st.error(f"성분 이름을 대조하지 못했습니다: {exc}")
-                footer()
+                footer(database)
                 return
             review_signature = digest([text, database.fingerprint, st.session_state.source_key])
             if review_signature != st.session_state.review_signature:
@@ -246,4 +255,4 @@ def main() -> None:
                     st.error(f"분석하지 못했습니다: {exc}")
     if st.session_state.result is not None:
         render_result(st.session_state.result)
-    footer()
+    footer(database)

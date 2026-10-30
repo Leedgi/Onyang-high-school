@@ -80,3 +80,12 @@ C가 CONTRACT_VERSION을 올리고 이전 호출을 위한 어댑터·검사를 
 `caution_aliases.csv`의 alias,inci,source_url,checked_on,source_cas를 검증해 기존 INCI 레코드에 동의어를 추가한다. 다른 성분과 충돌하면 오류이며 이름 전용 레코드의 유래는 확인 필요 그대로다. 파일이 없는 기존 프로젝트는 기존 동작을 유지한다.
 `caution_sources.json`은 주의·별칭·환경 시험 CSV의 SHA-256을 집계한다. 있을 때 로더가 생성물의 일치를 검증한다. 주의·별칭·환경 근거·검토 입력이 바뀌면 DB 지문도 바뀌어 재확인을 요구한다.
 기존 CautionRecord.reason의 `[인체·...]` / `[환경·생분해성]` 접두사는 화면 묶음 표시만 위한 후방 호환 어댑터다. 접두사가 없는 기존 레코드도 ‘그 밖의 등록 주의’로 표시한다. severity·pH·생분해 등급 필드를 새로 만들지 않는다. 농도·제품·국가·사용 조건·원문·확인일은 기존 필드를 그대로 보존한다.
+
+
+## KCIA 선택적 명칭/정의 확장 v1 및 OCR 캐시 (2026-10-30)
+
+함수·자료형·enum·기존 CSV 열과 CONTRACT_VERSION=1을 유지한다. kcia_ingredients.csv는 기존 IngredientRecord 열 그대로이며 kcia_sources.json의 고정 파일·기본 DB 체크섬과 병합 집계가 일치할 때만 적용한다. 기존 정식명은 교체하고 새 정식명은 추가하며 최종 별칭 충돌은 실패다. 별칭 충돌242건은 생성 단계에서 격리해 자동 병합하지 않았다. 확장이 없는 기존 프로젝트는 기존 로딩을 유지한다.
+
+기존 기본 사전270+28,077은 보존한다. 공개 표준 명칭22,021행 중 중복을 제외한 통합32,797개, 정확 키57,706개다. definition_reviewed 항목은 기존 uncertainty_reason으로 표현한다. 공개 정의로도 공급원을 모르면 origin_uncertain, 이름 전용은 evidence_insufficient이며 둘 다 비율 분모에 포함한다. 검토394개라는 수가 모두 유래 확정을 뜻하지 않는다.
+
+모든 확장 생성물/검토 입력은 DB 파일 지문에 포함한다. 자료 오류 시 C가 이전 result와 pdf_export를 지운다. PIPELINE_VERSION=geometry-kcia-2로 바꿔 같은 사진의 이전 OCR 결과를 재사용하지 않는다. 사진·원문·후보를 공용 캐시에 넣지 않는다. OCR 내부 경로 버전은 v5이며 공개 상태값은 바꾸지 않는다.

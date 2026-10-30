@@ -93,7 +93,9 @@ def load_ingredients(root: Path = ROOT) -> IngredientDatabase:
     if (root / "data/ingredient_names.csv").exists():
         paths.extend([root / "data/ingredient_names.csv", root / "data/sources.json"])
     for name in ("cautions.csv", "caution_aliases.csv", "environmental_evidence.csv",
-                 "caution_sources.json", "reviewed/caution_review.json"):
+                 "caution_sources.json", "reviewed/caution_review.json", "kcia_sources.json",
+                 "kcia_ingredients.csv", "kcia_standard_names.csv", "kcia_import_conflicts.csv",
+                 "reviewed/kcia_origin_review.json", "reviewed/kcia_source_input.json"):
         path = root / "data" / name
         if path.exists():
             paths.append(path)
@@ -152,12 +154,57 @@ def _load_ingredients_cached(root: Path, stamp: tuple) -> IngredientDatabase:
                 continue
             records[position] = replace(records[position], aliases=(*records[position].aliases, entry["alias"]))
             index[alias] = position
+    records, registry_count = apply_kcia_overlay(root, records, registry_count)
     database = IngredientDatabase(records, "real", registry_count)
     components = [database.fingerprint]
     for path_string, _, _ in stamp:
         components.append(hashlib.sha256(Path(path_string).read_bytes()).hexdigest())
     database.fingerprint = hashlib.sha256("|".join(components).encode()).hexdigest()
     return database
+
+
+def apply_kcia_overlay(root: Path, records: list[IngredientRecord], registry_count: int):
+    """기존 CSV → 검증한 선택적 확장 → 같은 자료형. 누락·충돌은 실패 처리."""
+    data = root / "data"
+    path = data / "kcia_sources.json"
+    if not path.exists():
+        if (data / "kcia_ingredients.csv").exists():
+            raise ValueError("KCIA 확장 자료의 출처 집계가 없습니다.")
+        return records, registry_count
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        if manifest["format_version"] != 1:
+            raise ValueError("지원하지 않는 KCIA 확장 자료 버전입니다.")
+        for name in ("ingredients.csv", "ingredient_names.csv", "sources.json"):
+            if hashlib.sha256((data / name).read_bytes()).hexdigest() != manifest["base_files"][name]:
+                raise ValueError("KCIA 확장 자료의 기본 DB가 바뀌었습니다. 자료를 재검토·재생성해 주세요.")
+        for name in ("kcia_ingredients.csv", "kcia_standard_names.csv", "kcia_import_conflicts.csv",
+                     "reviewed/kcia_origin_review.json", "reviewed/kcia_source_input.json"):
+            if hashlib.sha256((data / name).read_bytes()).hexdigest() != manifest["files"][name]:
+                raise ValueError("KCIA 자료 체크섬이 일치하지 않습니다. 검토 입력과 생성물을 확인해 주세요.")
+        name_only = set(range(len(records) - registry_count, len(records)))
+        positions = {normalize_key(r.name): i for i, r in enumerate(records)}
+        for entry in read_csv(data / "kcia_ingredients.csv", set(IngredientRecord.__dataclass_fields__)):
+            entry = dict(entry)
+            for key in ("aliases", "functions"):
+                entry[key] = tuple(filter(None, entry[key].split("|")))
+            record = IngredientRecord(**entry)
+            key = normalize_key(record.name)
+            position = positions.get(key)
+            if position is None:
+                position = len(records)
+                positions[key] = position
+                records.append(record)
+                name_only.add(position)
+            else:
+                records[position] = record
+            if record.uncertainty_reason != "evidence_insufficient":
+                name_only.discard(position)
+        if (len(records) != manifest["merged_records"] or len(name_only) != manifest["merged_registry_count"]):
+            raise ValueError("KCIA 확장 자료의 병합 집계가 다릅니다. 기존 자료부터 재검토해 주세요.")
+        return records, len(name_only)
+    except (KeyError, TypeError) as exc:
+        raise ValueError("KCIA 확장 자료의 출처 집계를 확인해 주세요.") from exc
 
 
 def load_cautions(root: Path = ROOT) -> list[CautionRecord]:

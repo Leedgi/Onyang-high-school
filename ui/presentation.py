@@ -33,7 +33,7 @@ def intro() -> None:
 def upload_help() -> None:
     st.html('''<aside class="upload-help"><span class="small-label">더 잘 읽히는 사진</span>
       <h3>글씨가 선명하게,<br>성분표가 한눈에.</h3>
-      <ul><li>제품 뒷면의 전성분을 모두 담아주세요.</li><li>반사되는 빛을 피하고 초점을 맞춰주세요.</li><li>기울어진 사진은 자동으로 보정합니다.</li></ul>
+      <ul><li>제품 뒷면의 전성분을 모두 담아주세요.</li><li>반사되는 빛을 피하고 초점을 맞춰주세요.</li><li>거꾸로 된 사진과 곡면 라벨도 자동 보정을 시도합니다.</li></ul>
       <p>사진이 없어도 아래에서 성분명을 직접 입력할 수 있어요.</p></aside>''')
 
 
@@ -44,14 +44,17 @@ def ratio_summary(ratio) -> None:
       <div class="quiet-note">‘확인 필요’도 비율에 포함됩니다.<br>이 비율은 실제 배합 함량이나 안전성 점수가 아닙니다.</div></div>''')
 
 
-def footer() -> None:
+def footer(database=None) -> None:
     st.html('<div id="guide" class="section-heading"><p class="eyebrow">알고 사용하기</p><h2>자주 묻는 질문</h2></div>')
     with st.expander("식물성 성분이면 더 안전한가요?"):
         st.write("원료의 유래만으로 안전성이나 환경성을 판단할 수 없습니다. 이 서비스는 제품의 친환경성이나 안전성을 인증하지 않습니다.")
     with st.expander("‘확인 필요’는 무슨 뜻인가요?"):
         st.write("DB에 이름이 없거나 제조 유래·근거가 충분하지 않은 경우입니다. 위험하다는 뜻이 아닙니다. 결과의 자료 안내에서 성분별 근거를 확인할 수 있습니다.")
     with st.expander("어떤 자료를 사용하나요?"):
-        st.write("대표 성분 270개와 이름 전용 항목 28,077개를 구분해 사용합니다. 이름 전용 항목은 유래 근거가 없어 확인 필요로 남습니다. 일부 근거는 2019년 비공식 스냅샷으로, 최신 규제·안전성 검토를 대신하지 않습니다.")
+        if database is not None:
+            st.write(f"현재 {len(database.records):,}개 성분을 검색합니다. 정의·유래 검토 {database.curated_count:,}개와 이름 전용 {database.registry_count:,}개를 구분합니다. 이름 전용 항목은 유래 근거가 없어 확인 필요로 남습니다.")
+        st.write("대한화장품협회 공개 표준화 명칭 목록(2026-09-30)을 연결하고, 공개 정의 144개를 별도로 검토했습니다. 회원사 전용 ‘성분의 기원’은 열람하지 않았습니다. 분류는 공개 정의를 바탕으로 한 서비스 자체 검토이며 협회 인증이 아닙니다.")
+        st.write("일부 기존 근거는 2019년 비공식 스냅샷입니다. 명칭 등재와 정의 검토는 최신 규제·안전성 검토를 대신하지 않습니다. 지방산·글리세린 등은 제조사의 실제 공급원 확인이 필요합니다.")
         st.write("별도 주의 DB는 FDA 안내의 인체 주의 27개 물질과 PubChem/HSDB의 생분해성 시험 3개 물질을 검토했습니다. 자료의 발표 시점과 열람일을 구분하며, 전 성분의 안전성을 검토한 것은 아닙니다.")
     render_error_report()
     st.html('''<footer class="site-footer"><span class="footer-brand">성분 정보 분석.</span><p>좋은 선택은, 성분을 이해하는 데서 시작됩니다.</p><small>성분 정보 제공 서비스 · 제품의 안전성 및 친환경성 인증이 아닙니다.</small></footer>''')

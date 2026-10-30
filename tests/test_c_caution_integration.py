@@ -20,8 +20,8 @@ def test_verified_korean_alias_and_inci_deduplicate_without_changing_origin():
     assert r.count_ratio.denominator == 1
     assert [x.name for x in r.input_records] == ['리모넨','LIMONENE']
     assert len(r.cautions['LIMONENE']) == 1
-    assert load_ingredients().curated_count == 270
-    assert load_ingredients().registry_count == 28077
+    assert load_ingredients().curated_count == 394
+    assert load_ingredients().registry_count == 32403
 
 
 def test_alias_collision_is_rejected_and_old_data_without_alias_file_still_loads(tmp_path):
