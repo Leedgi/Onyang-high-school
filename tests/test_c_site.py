@@ -40,7 +40,7 @@ def test_candidate_selection_clears_previous_result_without_apply_button():
     page.button(key="confirm").click().run()
     assert not page.exception
     assert page.session_state["result"].rows[0].canonical_name == "미네랄오일"
-    assert len(page.button) == 1
+    assert len([button for button in page.button if button.key == "confirm"]) == 1
 
 
 def test_upload_automatically_runs_once_then_new_photo_invalidates(monkeypatch):

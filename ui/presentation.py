@@ -4,11 +4,13 @@ from pathlib import Path
 
 import streamlit as st
 
+from ui.feedback import render_error_report
+
 
 def intro() -> None:
     st.html('''<nav class="site-nav" aria-label="주 메뉴">
       <a class="wordmark" href="#top"><span class="brand-symbol" aria-hidden="true">잎</span>성분 정보 분석<span class="brand-dot">.</span></a>
-      <div class="nav-links"><a href="#analyze">성분표 분석</a><a href="#guide">이용 안내</a></div>
+      <div class="nav-links"><a href="#analyze">성분표 분석</a><a href="#guide">이용 안내</a><a href="#report">오류 제보</a></div>
     </nav><div id="top"></div>''')
     with st.container(key="hero"):
         copy, visual = st.columns([1.2, 1], gap="large", vertical_alignment="center")
@@ -50,4 +52,5 @@ def footer() -> None:
         st.write("DB에 이름이 없거나 제조 유래·근거가 충분하지 않은 경우입니다. 위험하다는 뜻이 아닙니다. 결과의 자료 안내에서 성분별 근거를 확인할 수 있습니다.")
     with st.expander("어떤 자료를 사용하나요?"):
         st.write("대표 성분 270개와 이름 전용 항목 28,077개를 구분해 사용합니다. 이름 전용 항목은 유래 근거가 없어 확인 필요로 남습니다. 일부 근거는 2019년 비공식 스냅샷으로, 최신 규제·안전성 검토를 대신하지 않습니다.")
+    render_error_report()
     st.html('''<footer class="site-footer"><span class="footer-brand">성분 정보 분석.</span><p>좋은 선택은, 성분을 이해하는 데서 시작됩니다.</p><small>성분 정보 제공 서비스 · 제품의 안전성 및 친환경성 인증이 아닙니다.</small></footer>''')
