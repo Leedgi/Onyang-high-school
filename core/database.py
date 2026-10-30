@@ -95,7 +95,9 @@ def load_ingredients(root: Path = ROOT) -> IngredientDatabase:
     for name in ("cautions.csv", "caution_aliases.csv", "environmental_evidence.csv",
                  "caution_sources.json", "reviewed/caution_review.json", "kcia_sources.json",
                  "kcia_ingredients.csv", "kcia_standard_names.csv", "kcia_import_conflicts.csv",
-                 "reviewed/kcia_origin_review.json", "reviewed/kcia_source_input.json"):
+                 "reviewed/kcia_origin_review.json", "reviewed/kcia_source_input.json",
+                 "origin_ingredients.csv", "origin_sources.json", "reviewed/origin_review.json",
+                 "reviewed/origin_route_review.json"):
         path = root / "data" / name
         if path.exists():
             paths.append(path)
@@ -155,6 +157,7 @@ def _load_ingredients_cached(root: Path, stamp: tuple) -> IngredientDatabase:
             records[position] = replace(records[position], aliases=(*records[position].aliases, entry["alias"]))
             index[alias] = position
     records, registry_count = apply_kcia_overlay(root, records, registry_count)
+    records, registry_count = apply_origin_overlay(root, records, registry_count)
     database = IngredientDatabase(records, "real", registry_count)
     components = [database.fingerprint]
     for path_string, _, _ in stamp:
@@ -205,6 +208,51 @@ def apply_kcia_overlay(root: Path, records: list[IngredientRecord], registry_cou
         return records, len(name_only)
     except (KeyError, TypeError) as exc:
         raise ValueError("KCIA 확장 자료의 출처 집계를 확인해 주세요.") from exc
+
+
+def apply_origin_overlay(root: Path, records: list[IngredientRecord], registry_count: int):
+    """검토 입력/기본 DB 일치 → 기존 확인 필요만 보완 → 같은 규격. 오류는 중단."""
+    data = root / "data"
+    path = data / "origin_sources.json"
+    if not path.exists():
+        if (data / "origin_ingredients.csv").exists():
+            raise ValueError("유래 확장 자료의 출처 집계가 없습니다.")
+        return records, registry_count
+    try:
+        manifest = json.loads(path.read_text(encoding="utf-8"))
+        if manifest["format_version"] != 1:
+            raise ValueError("지원하지 않는 유래 자료 버전입니다.")
+        for group, names in (
+            ("base_files", ("ingredients.csv", "ingredient_names.csv", "sources.json", "kcia_sources.json")),
+            ("files", ("origin_ingredients.csv", "reviewed/origin_review.json", "reviewed/origin_route_review.json")),
+        ):
+            for name in names:
+                if hashlib.sha256((data / name).read_bytes()).hexdigest() != manifest[group][name]:
+                    raise ValueError("유래 자료 체크섬이 일치하지 않습니다. 기본 자료와 검토 입력을 확인해 주세요.")
+        positions = {normalize_key(r.name): i for i, r in enumerate(records)}
+        seen = set()
+        for entry in read_csv(data / "origin_ingredients.csv", set(IngredientRecord.__dataclass_fields__)):
+            entry = dict(entry)
+            for key in ("aliases", "functions"):
+                entry[key] = tuple(filter(None, entry[key].split("|")))
+            record = IngredientRecord(**entry)
+            position = positions.get(normalize_key(record.name))
+            if position is None or position in seen:
+                raise ValueError("유래 확장의 정식명 누락·중복을 확인해 주세요.")
+            seen.add(position)
+            previous = records[position]
+            if previous.origin != "확인 필요" or record.aliases != previous.aliases:
+                raise ValueError("유래 확장은 기존 확인 필요 성분만 보완하며 별칭을 변경할 수 없습니다.")
+            if previous.uncertainty_reason == "evidence_insufficient":
+                registry_count -= 1
+            records[position] = record
+        if (len(seen) != manifest["overlay_records"] or len(records) != manifest["merged_records"]
+                or registry_count != manifest["merged_registry_count"]
+                or {origin: sum(r.origin == origin for r in records) for origin in ORIGINS} != manifest["merged_origin_counts"]):
+            raise ValueError("유래 자료의 병합 집계가 다릅니다.")
+        return records, registry_count
+    except (KeyError, TypeError) as exc:
+        raise ValueError("유래 확장의 출처 집계를 확인해 주세요.") from exc
 
 
 def load_cautions(root: Path = ROOT) -> list[CautionRecord]:

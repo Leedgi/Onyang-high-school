@@ -1,0 +1,112 @@
+{
+  "format_version": 1,
+  "checked_on": "2026-10-30",
+  "scope": "과거 HSDB 제조 경로의 참고 요약. 현재 시장 점유율·제품 배치의 유래 판정 아님.",
+  "entries": [
+    {
+      "name": "글리세린",
+      "cid": 753,
+      "summary": "PubChem/HSDB의 과거 제조 자료에 프로펜에서 출발하는 화학합성 경로와 당 발효 경로가 함께 나옵니다. 이름만으로 식물성 또는 석유계 원료를 확정할 수 없습니다. 원료 공급사의 기원 확인서가 필요합니다.",
+      "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/753#section=Methods-of-Manufacturing",
+      "checked_on": "2026-10-30",
+      "response_sha256": "a412ca2f4b7a66b92781fc259838365a5451b13e8c3da3260323f960f52d1a44",
+      "providers": [
+        {
+          "ReferenceNumber": 69,
+          "SourceName": "Hazardous Substances Data Bank (HSDB)",
+          "SourceID": "492",
+          "Name": "GLYCERIN",
+          "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+          "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/492",
+          "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+          "IsToxnet": true,
+          "ANID": 430
+        }
+      ]
+    },
+    {
+      "name": "프로필렌글라이콜",
+      "cid": 1030,
+      "summary": "PubChem/HSDB는 프로필렌옥사이드의 수화 경로와 글리세린을 이용한 경로 등을 기록합니다. 어느 경로와 공급원을 사용했는지 제품 성분표로는 구분할 수 없습니다. 과거의 산업 공정 설명을 현재 모든 제품의 석유계 인증으로 사용하지 않습니다.",
+      "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/1030#section=Methods-of-Manufacturing",
+      "checked_on": "2026-10-30",
+      "response_sha256": "4ab5a5460852a735c0a221d6ed9117bbb5365dc9a64b2124fc0e2f38c2183d39",
+      "providers": [
+        {
+          "ReferenceNumber": 61,
+          "SourceName": "Hazardous Substances Data Bank (HSDB)",
+          "SourceID": "174",
+          "Name": "Propylene glycol",
+          "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+          "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/174",
+          "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+          "IsToxnet": true,
+          "ANID": 134
+        }
+      ]
+    },
+    {
+      "name": "스테아릭애씨드",
+      "cid": 5281,
+      "summary": "식물성·동물성 경로가 모두 기록돼 있습니다. PubChem/HSDB는 대두·목화씨 등 식물 오일의 수소화와 동물성 지방(tallow)의 가수분해·분별 경로를 설명합니다. 식물성으로 표시하려면 해당 원료 공급사의 확인이 필요합니다.",
+      "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5281#section=Methods-of-Manufacturing",
+      "checked_on": "2026-10-30",
+      "response_sha256": "516cfa0a359ac01806dff0749fa6c056e16c9cf68cce18c714249fd3ac026827",
+      "providers": [
+        {
+          "ReferenceNumber": 57,
+          "SourceName": "Hazardous Substances Data Bank (HSDB)",
+          "SourceID": "2000",
+          "Name": "Stearic acid",
+          "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+          "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/2000",
+          "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+          "IsToxnet": true,
+          "ANID": 1591
+        }
+      ]
+    },
+    {
+      "name": "팔미틱애씨드",
+      "cid": 985,
+      "summary": "식물성·동물성 경로가 모두 기록돼 있습니다. PubChem/HSDB는 팜유·목랍 같은 식물 원료와 경랍(spermaceti) 등에서 얻는 과거 제조법을 기록합니다. 이는 현재 제품에 동물 원료가 들어 있다는 뜻이 아니며 공급사 확인이 필요합니다.",
+      "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/985#section=Methods-of-Manufacturing",
+      "checked_on": "2026-10-30",
+      "response_sha256": "5cdc57de40af57ee8a10ff4e5d4e0343c1203088b975ed1da355844ebc805404",
+      "providers": [
+        {
+          "ReferenceNumber": 53,
+          "SourceName": "Hazardous Substances Data Bank (HSDB)",
+          "SourceID": "5001",
+          "Name": "Palmitic acid",
+          "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+          "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/5001",
+          "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+          "IsToxnet": true,
+          "ANID": 3091
+        }
+      ]
+    },
+    {
+      "name": "세틸알코올",
+      "cid": 2682,
+      "summary": "식물성·동물성·화학합성 경로가 기록돼 있습니다. PubChem/HSDB는 코코넛 오일 또는 동물성 지방의 수소화와 에틸렌 사슬성장물의 산화 경로를 설명합니다. 에틸렌 자체의 공급원과 실제 제품 배치를 확인하지 않고 석유계/식물성으로 확정하지 않습니다.",
+      "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/2682#section=Methods-of-Manufacturing",
+      "checked_on": "2026-10-30",
+      "response_sha256": "c2977192c8a0d69d8bdf561f82a6371ec615d3be7913b64508cf56540f28bc69",
+      "providers": [
+        {
+          "ReferenceNumber": 44,
+          "SourceName": "Hazardous Substances Data Bank (HSDB)",
+          "SourceID": "2643",
+          "Name": "1-HEXADECANOL",
+          "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+          "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/2643",
+          "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+          "IsToxnet": true,
+          "ANID": 1887
+        }
+      ]
+    }
+  ]
+}

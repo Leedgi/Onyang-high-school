@@ -89,3 +89,10 @@ C가 CONTRACT_VERSION을 올리고 이전 호출을 위한 어댑터·검사를 
 기존 기본 사전270+28,077은 보존한다. 공개 표준 명칭22,021행 중 중복을 제외한 통합32,797개, 정확 키57,706개다. definition_reviewed 항목은 기존 uncertainty_reason으로 표현한다. 공개 정의로도 공급원을 모르면 origin_uncertain, 이름 전용은 evidence_insufficient이며 둘 다 비율 분모에 포함한다. 검토394개라는 수가 모두 유래 확정을 뜻하지 않는다.
 
 모든 확장 생성물/검토 입력은 DB 파일 지문에 포함한다. 자료 오류 시 C가 이전 result와 pdf_export를 지운다. PIPELINE_VERSION=geometry-kcia-2로 바꿔 같은 사진의 이전 OCR 결과를 재사용하지 않는다. 사진·원문·후보를 공용 캐시에 넣지 않는다. OCR 내부 경로 버전은 v5이며 공개 상태값은 바꾸지 않는다.
+
+
+## 명시적 정의 유래 확장 v1 (2026-10-30)
+
+함수/모델/CSV 열/enum/CONTRACT_VERSION은 유지한다. origin_ingredients.csv는 기존 IngredientRecord 열의 선택적 확장이다. origin_sources.json으로 기본·KCIA·확장·검토 입력 체크섬 및 병합 집계를 검증한다. 기존 origin=확인 필요인 정식명만 보완하고 별칭 변경/확정 유래의 덮어쓰기는 거부한다. 확장이 없는 자료는 이전 동작을 유지한다. 파일 변경은 DB 지문에 반영되고 오류는 이전 result/pdf_export를 지운다.
+
+제조 경로가 여러 개인 항목은 기존 reason의 [제조 경로 참고] 접두사로 설명하며 origin_uncertain을 유지한다. C는 같은 AnalysisResult.rows의 이유를 펼쳐 표시하고 PDF에도 보존한다. 후보 제조 경로를 그래프의 확정 유래에 섞거나 제품 배치 원료로 단정하지 않는다. 추가5,749개는2019 정의 규칙 대조이며 개별 최신 수동 검토와 구분한다. 현재 통합32,797개, 개별검토/정의규칙근거6,143개, 이름전용26,654개다.

@@ -37,3 +37,9 @@ FDA: https://www.fda.gov/cosmetics/cosmetic-ingredients/alpha-hydroxy-acids , ht
 ## KCIA 공개 표준 명칭 확장
 
 대한화장품협회 성분사전의 공개 표준화명칭목록(2026-09-30)에서 명칭·INCI·구명칭·성분 코드를 사실 대조 자료로 추출했다. https://kcia.or.kr/cid/ 에서 제공하는 원본 PDF·사이트 코드·이미지·정의 전문을 재배포하지 않는다. 개별 공개 정의 144개에 대한 분류 설명은 이 프로젝트가 작성한 요약이며 각 상세 페이지를 출처로 표시한다. 회원사 전용 ‘성분의 기원’ 항목은 접근하거나 수집하지 않았다. 협회가 이 서비스의 분류·안전성·최신성을 인증했다는 뜻이 아니다. 기존 29개 물질에 한정된 명칭 대조에서 이 공개 명칭 사실 연결을 추가한 것이다.
+
+## 정의 규칙 대조와 제조 경로 참고 추가
+
+고정 CosIng 미러(위 d3dbd56, 2019-03-16)의 원문에서 확인되는 식물 과·부위·재료 및 명시적 화학 원료 사실을 추가로 대조했다. 자체 분류 요약과 참조·체크섬을 보존하며 원본 SQLite 전체나 대량 정의 전문을 재배포하지 않는다. 개별 최신 수동 검토, 공식 CosIng 인증, 현행 규제 판정이 아니다.
+
+PubChem/HSDB의 GLYCERIN(CID753), Propylene glycol(1030), Stearic acid(5281), Palmitic acid(985), 1-HEXADECANOL(2682)의 `Methods of Manufacturing`에서 과거 제조 경로를 확인하고 한국어로 요약했다. 원문 집계 URL·공급자·응답 해시는 reviewed/origin_route_review.json에 보존한다. 과거 가능한 제조법이 현재 특정 완제품의 사용 원료나 시장 점유율을 입증하지 않는다.

@@ -20,7 +20,7 @@ def test_kcia_exact_aliases_review_and_unreviewed_names_keep_separate_meanings()
     assert db.find('글리세린').uncertainty_reason == 'origin_uncertain'
     assert db.find('알진').origin == '확인 필요'
     assert db.find('1,2-헥산다이올') != db.find('1,3-헥산다이올')
-    assert db.curated_count == 394 and db.registry_count == 32403
+    assert db.curated_count == 6143 and db.registry_count == 26654
     assert PIPELINE_VERSION != 'starter-1'
 
 
@@ -58,8 +58,9 @@ def test_unreviewed_kcia_file_edit_rejects_data_and_clears_previous_pdf(tmp_path
 
 def test_legacy_data_without_kcia_extension_still_loads(tmp_path):
     shutil.copytree(ROOT/'data', tmp_path/'data')
-    for path in (tmp_path/'data').glob('kcia_*'):
-        path.unlink()
+    for pattern in ('kcia_*', 'origin_*'):
+        for path in (tmp_path/'data').glob(pattern):
+            path.unlink()
     db = load_ingredients(tmp_path)
     assert len(db.records) == 28347 and db.curated_count == 270
 
