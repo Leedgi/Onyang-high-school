@@ -7,3 +7,6 @@ __pycache__/
 htmlcov/
 artifacts/
 .cache/
+
+# Local user error reports (never commit)
+reports/

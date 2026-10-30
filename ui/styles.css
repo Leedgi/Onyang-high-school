@@ -127,3 +127,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 [data-testid="stCaptionContainer"] p { color:var(--muted); }
 [data-testid="stCaptionContainer"] { opacity:1; }
 .st-key-hero h1 { max-width:480px; text-wrap:balance; }
+
+#report { scroll-margin-top:1.5rem; }
+@media(max-width:600px) { .nav-links { gap:.65rem; } .nav-links a:first-child { display:none; } }

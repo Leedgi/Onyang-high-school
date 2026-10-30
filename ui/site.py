@@ -134,6 +134,7 @@ def main() -> None:
         database = load_ingredients()
     except (OSError, ValueError) as exc:
         st.error(f"성분 자료를 불러오지 못했습니다: {exc}")
+        footer()
         return
     if uploaded is not None:
         data = uploaded.getvalue()
@@ -189,6 +190,7 @@ def main() -> None:
                 drafts = prepare_review(text)
             except (ValueError, OSError) as exc:
                 st.error(f"성분 이름을 대조하지 못했습니다: {exc}")
+                footer()
                 return
             review_signature = digest([text, database.fingerprint, st.session_state.source_key])
             if review_signature != st.session_state.review_signature:
