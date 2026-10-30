@@ -1,0 +1,50 @@
+{
+  "format_version": 1,
+  "policy_version": 1,
+  "checked_on": "2026-10-30",
+  "source_date": "2019-03-16",
+  "method": "고정 정의에서 검토한 명시적 규칙 대조. 개별 최신 수동 검토/제조사 공급원 인증이 아님.",
+  "source": {
+    "url": "https://raw.githubusercontent.com/walkowskis/CosIng_database_finder/d3dbd5644813ef6c1bff59b6b075fec54a1eaaff/testowa.db",
+    "source_url": "https://github.com/walkowskis/CosIng_database_finder/blob/d3dbd5644813ef6c1bff59b6b075fec54a1eaaff/testowa.db",
+    "sha256": "6d93d0f4d7d7251d139ee149c6a15705a18fc3c453ffc61bf23e63cd2ffedcbb",
+    "filename": "cosing-2019.db",
+    "scope": "2019-03-16 공개 스냅샷의 정의·기능을 조회한 비공식 미러. 최신 규제·안전성 판단에 사용하지 않음."
+  },
+  "classified_records": 5749,
+  "route_reference_records": 5,
+  "overlay_records": 5754,
+  "rule_counts": {
+    "botanical_family_material": 5018,
+    "defined_inorganic_salt": 68,
+    "algae_fungi_family_material": 117,
+    "referenced_plant_genus_material": 486,
+    "explicit_petroleum": 11,
+    "defined_silicone_family": 49
+  },
+  "added_origin_counts": {
+    "식물성": 5504,
+    "기타": 234,
+    "석유계": 11
+  },
+  "merged_records": 32797,
+  "merged_origin_counts": {
+    "석유계": 17,
+    "식물성": 5679,
+    "기타": 278,
+    "확인 필요": 26823
+  },
+  "merged_curated_count": 6143,
+  "merged_registry_count": 26654,
+  "base_files": {
+    "ingredients.csv": "c56346f972503c2a158f48613e38bd293843d3ee6920779fd2cf4a5e6436e9dd",
+    "ingredient_names.csv": "dcf0bb30e2dea5c7575defe0485d320dd13e5f9ba739b9e9d2732ae4c6b2cf3f",
+    "sources.json": "f65b5cb41f924b263755e180e2861a9c8cb384b7f5d25e2f34e8c3843400968d",
+    "kcia_sources.json": "d86b99e65257ccb3570476209c224eab5a6aaaebd1956da10af7b916657f7182"
+  },
+  "files": {
+    "origin_ingredients.csv": "992f9fb509553d4b7f41112688c2f95f0e363fae6c0cf899eabfbef8d29a5d55",
+    "reviewed/origin_review.json": "95042db3dd4e03b6806dd10708905fbf0a0abe635e21f33fc1f04f0fcdb4038d",
+    "reviewed/origin_route_review.json": "aa0f6520572f228bf7d0a8bbcdb8622b236a2ac4a94f60ede651d5e615961b2c"
+  }
+}
