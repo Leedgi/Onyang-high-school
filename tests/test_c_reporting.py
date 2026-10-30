@@ -56,7 +56,8 @@ def test_acid_and_base_do_not_become_product_ph_or_environmental_rating():
     assert "시트릭애씨드" in notes[0][1] and "소듐하이드록사이드" in notes[0][1]
     assert "산성·염기성을 판정할 수 없습니다" in notes[0][1]
     assert notes[2][0] == "환경 영향 · 자료 부족"
-    assert not any(report.cautions.values())
+    assert report.cautions["시트릭애씨드"][0].reason.startswith("[인체·AHA]")
+    assert not report.cautions["다이메티콘"]
 
 
 def test_pdf_is_session_local_and_invalidated_with_input(monkeypatch):

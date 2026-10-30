@@ -12,6 +12,7 @@ import streamlit as st
 from ui.presentation import intro, upload_help, ratio_summary, footer
 from ui.reporting import ingredient_groups, build_pdf
 from ui.review_notes import review_notes
+from ui.cautions import render_cautions
 
 from core.database import load_ingredients
 from core.ocr import OCREngine
@@ -110,13 +111,7 @@ def render_result(result) -> None:
         with cautions_tab:
             for label, description in review_notes(result):
                 st.warning(f"{label}\n\n{description}")
-            st.subheader("등록된 성분별 주의 자료")
-            cautions = [asdict(record) for records in result.cautions.values() for record in records]
-            if cautions:
-                st.dataframe(cautions, hide_index=True, width="stretch")
-            else:
-                st.info("주의 등급 · 자료 부족\n\n등록된 사용상 주의 자료가 없습니다. 안전하다는 뜻은 아니며, 근거 없이 초록·주황·빨강 등급을 매기지 않습니다.")
-            st.caption("원료 유래로 안전성·환경성을 판정하지 않습니다. 제품의 사용 부위와 농도 등도 함께 확인해야 합니다.")
+            render_cautions(result)
         with evidence:
             st.write("확인이 필요한 이유와 원문 출처")
             st.dataframe([{
