@@ -1,0 +1,12 @@
+{
+  "format_version": 1,
+  "source_url": "https://kcia.or.kr/cid/files/%ED%91%9C%EC%A4%80%ED%99%94%EB%AA%85%EC%B9%AD%EB%AA%A9%EB%A1%9D",
+  "source_title": "대한화장품협회 성분사전 표준화명칭목록",
+  "source_date": "2026-09-30",
+  "checked_on": "2026-10-30",
+  "pdf_sha256": "2945b865f0e26c8bf7d13845fabdd719b389f13fecfacddada0cf59e2e45ce6d",
+  "pdf_pages": 1578,
+  "source_rows": 22021,
+  "names_sha256": "d686a3cd86de9fb9ddb3c33e2ee40e72f621889246f6dd2f8a69f36ea910aab9",
+  "scope": "공개 표준화 명칭·INCI·구명칭의 사실 연결. 성분의 기원 회원사 전용 항목은 포함하지 않음. 명칭만으로 사용 허용/유래/안전성 검토 아님."
+}

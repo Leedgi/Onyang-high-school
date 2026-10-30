@@ -33,3 +33,7 @@ FDA: https://www.fda.gov/cosmetics/cosmetic-ingredients/alpha-hydroxy-acids , ht
 환경 시험: NIH/NLM PubChem의 D4(CID 11169), D5(CID 10913), D6(CID 10911) `Environmental Biodegradation` 항목에서 HSDB의 물질별 시험 사실을 확인했다. 원 제공자·논문·ECHA/캐나다 평가서 인용 정보를 `reviewed/caution_review.json`에 남겼다. PubChem 전체를 단일 라이선스로 재배포하거나 원 저자의 논문 전문을 복제하지 않는다. 제공자 정책: https://www.nlm.nih.gov/web_policies.html . 물질별 시험 사실의 요약과 필요한 짧은 인용만 보존한다.
 
 명칭 대조: 대한화장품협회 성분사전 https://kcia.or.kr/cid/search/ingd_list.php 의 선택한 29개 INCI 검색 결과에서 이름·CAS를 확인했다. 선택한 표기 연결만 사용하고 사전 전체·사이트 코드·이미지는 재배포하지 않는다. 명칭 등재가 안전성·유래·국가별 사용 허용의 증거가 아니다.
+
+## KCIA 공개 표준 명칭 확장
+
+대한화장품협회 성분사전의 공개 표준화명칭목록(2026-09-30)에서 명칭·INCI·구명칭·성분 코드를 사실 대조 자료로 추출했다. https://kcia.or.kr/cid/ 에서 제공하는 원본 PDF·사이트 코드·이미지·정의 전문을 재배포하지 않는다. 개별 공개 정의 144개에 대한 분류 설명은 이 프로젝트가 작성한 요약이며 각 상세 페이지를 출처로 표시한다. 회원사 전용 ‘성분의 기원’ 항목은 접근하거나 수집하지 않았다. 협회가 이 서비스의 분류·안전성·최신성을 인증했다는 뜻이 아니다. 기존 29개 물질에 한정된 명칭 대조에서 이 공개 명칭 사실 연결을 추가한 것이다.

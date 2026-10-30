@@ -1,0 +1,926 @@
+{
+  "format_version": 1,
+  "source_url": "https://kcia.or.kr/cid/files/%ED%91%9C%EC%A4%80%ED%99%94%EB%AA%85%EC%B9%AD%EB%AA%A9%EB%A1%9D",
+  "source_title": "대한화장품협회 성분사전 표준화명칭목록",
+  "source_date": "2026-09-30",
+  "checked_on": "2026-10-30",
+  "pdf_sha256": "2945b865f0e26c8bf7d13845fabdd719b389f13fecfacddada0cf59e2e45ce6d",
+  "pdf_pages": 1578,
+  "source_rows": 22021,
+  "names_sha256": "d686a3cd86de9fb9ddb3c33e2ee40e72f621889246f6dd2f8a69f36ea910aab9",
+  "scope": "공개 표준화 명칭·INCI·구명칭의 사실 연결. 성분의 기원 회원사 전용 항목은 포함하지 않음. 명칭만으로 사용 허용/유래/안전성 검토 아님.",
+  "source_definition_reviews": 144,
+  "reviewed_unique_records": 144,
+  "review_origin_counts": {
+    "식물성": 112,
+    "확인 필요": 15,
+    "기타": 11,
+    "석유계": 6
+  },
+  "overlay_records": 21754,
+  "added_records": 4450,
+  "merged_records": 32797,
+  "merged_curated_count": 394,
+  "merged_registry_count": 32403,
+  "merged_lookup_keys": 57706,
+  "merged_origin_counts": {
+    "기타": 44,
+    "석유계": 6,
+    "확인 필요": 32572,
+    "식물성": 175
+  },
+  "excluded_conflicting_aliases": 242,
+  "origin_changes": [
+    {
+      "kcia_id": "2",
+      "name": "Solanum Melongena (Eggplant) Fruit Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "3",
+      "name": "AGARUM CRIBROSUM EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "7",
+      "name": "LEUKOCYTE EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "8",
+      "name": "RHINACANTHUS COMMUNIS EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "19",
+      "name": "Phaseolus Lunatus (Green Bean) Seed Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "23",
+      "name": "ABIES KOREANA LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "25",
+      "name": "LITCHI CHINENSIS PERICARP EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "26",
+      "name": "LITCHI CHINENSIS SEED EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "27",
+      "name": "LITCHI CHINENSIS FRUIT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "31",
+      "name": "LITSEA GLUTINOSA BARK EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "35",
+      "name": "TILIA EUROPAEA FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "36",
+      "name": "SORBUS COMMIXTA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "66",
+      "name": "MAGNOLIA ACUMINATA FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "69",
+      "name": "Allium Sativum (Garlic) Bulb Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "72",
+      "name": "LILIUM CANDIDUM FLOWER WATER",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "73",
+      "name": "LILIUM CANDIDUM FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "74",
+      "name": "LILIUM CANDIDUM BULB EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "75",
+      "name": "Aesculus Hippocastanum (Horse Chestnut) Bark Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "76",
+      "name": "Aesculus Hippocastanum (Horse Chestnut) Seed Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "77",
+      "name": "Dioscorea Oppositifolia (Wild Yam) Root Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "78",
+      "name": "PSIDIUM GUAJAVA LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "80",
+      "name": "ALTHAEA OFFICINALIS ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "81",
+      "name": "ALTHAEA OFFICINALIS LEAF/ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "82",
+      "name": "ALTHAEA OFFICINALIS LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "86",
+      "name": "마이크로크리스탈린왁스",
+      "before": "확인 필요",
+      "after": "석유계"
+    },
+    {
+      "kcia_id": "88",
+      "name": "PORTULACA OLERACEA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "89",
+      "name": "PSIDIUM GUAJAVA FRUIT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "91",
+      "name": "MACADAMIA TERNIFOLIA SEED EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "92",
+      "name": "LEPIDIUM MEYENII ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "93",
+      "name": "ILEX PARAGUARIENSIS LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "95",
+      "name": "MYRTUS COMMUNIS LEAF WATER",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "96",
+      "name": "MYRTUS COMMUNIS EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "97",
+      "name": "EPHEDRA SINICA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "102",
+      "name": "Citrus Nobilis (Mandarin Orange) Peel Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "104",
+      "name": "Citrus Nobilis (Mandarin Orange) Fruit Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "106",
+      "name": "PINUS TABULIFORMIS BARK EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "107",
+      "name": "POLIANTHES TUBEROSA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "108",
+      "name": "Fomes Officinalis (Mushroom) Extract",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "110",
+      "name": "HYPNEA MUSCIFORMIS EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "112",
+      "name": "MALACHITE EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "114",
+      "name": "Malva Sylvestris (Mallow) Flower/Leaf/Stem Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "116",
+      "name": "Malva Sylvestris (Mallow) Leaf Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "117",
+      "name": "Malva Sylvestris (Mallow) Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "120",
+      "name": "Jasminum Sambac (Jasmine) Flower Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "121",
+      "name": "Jasminum Sambac (Jasmine) Leaf Cell Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "122",
+      "name": "CHRYSANTHEMUM SIBIRICUM EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "136",
+      "name": "GARCINIA MANGOSTANA PEEL EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "138",
+      "name": "Mangifera Indica (Mango) Seed Butter",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "139",
+      "name": "Mangifera Indica (Mango) Seed Oil",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "140",
+      "name": "Mangifera Indica (Mango) Leaf Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "142",
+      "name": "FRAXINUS EXCELSIOR LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "143",
+      "name": "Mangifera Indica (Mango) Fruit Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "144",
+      "name": "SPIRAEA ULMARIA FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "145",
+      "name": "SPIRAEA ULMARIA LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "146",
+      "name": "SPIRAEA ULMARIA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "147",
+      "name": "CAPSOSIPHON FULVESCENS EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "150",
+      "name": "PRUNUS MUME FRUIT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "151",
+      "name": "PRUNUS MUME FLOWER WATER",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "152",
+      "name": "PRUNUS MUME FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "153",
+      "name": "PINUS SYLVESTRIS BARK EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "154",
+      "name": "OPHIOPOGON JAPONICUS ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "155",
+      "name": "MALT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "156",
+      "name": "PETASITES JAPONICUS ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "157",
+      "name": "PETASITES JAPONICUS LEAF/STEM EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "158",
+      "name": "VERBASCUM THAPSUS EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "159",
+      "name": "RUBUS PARVIFOLIUS FRUIT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "161",
+      "name": "Limnanthes Alba (Meadowfoam) Seed Oil",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "162",
+      "name": "Polygonum Fagopyrum (Buckwheat) Seed Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "163",
+      "name": "Polygonum Fagopyrum (Buckwheat) Leaf Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "164",
+      "name": "PINUS SYLVESTRIS CONE EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "175",
+      "name": "PINUS SYLVESTRIS BUD EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "196",
+      "name": "PINUS SYLVESTRIS LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "207",
+      "name": "HIBISCUS ABELMOSCHUS SEED EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "219",
+      "name": "HIBISCUS ABELMOSCHUS EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "230",
+      "name": "CHRYSANTHEMUM MORIFOLIUM FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "240",
+      "name": "DIOSCOREA COMPOSITA ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "251",
+      "name": "MELOTHRIA HETEROPHYLLA ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "252",
+      "name": "OYSTER EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "255",
+      "name": "Cucumis Melo (Melon) Fruit Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "258",
+      "name": "CHENOPODIUM ALBUM FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "259",
+      "name": "ANGELICA KEISKEI LEAF/STEM EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "260",
+      "name": "ANGELICA KEISKEI EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "261",
+      "name": "CHAENOMELES SINENSIS FRUIT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "262",
+      "name": "IMPERATA CYLINDRICA ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "263",
+      "name": "PLATYCARYA STROBILACEA FRUIT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "265",
+      "name": "PAEONIA SUFFRUTICOSA BARK EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "266",
+      "name": "PAEONIA SUFFRUTICOSA ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "268",
+      "name": "Oyster Shell Extract",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "270",
+      "name": "CORCHORUS OLITORIUS LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "272",
+      "name": "VIGNA ACONITIFOLIA SEED EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "273",
+      "name": "BASSIA LATIFOLIA SEED BUTTER",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "274",
+      "name": "PLATYCARYA STROBILACEA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "275",
+      "name": "MOURERA FLUVIATILIS EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "276",
+      "name": "SARGASSUM FULVELLUM EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "277",
+      "name": "MAGNOLIA KOBUS BRANCH/FLOWER/LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "278",
+      "name": "MAGNOLIA KOBUS BARK EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "279",
+      "name": "OSMANTHUS FRAGRANS FLOWER EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "281",
+      "name": "AKEBIA QUINATA STEM EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "282",
+      "name": "INULA HELENIUM EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "285",
+      "name": "ANGELICA POLYMORPHA SINENSIS ROOT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "286",
+      "name": "GOSSYPIUM HERBACEUM (COTTON) SEED OIL",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "287",
+      "name": "Gossypium Herbaceum (Cotton) Seed Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "289",
+      "name": "Gossypium Herbaceum (Cotton) Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "292",
+      "name": "PINUS RADIATA BARK EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "294",
+      "name": "COMMIPHORA ABYSSINICA RESIN EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "295",
+      "name": "CISTUS MONSPELIENSIS EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "296",
+      "name": "SELAGINELLA TAMARISCINA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "298",
+      "name": "Raphanus Sativus (Radish) Seed Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "299",
+      "name": "Raphanus Sativus (Radish) Root Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "300",
+      "name": "MUCOR MIEHEI EXTRACT",
+      "before": "확인 필요",
+      "after": "기타"
+    },
+    {
+      "kcia_id": "301",
+      "name": "GUAZUMA ULMIFOLIA LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "303",
+      "name": "Ficus Carica (Fig) Fruit/Leaf Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "305",
+      "name": "Ficus Carica (Fig) Fruit Extract",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "306",
+      "name": "SAPINDUS MUKOROSSI PEEL EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "308",
+      "name": "SAPINDUS MUKOROSSI FRUIT EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "309",
+      "name": "CRINUM ASIATICUM SEED EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "310",
+      "name": "CRINUM ASIATICUM EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "311",
+      "name": "NASTURTIUM OFFICINALE FLOWER/LEAF EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "312",
+      "name": "NASTURTIUM OFFICINALE EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "313",
+      "name": "FRAXINUS RHYNCHOPHYLLA EXTRACT",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "314",
+      "name": "Corylus Americana (Hazelnut) Seed Oil",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "1572",
+      "name": "Oryza Sativa (Rice) Bran Water",
+      "before": "확인 필요",
+      "after": "식물성"
+    },
+    {
+      "kcia_id": "4940",
+      "name": "JOJOBA ESTERS",
+      "before": "확인 필요",
+      "after": "식물성"
+    }
+  ],
+  "reviewed_targets": {
+    "1572": "Oryza Sativa (Rice) Bran Water",
+    "4940": "JOJOBA ESTERS",
+    "1890": "ALGIN",
+    "1265": "소듐하이알루로네이트",
+    "3729": "폴리글루타믹애씨드",
+    "3559": "팔미틱애씨드",
+    "1465": "스테아릭애씨드",
+    "2922": "카프릴릭/카프릭트라이글리세라이드",
+    "4282": "피이지-100스테아레이트",
+    "3861": "폴리솔베이트80",
+    "3709": "포타슘하이드록사이드",
+    "3992": "프로필렌글라이콜",
+    "1013": "글리세린",
+    "996": "세틸알코올",
+    "1288": "솔비탄스테아레이트",
+    "1373": "SUCROSE STEARATE",
+    "2075": "에틸헥실글리세린",
+    "4877": "1,2-헥산다이올",
+    "912": "세레신",
+    "3477": "파라핀",
+    "3602": "페트롤라툼",
+    "317": "미네랄오일",
+    "2178": "오조케라이트",
+    "86": "마이크로크리스탈린왁스",
+    "2": "Solanum Melongena (Eggplant) Fruit Extract",
+    "3": "AGARUM CRIBROSUM EXTRACT",
+    "7": "LEUKOCYTE EXTRACT",
+    "8": "RHINACANTHUS COMMUNIS EXTRACT",
+    "19": "Phaseolus Lunatus (Green Bean) Seed Extract",
+    "23": "ABIES KOREANA LEAF EXTRACT",
+    "25": "LITCHI CHINENSIS PERICARP EXTRACT",
+    "26": "LITCHI CHINENSIS SEED EXTRACT",
+    "27": "LITCHI CHINENSIS FRUIT EXTRACT",
+    "31": "LITSEA GLUTINOSA BARK EXTRACT",
+    "35": "TILIA EUROPAEA FLOWER EXTRACT",
+    "36": "SORBUS COMMIXTA EXTRACT",
+    "66": "MAGNOLIA ACUMINATA FLOWER EXTRACT",
+    "69": "Allium Sativum (Garlic) Bulb Extract",
+    "72": "LILIUM CANDIDUM FLOWER WATER",
+    "73": "LILIUM CANDIDUM FLOWER EXTRACT",
+    "74": "LILIUM CANDIDUM BULB EXTRACT",
+    "75": "Aesculus Hippocastanum (Horse Chestnut) Bark Extract",
+    "76": "Aesculus Hippocastanum (Horse Chestnut) Seed Extract",
+    "77": "Dioscorea Oppositifolia (Wild Yam) Root Extract",
+    "78": "PSIDIUM GUAJAVA LEAF EXTRACT",
+    "80": "ALTHAEA OFFICINALIS ROOT EXTRACT",
+    "81": "ALTHAEA OFFICINALIS LEAF/ROOT EXTRACT",
+    "82": "ALTHAEA OFFICINALIS LEAF EXTRACT",
+    "88": "PORTULACA OLERACEA EXTRACT",
+    "89": "PSIDIUM GUAJAVA FRUIT EXTRACT",
+    "91": "MACADAMIA TERNIFOLIA SEED EXTRACT",
+    "92": "LEPIDIUM MEYENII ROOT EXTRACT",
+    "93": "ILEX PARAGUARIENSIS LEAF EXTRACT",
+    "95": "MYRTUS COMMUNIS LEAF WATER",
+    "96": "MYRTUS COMMUNIS EXTRACT",
+    "97": "EPHEDRA SINICA EXTRACT",
+    "102": "Citrus Nobilis (Mandarin Orange) Peel Extract",
+    "104": "Citrus Nobilis (Mandarin Orange) Fruit Extract",
+    "106": "PINUS TABULIFORMIS BARK EXTRACT",
+    "107": "POLIANTHES TUBEROSA EXTRACT",
+    "108": "Fomes Officinalis (Mushroom) Extract",
+    "110": "HYPNEA MUSCIFORMIS EXTRACT",
+    "112": "MALACHITE EXTRACT",
+    "114": "Malva Sylvestris (Mallow) Flower/Leaf/Stem Extract",
+    "116": "Malva Sylvestris (Mallow) Leaf Extract",
+    "117": "Malva Sylvestris (Mallow) Extract",
+    "120": "Jasminum Sambac (Jasmine) Flower Extract",
+    "121": "Jasminum Sambac (Jasmine) Leaf Cell Extract",
+    "122": "CHRYSANTHEMUM SIBIRICUM EXTRACT",
+    "136": "GARCINIA MANGOSTANA PEEL EXTRACT",
+    "138": "Mangifera Indica (Mango) Seed Butter",
+    "139": "Mangifera Indica (Mango) Seed Oil",
+    "140": "Mangifera Indica (Mango) Leaf Extract",
+    "142": "FRAXINUS EXCELSIOR LEAF EXTRACT",
+    "143": "Mangifera Indica (Mango) Fruit Extract",
+    "144": "SPIRAEA ULMARIA FLOWER EXTRACT",
+    "145": "SPIRAEA ULMARIA LEAF EXTRACT",
+    "146": "SPIRAEA ULMARIA EXTRACT",
+    "147": "CAPSOSIPHON FULVESCENS EXTRACT",
+    "150": "PRUNUS MUME FRUIT EXTRACT",
+    "151": "PRUNUS MUME FLOWER WATER",
+    "152": "PRUNUS MUME FLOWER EXTRACT",
+    "153": "PINUS SYLVESTRIS BARK EXTRACT",
+    "154": "OPHIOPOGON JAPONICUS ROOT EXTRACT",
+    "155": "MALT EXTRACT",
+    "156": "PETASITES JAPONICUS ROOT EXTRACT",
+    "157": "PETASITES JAPONICUS LEAF/STEM EXTRACT",
+    "158": "VERBASCUM THAPSUS EXTRACT",
+    "159": "RUBUS PARVIFOLIUS FRUIT EXTRACT",
+    "161": "Limnanthes Alba (Meadowfoam) Seed Oil",
+    "162": "Polygonum Fagopyrum (Buckwheat) Seed Extract",
+    "163": "Polygonum Fagopyrum (Buckwheat) Leaf Extract",
+    "164": "PINUS SYLVESTRIS CONE EXTRACT",
+    "175": "PINUS SYLVESTRIS BUD EXTRACT",
+    "196": "PINUS SYLVESTRIS LEAF EXTRACT",
+    "207": "HIBISCUS ABELMOSCHUS SEED EXTRACT",
+    "219": "HIBISCUS ABELMOSCHUS EXTRACT",
+    "230": "CHRYSANTHEMUM MORIFOLIUM FLOWER EXTRACT",
+    "240": "DIOSCOREA COMPOSITA ROOT EXTRACT",
+    "251": "MELOTHRIA HETEROPHYLLA ROOT EXTRACT",
+    "252": "OYSTER EXTRACT",
+    "255": "Cucumis Melo (Melon) Fruit Extract",
+    "258": "CHENOPODIUM ALBUM FLOWER EXTRACT",
+    "259": "ANGELICA KEISKEI LEAF/STEM EXTRACT",
+    "260": "ANGELICA KEISKEI EXTRACT",
+    "261": "CHAENOMELES SINENSIS FRUIT EXTRACT",
+    "262": "IMPERATA CYLINDRICA ROOT EXTRACT",
+    "263": "PLATYCARYA STROBILACEA FRUIT EXTRACT",
+    "265": "PAEONIA SUFFRUTICOSA BARK EXTRACT",
+    "266": "PAEONIA SUFFRUTICOSA ROOT EXTRACT",
+    "268": "Oyster Shell Extract",
+    "270": "CORCHORUS OLITORIUS LEAF EXTRACT",
+    "272": "VIGNA ACONITIFOLIA SEED EXTRACT",
+    "273": "BASSIA LATIFOLIA SEED BUTTER",
+    "274": "PLATYCARYA STROBILACEA EXTRACT",
+    "275": "MOURERA FLUVIATILIS EXTRACT",
+    "276": "SARGASSUM FULVELLUM EXTRACT",
+    "277": "MAGNOLIA KOBUS BRANCH/FLOWER/LEAF EXTRACT",
+    "278": "MAGNOLIA KOBUS BARK EXTRACT",
+    "279": "OSMANTHUS FRAGRANS FLOWER EXTRACT",
+    "281": "AKEBIA QUINATA STEM EXTRACT",
+    "282": "INULA HELENIUM EXTRACT",
+    "285": "ANGELICA POLYMORPHA SINENSIS ROOT EXTRACT",
+    "286": "GOSSYPIUM HERBACEUM (COTTON) SEED OIL",
+    "287": "Gossypium Herbaceum (Cotton) Seed Extract",
+    "289": "Gossypium Herbaceum (Cotton) Extract",
+    "292": "PINUS RADIATA BARK EXTRACT",
+    "294": "COMMIPHORA ABYSSINICA RESIN EXTRACT",
+    "295": "CISTUS MONSPELIENSIS EXTRACT",
+    "296": "SELAGINELLA TAMARISCINA EXTRACT",
+    "298": "Raphanus Sativus (Radish) Seed Extract",
+    "299": "Raphanus Sativus (Radish) Root Extract",
+    "300": "MUCOR MIEHEI EXTRACT",
+    "301": "GUAZUMA ULMIFOLIA LEAF EXTRACT",
+    "303": "Ficus Carica (Fig) Fruit/Leaf Extract",
+    "305": "Ficus Carica (Fig) Fruit Extract",
+    "306": "SAPINDUS MUKOROSSI PEEL EXTRACT",
+    "308": "SAPINDUS MUKOROSSI FRUIT EXTRACT",
+    "309": "CRINUM ASIATICUM SEED EXTRACT",
+    "310": "CRINUM ASIATICUM EXTRACT",
+    "311": "NASTURTIUM OFFICINALE FLOWER/LEAF EXTRACT",
+    "312": "NASTURTIUM OFFICINALE EXTRACT",
+    "313": "FRAXINUS RHYNCHOPHYLLA EXTRACT",
+    "314": "Corylus Americana (Hazelnut) Seed Oil"
+  },
+  "files": {
+    "kcia_standard_names.csv": "d686a3cd86de9fb9ddb3c33e2ee40e72f621889246f6dd2f8a69f36ea910aab9",
+    "kcia_ingredients.csv": "37ea0c6a40e7f4b2ff613c933375759c7da7aa1f26bb64db8ff744e3b6d6fab1",
+    "kcia_import_conflicts.csv": "0b30c7e24954c5d91ec5e50b52ea96ba6a918e8149980111d72a2e582929709c",
+    "reviewed/kcia_origin_review.json": "49d5b65dc8c2eeeec7a0574e7a9800fd663f24ed9787083363cf72b633a2954a",
+    "reviewed/kcia_source_input.json": "13ba93f30821deb581c70f168dc36ad3bdd417ca9ae196184b3344d49e4e188a"
+  }
+}
