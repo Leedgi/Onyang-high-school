@@ -2,6 +2,7 @@
 import csv
 import json
 import hashlib
+from dataclasses import replace
 from functools import lru_cache
 from datetime import date
 from pathlib import Path
@@ -91,6 +92,11 @@ def load_ingredients(root: Path = ROOT) -> IngredientDatabase:
     paths = [root / "data/ingredients.csv"]
     if (root / "data/ingredient_names.csv").exists():
         paths.extend([root / "data/ingredient_names.csv", root / "data/sources.json"])
+    for name in ("cautions.csv", "caution_aliases.csv", "environmental_evidence.csv",
+                 "caution_sources.json", "reviewed/caution_review.json"):
+        path = root / "data" / name
+        if path.exists():
+            paths.append(path)
     stamp = tuple((str(path), path.stat().st_mtime_ns, path.stat().st_size) for path in paths)
     return _load_ingredients_cached(root, stamp)
 
@@ -130,10 +136,41 @@ def _load_ingredients_cached(root: Path, stamp: tuple) -> IngredientDatabase:
                 source_url=source_url, checked_on=checked_on, uncertainty_reason="evidence_insufficient",
             ))
             registry_count += 1
-    return IngredientDatabase(records, "real", registry_count)
+    alias_path = root / "data/caution_aliases.csv"
+    if alias_path.exists():
+        index = {normalize_key(name): i for i, record in enumerate(records)
+                 for name in (record.name, *record.aliases)}
+        for entry in read_csv(alias_path, {"alias", "inci", "source_url", "checked_on", "source_cas"}):
+            validate_evidence(entry["source_url"], entry["checked_on"])
+            alias, target = normalize_key(entry["alias"]), normalize_key(entry["inci"])
+            if not alias or target not in index:
+                raise ValueError("검증 별칭의 INCI 또는 이름이 없습니다.")
+            position = index[target]
+            if alias in index:
+                if index[alias] != position:
+                    raise ValueError("검증 별칭이 다른 성분과 충돌합니다: " + entry["alias"])
+                continue
+            records[position] = replace(records[position], aliases=(*records[position].aliases, entry["alias"]))
+            index[alias] = position
+    database = IngredientDatabase(records, "real", registry_count)
+    components = [database.fingerprint]
+    for path_string, _, _ in stamp:
+        components.append(hashlib.sha256(Path(path_string).read_bytes()).hexdigest())
+    database.fingerprint = hashlib.sha256("|".join(components).encode()).hexdigest()
+    return database
 
 
 def load_cautions(root: Path = ROOT) -> list[CautionRecord]:
+    manifest_path = root / "data/caution_sources.json"
+    if manifest_path.exists():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            for name in ("cautions.csv", "caution_aliases.csv", "environmental_evidence.csv"):
+                actual = hashlib.sha256((root / "data" / name).read_bytes()).hexdigest()
+                if actual != manifest["files"][name]:
+                    raise ValueError("주의 자료 체크섬이 일치하지 않습니다. 검토 입력과 생성물을 확인해 주세요.")
+        except (KeyError, TypeError) as exc:
+            raise ValueError("주의 자료의 출처 집계를 확인해 주세요.") from exc
     fields = set(CautionRecord.__dataclass_fields__)
     rows = read_csv(root / "data/cautions.csv", fields)
     records = []

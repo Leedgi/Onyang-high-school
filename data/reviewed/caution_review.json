@@ -1,0 +1,772 @@
+{
+  "format_version": 1,
+  "checked_on": "2026-10-30",
+  "sources": {
+    "fda-aha": {
+      "title": "FDA Alpha Hydroxy Acids",
+      "url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/alpha-hydroxy-acids",
+      "checked_on": "2026-10-30",
+      "source_updated_on": "2022-11-22",
+      "response_sha256": "bd42e72f60200cc8bb092eb85c77d745a2d43e4878ca99679ad709a3e9aa477c",
+      "scope": "미국 FDA 소비자 안내. 한국 법규·제품별 안전성 판정 아님.",
+      "excerpts": [
+        "The extent of exfoliation depends on the type and concentration of the AHA, its pH, and other ingredients in the product.",
+        "Use a sunscreen, wear protective clothing, and limit sun exposure while using this product and for a week afterwards.",
+        "The most common AHAs in cosmetic products are glycolic acid and lactic acid. Among others are citric acid, hydroxycaprylic acid, and hydroxycapric acid."
+      ]
+    },
+    "fda-bha": {
+      "title": "FDA Beta Hydroxy Acids",
+      "url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/beta-hydroxy-acids",
+      "checked_on": "2026-10-30",
+      "source_updated_on": "2022-02-25",
+      "response_sha256": "555ca1b843bea9c29b6bb87760219616457976423cdf95687e74223a440cf5bd",
+      "scope": "미국 FDA 소비자 안내. 한국 법규·제품별 안전성 판정 아님.",
+      "excerpts": [
+        "If you use cosmetics with BHAs and experience skin irritation or prolonged stinging, stop using the product and consult your physician.",
+        "Avoid using BHA-containing products on infants and children.",
+        "Use sun protection if you use a BHA product."
+      ]
+    },
+    "fda-allergens": {
+      "title": "FDA Allergens in Cosmetics",
+      "url": "https://www.fda.gov/cosmetics/cosmetic-ingredients/allergens-cosmetics",
+      "checked_on": "2026-10-30",
+      "source_updated_on": "2026-10-09",
+      "response_sha256": "ca178c927b9764d549db21a06f64aed1615d349e6bfc526ab11e189bc5a7aab4",
+      "scope": "미국 FDA 소비자 안내. 한국 법규·제품별 안전성 판정 아님.",
+      "excerpts": [
+        "Cosmetic products (such as soaps, lotions, makeup, fragrances, etc.) can provoke allergic reactions in some consumers.",
+        "An allergen can trigger the immune system to activate a defensive response that results in allergy symptoms.",
+        "Methylisothiazolinone",
+        "Methylchloroisothiazolinone (CMIT)",
+        "Formaldehyde and formaldehyde releasing ingredients:"
+      ],
+      "reviewed_named_entries": {
+        "LINALOOL": "Linalool",
+        "LIMONENE": "d-Limonene",
+        "GERANIOL": "Geraniol",
+        "CITRAL": "Citral",
+        "CITRONELLOL": "Citronellol",
+        "COUMARIN": "Coumarin",
+        "EUGENOL": "Eugenol",
+        "ISOEUGENOL": "Isoeugenol",
+        "BENZYL ALCOHOL": "Benzyl Alcohol",
+        "BENZYL BENZOATE": "Benzyl Benzoate",
+        "BENZYL SALICYLATE": "Benzyl Salicylate",
+        "BENZYL CINNAMATE": "Benzyl Cinnamate",
+        "FARNESOL": "Farnesol",
+        "HYDROXYCITRONELLAL": "Hydroxycitronellal",
+        "MENTHOL": "Menthol",
+        "METHYL SALICYLATE": "Methyl Salicylate",
+        "METHYLISOTHIAZOLINONE": "Methylisothiazolinone",
+        "METHYLCHLOROISOTHIAZOLINONE": "Methylchloroisothiazolinone (CMIT)",
+        "DMDM HYDANTOIN": "DMDM hydantoin (1,3-dimethylol-5,5-dimethylhydantoin)",
+        "DIAZOLIDINYL UREA": "Diazolidinyl urea",
+        "IMIDAZOLIDINYL UREA": "Imidazolidinyl urea",
+        "QUATERNIUM-15": "Quaternium-15",
+        "FORMALDEHYDE": "Formaldehyde and formaldehyde releasing ingredients:"
+      }
+    },
+    "d4": {
+      "title": "PubChem Octamethylcyclotetrasiloxane / HSDB",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/compound/11169#section=Environmental-Biodegradation",
+      "retrieved_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/11169/JSON",
+      "checked_on": "2026-10-30",
+      "source_date_note": "2015 ECHA 등록자료를 인용한 HSDB",
+      "response_sha256": "b847d5086e7a4a5589d850c53cd83d542fb6172313f3fb5a325f5dd5942421d0",
+      "excerpts": [
+        "Using OECD Guideline 310 (Ready Biodegradability - CO2 in Sealed Vessels, Headspace Test) and an activated sewage sludge inoculum, octamethylcyclotetrasiloxane, at 10 mg/L, reached only 3.7% of its theoretical CO2 evolution in 29 days(2)."
+      ],
+      "underlying_references": [
+        "(1) Frye CL; Sci Tot Environ 73: 17-22 (1988)",
+        "(2) ECHA; Search for Chemicals. Octamethylcyclotetrasiloxane (CAS 556-67-2) Registered Substances Dossier. European Chemical Agency. Available from, as of Aug 17, 2015: https://echa.europa.eu/"
+      ],
+      "provider": {
+        "ReferenceNumber": 27,
+        "SourceName": "Hazardous Substances Data Bank (HSDB)",
+        "SourceID": "6131",
+        "Name": "OCTAMETHYLCYCLOTETRASILOXANE",
+        "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+        "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/6131",
+        "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+        "IsToxnet": true,
+        "ANID": 4016
+      },
+      "scope": "과거 시험 자료의 사실을 한국어로 요약. 현행 법규·완제품 배출 위해성 판정 아님."
+    },
+    "d5": {
+      "title": "PubChem Decamethylcyclopentasiloxane / HSDB",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/compound/10913#section=Environmental-Biodegradation",
+      "retrieved_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/10913/JSON",
+      "checked_on": "2026-10-30",
+      "source_date_note": "2015 ECHA 등록자료를 인용한 HSDB",
+      "response_sha256": "cbf00b46e054229c2d5386c0df2a18d9b04fa770b4fd9c1453d2b0af0a738ed4",
+      "excerpts": [
+        "Using OECD Guideline 310 (Ready Biodegradability - CO2 in Sealed Vessels, Headspace Test) and an activated sewage sludge inoculum, decamethylcyclopentasiloxane, at 20 mg/L, reached only 0.14% of its theoretical CO2 evolution in 28 days(2)."
+      ],
+      "underlying_references": [
+        "(1) Frye CL; Sci Tot Environ 73: 17-22 (1988)",
+        "(2) ECHA; Search for Chemicals. Decamethylcyclopentasiloxane (CAS 541-02-6) Registered Substances Dossier. European Chemical Agency. Available from, as of Aug 12, 2015: https://echa.europa.eu/",
+        "(3) Butts M et al; Silicones. Kirk-Othmer Encyclopedia of Chemical Technology. (1999-2015). New York, NY: John Wiley & Sons. Online Posting Date: Dec 20, 2002."
+      ],
+      "provider": {
+        "ReferenceNumber": 31,
+        "SourceName": "Hazardous Substances Data Bank (HSDB)",
+        "SourceID": "5683",
+        "Name": "DECAMETHYLCYCLOPENTASILOXANE",
+        "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+        "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/5683",
+        "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+        "IsToxnet": true,
+        "ANID": 3717
+      },
+      "scope": "과거 시험 자료의 사실을 한국어로 요약. 현행 법규·완제품 배출 위해성 판정 아님."
+    },
+    "d6": {
+      "title": "PubChem Dodecamethylcyclohexasiloxane / HSDB",
+      "url": "https://pubchem.ncbi.nlm.nih.gov/compound/10911#section=Environmental-Biodegradation",
+      "retrieved_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/10911/JSON",
+      "checked_on": "2026-10-30",
+      "source_date_note": "2008 캐나다 평가서를 인용한 HSDB (2015 조회 표기)",
+      "response_sha256": "1df3f1e655ac287198b51d6c367920341c95c42c671147c0fa235adf7b32e49a",
+      "excerpts": [
+        "A 28-day ready-biodegradability test was performed in sealed vessels in accordance with OECD Draft Guideline 310; data showed limited biodegradation (4.47%) of dodecamethylcyclohexasiloxane, indicating a probability of biodegradation of dodecamethylcyclohexasiloxane in water of effectively zero(2)."
+      ],
+      "underlying_references": [
+        "(1) Frye CL; Sci Tot Environ 73: 17-22 (1988)",
+        "(2) Environment Canada; Screening Assessment for the Challenge, Dodecamethylcyclohexasiloxane. Nov 2008. Ottawa, Ontario, Canada: Environment Canada, Health Canada. Available from, as of Aug 19, 2015: https://www.ec.gc.ca/ese-ees/FC0D11E7-DB34-41AA-B1B3-E66EFD8813F1/batch2_540-97-6_en.pdf"
+      ],
+      "provider": {
+        "ReferenceNumber": 21,
+        "SourceName": "Hazardous Substances Data Bank (HSDB)",
+        "SourceID": "7723",
+        "Name": "DODECAMETHYLCYCLOHEXASILOXANE",
+        "Description": "The Hazardous Substances Data Bank (HSDB) is a toxicology database that focuses on the toxicology of potentially hazardous chemicals. It provides information on human exposure, industrial hygiene, emergency handling procedures, environmental fate, regulatory requirements, nanomaterials, and related areas. The information in HSDB has been assessed by a Scientific Review Panel.",
+        "URL": "https://pubchem.ncbi.nlm.nih.gov/source/hsdb/7723",
+        "LicenseURL": "https://www.nlm.nih.gov/web_policies.html",
+        "IsToxnet": true,
+        "ANID": 5267
+      },
+      "scope": "과거 시험 자료의 사실을 한국어로 요약. 현행 법규·완제품 배출 위해성 판정 아님."
+    }
+  },
+  "ingredients": [
+    {
+      "inci": "GLYCOLIC ACID",
+      "group": "aha",
+      "source_id": "fda-aha",
+      "target_names": [
+        "GLYCOLIC ACID",
+        "글라이콜릭애씨드"
+      ],
+      "name_evidence": {
+        "korean_name": "글라이콜릭애씨드",
+        "inci": "Glycolic Acid",
+        "cas_no": "79-14-1",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=647",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22GLYCOLIC+ACID%22",
+        "response_sha256": "2c11cd8509908a764969bb6faee8f3568fb1bb4a02287bc12c9eab98719bca79",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "LACTIC ACID",
+      "group": "aha",
+      "source_id": "fda-aha",
+      "target_names": [
+        "LACTIC ACID",
+        "락틱애씨드"
+      ],
+      "name_evidence": {
+        "korean_name": "락틱애씨드",
+        "inci": "Lactic Acid",
+        "cas_no": "50-21-5 79-33-4",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=5453",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22LACTIC+ACID%22",
+        "response_sha256": "e90974f3bbf296f35cb65cc14c8a321d02beb08a7cd80ba064870a068761c3ea",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "CITRIC ACID",
+      "group": "aha",
+      "source_id": "fda-aha",
+      "target_names": [
+        "CITRIC ACID",
+        "시트릭애씨드"
+      ],
+      "name_evidence": {
+        "korean_name": "시트릭애씨드",
+        "inci": "Citric Acid",
+        "cas_no": "77-92-9 5949-29-1",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1532",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22CITRIC+ACID%22",
+        "response_sha256": "9c44d492bdcb08e916a0cb0be42e22b83fac21dd719245bb6ba852530877f4c9",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "SALICYLIC ACID",
+      "group": "bha",
+      "source_id": "fda-bha",
+      "target_names": [
+        "SALICYLIC ACID",
+        "살리실릭애씨드"
+      ],
+      "name_evidence": {
+        "korean_name": "살리실릭애씨드",
+        "inci": "Salicylic Acid",
+        "cas_no": "69-72-7",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=812",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22SALICYLIC+ACID%22",
+        "response_sha256": "78ec83539b83135cd1b2681014a57af263268f23e22ac5dbdeac25465981ff6d",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "LINALOOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "LINALOOL",
+        "리날룰"
+      ],
+      "name_evidence": {
+        "korean_name": "리날룰",
+        "inci": "Linalool",
+        "cas_no": "78-70-6",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=9",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22LINALOOL%22",
+        "response_sha256": "9e4e66ed38ff9ee57448dba93597b315489236dc396ad6ee3017228bed983a80",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "LIMONENE",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "LIMONENE",
+        "리모넨"
+      ],
+      "name_evidence": {
+        "korean_name": "리모넨",
+        "inci": "Limonene",
+        "cas_no": "68647-72-3 (generic) 5989-27-5(D-) 7705-13-7(D-) 138-86-3 (DL-) 138-86-3 7705-14-8 5989-27-5 5989-54-8",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=20",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22LIMONENE%22",
+        "response_sha256": "13054dcc57b3a8df9bad781059f1af4401a03e00e264bc1bf65a8f30cd419e71",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "GERANIOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "GERANIOL",
+        "제라니올"
+      ],
+      "name_evidence": {
+        "korean_name": "제라니올",
+        "inci": "Geraniol",
+        "cas_no": "106-24-1",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2704",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22GERANIOL%22",
+        "response_sha256": "e0ba0818729fe995e6b7995c42c836ca21439f5d36845d35c54de5d5565d24a3",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "CITRAL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "CITRAL",
+        "시트랄"
+      ],
+      "name_evidence": {
+        "korean_name": "시트랄",
+        "inci": "Citral",
+        "cas_no": "5392-40-5 141-27-5 (cis-) 106-26-3 (trans-)",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1523",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22CITRAL%22",
+        "response_sha256": "836b9dcd6921232e18b4fd47d51a1e226c3027dd1480aa93206dcdc1756cf4dd",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "CITRONELLOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "CITRONELLOL",
+        "시트로넬올"
+      ],
+      "name_evidence": {
+        "korean_name": "시트로넬올",
+        "inci": "Citronellol",
+        "cas_no": "106-22-9 26489-01-0",
+        "old_name": "시트로넬롤",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=1530",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22CITRONELLOL%22",
+        "response_sha256": "1922e17c082940086967577caca22d8828acae13706afe05fb9abb6f098156b1",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "COUMARIN",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "COUMARIN",
+        "쿠마린"
+      ],
+      "name_evidence": {
+        "korean_name": "쿠마린",
+        "inci": "Coumarin",
+        "cas_no": "91-64-5",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3132",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22COUMARIN%22",
+        "response_sha256": "b1aba1a376cd1872165cb5ff7dacef0ed902aa7832edfc5520bb51da642a764b",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "EUGENOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "EUGENOL",
+        "유제놀"
+      ],
+      "name_evidence": {
+        "korean_name": "유제놀",
+        "inci": "Eugenol",
+        "cas_no": "97-53-0",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2395",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22EUGENOL%22",
+        "response_sha256": "3a4dae99936fcad937cbba8652363d60223487f3ba819ada433bf4186e5240fc",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "ISOEUGENOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "ISOEUGENOL",
+        "아이소유제놀"
+      ],
+      "name_evidence": {
+        "korean_name": "아이소유제놀",
+        "inci": "Isoeugenol",
+        "cas_no": "5932-68-3 (trans-) 5912-86-7 (cis-) 97-54-1",
+        "old_name": "이소유제놀",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2511",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22ISOEUGENOL%22",
+        "response_sha256": "c91bf2b2efc84edb8c9db26f72ce607a3aa0507bd58a84b08e83fbda64e8a9a5",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "BENZYL ALCOHOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "BENZYL ALCOHOL",
+        "벤질알코올"
+      ],
+      "name_evidence": {
+        "korean_name": "벤질알코올",
+        "inci": "Benzyl Alcohol",
+        "cas_no": "100-51-6",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=527",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22BENZYL+ALCOHOL%22",
+        "response_sha256": "e072b15771c510cee7d8095fad1538d4733cfddaf8a09244836dce42daba6716",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "BENZYL BENZOATE",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "BENZYL BENZOATE",
+        "벤질벤조에이트"
+      ],
+      "name_evidence": {
+        "korean_name": "벤질벤조에이트",
+        "inci": "Benzyl Benzoate",
+        "cas_no": "120-51-4",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=522",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22BENZYL+BENZOATE%22",
+        "response_sha256": "01bdca6ece7e54b5fffc79799aff38430d66f1a68e7f4e2c74a867e0984bd304",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "BENZYL SALICYLATE",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "BENZYL SALICYLATE",
+        "벤질살리실레이트"
+      ],
+      "name_evidence": {
+        "korean_name": "벤질살리실레이트",
+        "inci": "Benzyl Salicylate",
+        "cas_no": "118-58-1",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=523",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22BENZYL+SALICYLATE%22",
+        "response_sha256": "ff7e24c35e5d5f6b0c8f5203831efd45042303fe5e77448742b6d86685d0e667",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "BENZYL CINNAMATE",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "BENZYL CINNAMATE",
+        "벤질신나메이트"
+      ],
+      "name_evidence": {
+        "korean_name": "벤질신나메이트",
+        "inci": "Benzyl Cinnamate",
+        "cas_no": "103-41-3",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=524",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22BENZYL+CINNAMATE%22",
+        "response_sha256": "e367a43cfc9e581333da30d3efa1eabe014b24de24a1aa1880f012cc427ffc26",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "FARNESOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "FARNESOL",
+        "파네솔"
+      ],
+      "name_evidence": {
+        "korean_name": "파네솔",
+        "inci": "Farnesol",
+        "cas_no": "4602-84-0",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3473",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22FARNESOL%22",
+        "response_sha256": "f61c66002ab63ada710e1cbc01fa8e8a8f9f34908cab72a4de0a9ce847d2bd86",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "HYDROXYCITRONELLAL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "HYDROXYCITRONELLAL",
+        "하이드록시시트로넬알"
+      ],
+      "name_evidence": {
+        "korean_name": "하이드록시시트로넬알",
+        "inci": "Hydroxycitronellal",
+        "cas_no": "107-75-5",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=4639",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22HYDROXYCITRONELLAL%22",
+        "response_sha256": "f14989c70c585989903429fd6b9791ff2dda27c339bbc0fa94c074105f71f84f",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "MENTHOL",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "MENTHOL",
+        "멘톨"
+      ],
+      "name_evidence": {
+        "korean_name": "멘톨",
+        "inci": "Menthol",
+        "cas_no": "1490-04-6 15356-70-4 2216-51-5 89-78-1",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=244",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22MENTHOL%22",
+        "response_sha256": "e9ebdc9e339c6e7558bc2151b456faf882246bd520e14c4882683e8a41d0cd45",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "METHYL SALICYLATE",
+      "group": "fragrance",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "METHYL SALICYLATE",
+        "메틸살리실레이트"
+      ],
+      "name_evidence": {
+        "korean_name": "메틸살리실레이트",
+        "inci": "Methyl Salicylate",
+        "cas_no": "119-36-8",
+        "old_name": "메칠살리실레이트",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=189",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22METHYL+SALICYLATE%22",
+        "response_sha256": "aba237b1c299282bbfe1534d02f99fb775eb03f602cfd207c7fa37421a8e4a0e",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "METHYLISOTHIAZOLINONE",
+      "group": "preservative",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "METHYLISOTHIAZOLINONE",
+        "메칠이소치아졸리논"
+      ],
+      "name_evidence": {
+        "korean_name": "메칠이소치아졸리논",
+        "inci": "Methylisothiazolinone",
+        "cas_no": "2682-20-4",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=206",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22METHYLISOTHIAZOLINONE%22",
+        "response_sha256": "197bce5d80e0356adc42ff866e2802f626b3a9c579a7fea3187fc3a7d6478296",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "METHYLCHLOROISOTHIAZOLINONE",
+      "group": "preservative",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "METHYLCHLOROISOTHIAZOLINONE",
+        "메칠클로로이소치아졸리논"
+      ],
+      "name_evidence": {
+        "korean_name": "메칠클로로이소치아졸리논",
+        "inci": "Methylchloroisothiazolinone",
+        "cas_no": "26172-55-4",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=210",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22METHYLCHLOROISOTHIAZOLINONE%22",
+        "response_sha256": "5064e99c104ffaa2e2e60603461bfb7ace3a89d290c9047f4ecd40aea90cbdef",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "DMDM HYDANTOIN",
+      "group": "formaldehyde_releaser",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "DMDM HYDANTOIN",
+        "디엠디엠하이단토인"
+      ],
+      "name_evidence": {
+        "korean_name": "디엠디엠하이단토인",
+        "inci": "DMDM Hydantoin",
+        "cas_no": "6440-58-0",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=5188",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22DMDM+HYDANTOIN%22",
+        "response_sha256": "9267f12083d8051688ef303090cab3734dd3b49adb5e110ebbc36e27658fd2d3",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "DIAZOLIDINYL UREA",
+      "group": "formaldehyde_releaser",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "DIAZOLIDINYL UREA",
+        "디아졸리디닐우레아"
+      ],
+      "name_evidence": {
+        "korean_name": "디아졸리디닐우레아",
+        "inci": "Diazolidinyl Urea",
+        "cas_no": "78491-02-8",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=5153",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22DIAZOLIDINYL+UREA%22",
+        "response_sha256": "54f3aeab1d7d70d8714c5cb29bdd146a4b584fb8c95cef3ac7d7789b76759c24",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "IMIDAZOLIDINYL UREA",
+      "group": "formaldehyde_releaser",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "IMIDAZOLIDINYL UREA",
+        "이미다졸리디닐우레아"
+      ],
+      "name_evidence": {
+        "korean_name": "이미다졸리디닐우레아",
+        "inci": "Imidazolidinyl Urea",
+        "cas_no": "39236-46-9",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=2434",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22IMIDAZOLIDINYL+UREA%22",
+        "response_sha256": "34ca0f5335c45d08fca05c4038fa85a5cd8aa27696b56e6b94cb57b23483b6c5",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "QUATERNIUM-15",
+      "group": "formaldehyde_releaser",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "QUATERNIUM-15",
+        "쿼터늄-15"
+      ],
+      "name_evidence": {
+        "korean_name": "쿼터늄-15",
+        "inci": "Quaternium-15",
+        "cas_no": "4080-31-3 51229-78-8",
+        "old_name": "",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=3137",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22QUATERNIUM-15%22",
+        "response_sha256": "a76fb359968f7829183dc5102e6476c1b124d037809476582b4b4b36458a5702",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "FORMALDEHYDE",
+      "group": "formaldehyde",
+      "source_id": "fda-allergens",
+      "target_names": [
+        "FORMALDEHYDE"
+      ],
+      "name_evidence": {
+        "scope": "FDA 영문 표기만 지원; 미확인 한글 별칭은 추가하지 않음."
+      }
+    },
+    {
+      "inci": "CYCLOTETRASILOXANE",
+      "group": "environment",
+      "source_id": "d4",
+      "target_names": [
+        "CYCLOTETRASILOXANE",
+        "사이클로테트라실록세인",
+        "사이클로테트라실록산",
+        "OCTAMETHYLCYCLOTETRASILOXANE"
+      ],
+      "name_evidence": {
+        "korean_name": "사이클로테트라실록세인",
+        "inci": "Cyclotetrasiloxane",
+        "cas_no": "293-51-6 556-67-2",
+        "old_name": "사이클로테트라실록산",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=768",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22CYCLOTETRASILOXANE%22",
+        "response_sha256": "60be755df2318379886635a8eec1eed9dcb56ae9e6cad5e8744e6c9653035d39",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "CYCLOPENTASILOXANE",
+      "group": "environment",
+      "source_id": "d5",
+      "target_names": [
+        "CYCLOPENTASILOXANE",
+        "사이클로펜타실록세인",
+        "사이클로펜타실록산"
+      ],
+      "name_evidence": {
+        "korean_name": "사이클로펜타실록세인",
+        "inci": "Cyclopentasiloxane",
+        "cas_no": "541-02-6",
+        "old_name": "사이클로펜타실록산",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=769",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22CYCLOPENTASILOXANE%22",
+        "response_sha256": "e7e256ee2359a84b03f94803c05e24dad2aff325f8b1db9e7f6140de60962fa5",
+        "checked_on": "2026-10-30"
+      }
+    },
+    {
+      "inci": "CYCLOHEXASILOXANE",
+      "group": "environment",
+      "source_id": "d6",
+      "target_names": [
+        "CYCLOHEXASILOXANE",
+        "사이클로헥사실록세인",
+        "사이클로헥사실록산"
+      ],
+      "name_evidence": {
+        "korean_name": "사이클로헥사실록세인",
+        "inci": "Cyclohexasiloxane",
+        "cas_no": "540-97-6",
+        "old_name": "사이클로헥사실록산",
+        "source_url": "https://kcia.or.kr/cid/search/ingd_view.php?no=770",
+        "search_url": "https://kcia.or.kr/cid/search/ingd_list.php?skind=INGD_NM_EN&sword=%22CYCLOHEXASILOXANE%22",
+        "response_sha256": "ca608c4e8f0ca6aa8cda55b0fa040c6c36a850e7d8c57ac725dd67f0fa862945",
+        "checked_on": "2026-10-30"
+      }
+    }
+  ],
+  "environmental_evidence": [
+    {
+      "inci": "CYCLOTETRASILOXANE",
+      "name": "사이클로테트라실록세인",
+      "chemical_name": "Octamethylcyclotetrasiloxane",
+      "cas_no": "556-67-2",
+      "pubchem_cid": 11169,
+      "test_method": "OECD 310",
+      "test_duration_days": 29,
+      "test_concentration": "10 mg/L",
+      "test_endpoint": "이론적 CO2 발생량 대비 (%)",
+      "test_result_percent": 3.7,
+      "assessment": "해당 시험에서 제한적인 생분해",
+      "source_id": "d4",
+      "limitations": "KCIA Cyclotetrasiloxane에는 복수 CAS가 연결됨. 원료가 CAS 556-67-2(옥타메틸 D4)일 때만 이 시험을 적용. 원료 CAS가 일치할 때 적용. 완제품 함량·배출량·환경 내 분해 속도를 뜻하지 않음. 휘발·가수분해 등 비생물적 경로는 별도.",
+      "source_date_note": "2015 ECHA 등록자료를 인용한 HSDB"
+    },
+    {
+      "inci": "CYCLOPENTASILOXANE",
+      "name": "사이클로펜타실록세인",
+      "chemical_name": "Decamethylcyclopentasiloxane",
+      "cas_no": "541-02-6",
+      "pubchem_cid": 10913,
+      "test_method": "OECD 310",
+      "test_duration_days": 28,
+      "test_concentration": "20 mg/L",
+      "test_endpoint": "이론적 CO2 발생량 대비 (%)",
+      "test_result_percent": 0.14,
+      "assessment": "해당 시험에서 제한적인 생분해",
+      "source_id": "d5",
+      "limitations": "원료 CAS가 일치할 때 적용. 완제품 함량·배출량·환경 내 분해 속도를 뜻하지 않음. 휘발·가수분해 등 비생물적 경로는 별도.",
+      "source_date_note": "2015 ECHA 등록자료를 인용한 HSDB"
+    },
+    {
+      "inci": "CYCLOHEXASILOXANE",
+      "name": "사이클로헥사실록세인",
+      "chemical_name": "Dodecamethylcyclohexasiloxane",
+      "cas_no": "540-97-6",
+      "pubchem_cid": 10911,
+      "test_method": "OECD Draft Guideline 310",
+      "test_duration_days": 28,
+      "test_concentration": "요약 원문에 농도 미기재",
+      "test_endpoint": "생분해도 (%) (HSDB 요약 표기)",
+      "test_result_percent": 4.47,
+      "assessment": "해당 시험에서 제한적인 생분해",
+      "source_id": "d6",
+      "limitations": "원료 CAS가 일치할 때 적용. 완제품 함량·배출량·환경 내 분해 속도를 뜻하지 않음. 휘발·가수분해 등 비생물적 경로는 별도.",
+      "source_date_note": "2008 캐나다 평가서를 인용한 HSDB (2015 조회 표기)"
+    }
+  ]
+}
