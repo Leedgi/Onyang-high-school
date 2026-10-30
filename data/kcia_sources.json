@@ -9,6 +9,11 @@
   "source_rows": 22021,
   "names_sha256": "d686a3cd86de9fb9ddb3c33e2ee40e72f621889246f6dd2f8a69f36ea910aab9",
   "scope": "공개 표준화 명칭·INCI·구명칭의 사실 연결. 성분의 기원 회원사 전용 항목은 포함하지 않음. 명칭만으로 사용 허용/유래/안전성 검토 아님.",
+  "base_files": {
+    "ingredients.csv": "c56346f972503c2a158f48613e38bd293843d3ee6920779fd2cf4a5e6436e9dd",
+    "ingredient_names.csv": "dcf0bb30e2dea5c7575defe0485d320dd13e5f9ba739b9e9d2732ae4c6b2cf3f",
+    "sources.json": "f65b5cb41f924b263755e180e2861a9c8cb384b7f5d25e2f34e8c3843400968d"
+  },
   "source_definition_reviews": 144,
   "reviewed_unique_records": 144,
   "review_origin_counts": {
