@@ -117,7 +117,7 @@ def test_donut_keeps_unknowns_and_does_not_invent_safety_grades():
     assert "min(width, height)" in spec["layer"][0]["mark"]["innerRadius"]["expr"]
     assert spec["layer"][1]["encoding"]["text"]["field"] == "percentage"
     assert list(page.dataframe[0].value.columns) == ["성분", "유래", "기능"]
-    assert "출처" in page.dataframe[1].value.columns
+    assert any("출처" in frame.value.columns for frame in page.dataframe)
     assert "확인 필요" in spec["layer"][0]["encoding"]["color"]["scale"]["domain"]
     assert page.session_state["result"].count_ratio.denominator == 2
     assert page.session_state["result"].count_ratio.values["확인 필요"] == 50

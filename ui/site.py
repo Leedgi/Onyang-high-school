@@ -10,6 +10,8 @@ import pandas as pd
 import streamlit as st
 
 from ui.presentation import intro, upload_help, ratio_summary, footer
+from ui.reporting import ingredient_groups, build_pdf
+from ui.review_notes import review_notes
 
 from core.database import load_ingredients
 from core.ocr import OCREngine
@@ -27,6 +29,11 @@ def digest(value) -> str:
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True).encode()).hexdigest()
 
 
+def clear_result() -> None:
+    st.session_state.result = None
+    st.session_state.pop("pdf_export", None)
+
+
 def reset_source(key) -> None:
     for name in ("scan_output", "result", "review_signature"):
         st.session_state[name] = None
@@ -34,6 +41,7 @@ def reset_source(key) -> None:
     st.session_state.source_error = None
     st.session_state.stage = "idle"
     st.session_state.source_key = key
+    st.session_state.pop("pdf_export", None)
 
 
 def render_chart(ratio) -> None:
@@ -90,11 +98,19 @@ def render_result(result) -> None:
                 ratio_summary(result.count_ratio)
         ingredients, cautions_tab, evidence = st.tabs(["성분 목록", "주의 정보", "자료 안내"])
         with ingredients:
-            st.caption("성분별 유래와 기능을 확인하세요. 표의 기능 표기는 자료에 기록된 내용을 따릅니다.")
-            st.dataframe([{
-                "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
-            } for row in result.rows], hide_index=True, width="stretch")
+            st.caption("성분을 유래별로 묶었습니다. 각 묶음 안에서는 원래 목록 순서를 유지합니다.")
+            for origin, rows in ingredient_groups(result):
+                st.subheader(f"{origin} · {len(rows)}개")
+                if rows:
+                    st.dataframe([{
+                        "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
+                    } for row in rows], hide_index=True, width="stretch")
+                else:
+                    st.caption("해당 성분 없음")
         with cautions_tab:
+            for label, description in review_notes(result):
+                st.warning(f"{label}\n\n{description}")
+            st.subheader("등록된 성분별 주의 자료")
             cautions = [asdict(record) for records in result.cautions.values() for record in records]
             if cautions:
                 st.dataframe(cautions, hide_index=True, width="stretch")
@@ -108,11 +124,20 @@ def render_result(result) -> None:
                 "근거": row.reason, "출처": row.source_url, "확인일": row.checked_on,
             } for row in result.rows], hide_index=True, width="stretch")
             st.caption("일부 근거는 2019년 자료입니다. 최신 규제·안전성 검토를 대신하지 않으며, 이름 등재만으로 유래·사용 허용을 판단하지 않습니다.")
-        scan = st.session_state.scan_output
-        audit = {"result": asdict(result), "recognition": asdict(scan.result) if scan else None,
-                 "review_text": st.session_state.input_text}
-        st.download_button("내 분석 기록 저장", json.dumps(audit, ensure_ascii=False, indent=2),
-                           file_name="ingredient-analysis.json", mime="application/json", icon=":material/download:")
+        signature = digest(asdict(result))
+        try:
+            cached = st.session_state.get("pdf_export")
+            if cached is None or cached["signature"] != signature:
+                cached = {"signature": signature, "data": build_pdf(result)}
+                st.session_state.pdf_export = cached
+            st.download_button("PDF 분석 리포트 저장", cached["data"],
+                               file_name="ingredient-analysis.pdf", mime="application/pdf",
+                               icon=":material/download:", key="analysis_pdf", on_click="ignore")
+            st.caption("그래프·유래별 성분표·평가 한계·출처를 함께 저장합니다. 사진과 인식 원문은 PDF에 자동 첨부하지 않습니다.")
+        except ImportError:
+            st.error("PDF 저장 기능의 추가 설치가 필요합니다. setup_windows.bat을 한 번 실행한 뒤 앱을 다시 시작해 주세요.")
+        except Exception:
+            st.error("PDF를 만들지 못했습니다. 분석 결과는 화면에서 확인할 수 있습니다. 오류가 계속되면 하단에서 제보해 주세요.")
 
 
 def main() -> None:
@@ -194,7 +219,7 @@ def main() -> None:
                 return
             review_signature = digest([text, database.fingerprint, st.session_state.source_key])
             if review_signature != st.session_state.review_signature:
-                st.session_state.result = None
+                clear_result()
                 st.session_state.review_signature = review_signature
                 st.session_state.stage = "review" if text.strip() else "idle"
             names = []
@@ -210,7 +235,7 @@ def main() -> None:
                 names.append(chosen)
             selection_key = digest([review_signature, names])
             if st.session_state.get("selection_key") != selection_key:
-                st.session_state.result = None
+                clear_result()
                 st.session_state.selection_key = selection_key
             if drafts:
                 st.caption(f"{len(names)}개 항목입니다. 원본과 비교하고 한 번만 확인해 주세요.")
@@ -221,7 +246,7 @@ def main() -> None:
                         st.session_state.result = analyze_confirmed(request)
                         st.session_state.stage = "complete"
                 except (ValueError, OSError) as exc:
-                    st.session_state.result = None
+                    clear_result()
                     st.session_state.stage = "error"
                     st.error(f"분석하지 못했습니다: {exc}")
     if st.session_state.result is not None:
