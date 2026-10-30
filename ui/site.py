@@ -115,6 +115,14 @@ def render_result(result) -> None:
                     } for row in rows], hide_index=True, width="stretch")
                 else:
                     st.caption("해당 성분 없음")
+            routes = [row for row in result.rows if row.reason.startswith("[제조 경로 참고]")]
+            if routes:
+                with st.expander("식물성일까, 석유계일까? · 제조 경로 참고"):
+                    st.caption("같은 성분도 제조 원료가 달라질 수 있습니다. 아래는 과거에 기록된 가능한 제조법이며 내 제품의 유래 판정은 아닙니다.")
+                    for row in routes:
+                        st.markdown(f"**{row.canonical_name}**")
+                        st.write(row.reason.removeprefix("[제조 경로 참고] "))
+                        st.link_button("제조 경로 원문", row.source_url)
         with cautions_tab:
             for label, description in review_notes(result):
                 st.warning(f"{label}\n\n{description}")
