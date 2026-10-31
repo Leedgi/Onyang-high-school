@@ -1,4 +1,4 @@
-"""학생 C: 업로드 자동 인식 → 목록 확인 한 번 → 결과 자동 계산."""
+"""학생 C: 업로드 → 자동 이름 선택·분석 → 결과. 원문·제외는 세션에 보존."""
 from dataclasses import asdict
 import hashlib
 import json
@@ -11,6 +11,7 @@ import streamlit as st
 
 from ui.presentation import intro, upload_help, ratio_summary, footer
 from ui.reporting import ingredient_groups, build_pdf, visible_ratio, origin_label, COLORS
+from ui.automatic import resolve_automatically
 from ui.review_notes import review_notes
 from ui.cautions import render_cautions
 from ui.chemistry_panel import render_chemistry_panel
@@ -19,7 +20,7 @@ from core.database import load_ingredients
 from core.ocr import OCREngine
 from features.analysis import analyze_confirmed
 from features.recognition import prepare_review, recognize_photo
-from shared.contracts import AnalysisRequest, ConfirmedIngredient, PIPELINE_VERSION, SESSION_DEFAULTS
+from shared.contracts import CONTRACT_VERSION, AnalysisRequest, ConfirmedIngredient, PIPELINE_VERSION, SESSION_DEFAULTS
 
 
 @st.cache_resource(max_entries=1)
@@ -99,12 +100,16 @@ def render_chart(ratio) -> None:
 
 def render_result(result) -> None:
     if result.status == "no_data":
-        st.info("분석할 성분이 없습니다.")
+        st.warning(f"분석할 성분을 식별하지 못했습니다. {len(result.automatic_decisions)}개 항목을 제외했습니다. 사진을 다시 올리거나 목록을 수정해 주세요." if result.automatic else "분석할 성분이 없습니다.")
         return
     with st.container(key="results"):
         st.html('<div id="results" class="result-heading"><p class="eyebrow">내 성분 리포트</p></div>')
         st.subheader("성분 분석 결과")
-        st.caption("직접 확인한 목록을 바탕으로 정리했습니다. 성분을 수정하면 이전 결과가 지워지고 다시 확인하게 됩니다.")
+        st.caption("분석에 포함한 성분만의 결과입니다. 사진·입력을 바꾸면 이전 결과를 지웁니다.")
+        if result.automatic:
+            excluded = sum(not d.selected_name for d in result.automatic_decisions)
+            estimated = sum(bool(d.selected_name) and d.reason != "DB 이름 일치" for d in result.automatic_decisions)
+            st.caption(f"이름 자동 추정 {estimated}개 · 미식별 제외 {excluded}개. 비율은 제외 후 중복을 뺀 성분 수 기준이며 전체 성분표의 비율이 아닐 수 있습니다.")
         with st.container(key="ratio-card"):
             visual, summary = st.columns([1, 1.1], gap="large", vertical_alignment="center")
             with visual:
@@ -146,6 +151,8 @@ def render_result(result) -> None:
                 st.warning(f"{label}\n\n{description}")
             render_cautions(result)
         with evidence:
+            with st.expander("자동 선택·제외 내역"):
+                st.dataframe([{ "원문": d.draft.raw_text, "선택": d.selected_name or "제외", "처리": d.reason } for d in result.automatic_decisions], hide_index=True)
             st.write("확인이 필요한 이유와 원문 출처")
             st.dataframe([{
                 "성분": row.canonical_name, "확인 필요 원인": row.uncertainty_reason,
@@ -205,7 +212,7 @@ def main() -> None:
                                              progress=lambda message: status.update(label=message))
                     st.session_state.scan_output = output
                     success = output.result.status == "ok"
-                    status.update(label="성분 목록을 확인해 주세요" if success else "사진을 확인해 주세요",
+                    status.update(label="성분 분석을 준비하고 있습니다" if success else "사진을 확인해 주세요",
                                   state="complete" if success else "error")
                 if success:
                     st.session_state.input_text = "\n".join(draft.name for draft in output.result.ingredients)
@@ -235,11 +242,10 @@ def main() -> None:
             st.rerun()
     elif st.session_state.source_key is not None:
         reset_source(None)
-    review_open = bool(st.session_state.input_text.strip() or uploaded is not None)
     with st.container(key="review-panel"):
-        st.html('<div id="review" class="panel-label"><span>02</span><h3>읽어낸 성분을 확인해 주세요</h3></div>')
-        with st.expander("성분 목록 확인 · 직접 입력", expanded=review_open):
-            st.caption("틀린 이름은 수정하고, 불확실한 항목만 후보를 선택하세요. 사진 없이 직접 입력해도 됩니다.")
+        st.html('<div id="review" class="panel-label"><span>02</span><h3>자동으로 정리한 성분</h3></div>')
+        with st.expander("성분 목록 확인 · 직접 입력", expanded=False):
+            st.caption("사진은 자동으로 분석합니다. 필요하면 목록을 수정하거나 사진 없이 직접 입력하세요.")
             text = st.text_area("성분 목록 확인·수정", key="input_text", height=180,
                                 placeholder="사진을 올리거나 성분명을 쉼표 또는 줄바꿈으로 구분해 입력하세요.")
             try:
@@ -254,27 +260,19 @@ def main() -> None:
                 clear_result()
                 st.session_state.review_signature = review_signature
                 st.session_state.stage = "review" if text.strip() else "idle"
-            names = []
-            for i, draft in enumerate(drafts):
-                if draft.status in {"exact", "alias"}:
-                    names.append(draft.name)
-                    continue
-                choices = list(dict.fromkeys([draft.name, draft.raw_text, *(candidate.name for candidate in draft.candidates)]))
-                chosen = st.selectbox(f"{i + 1}. {draft.raw_text} · 일치하는 이름을 확인해 주세요", choices,
-                                      key=f"candidate_{review_signature}_{i}")
-                if draft.candidates:
-                    st.caption("이름 유사도: " + ", ".join(f"{c.name} {c.score:.1f}점" for c in draft.candidates) + " · 정답 확률이 아닙니다.")
-                names.append(chosen)
-            selection_key = digest([review_signature, names])
-            if st.session_state.get("selection_key") != selection_key:
+            decisions = resolve_automatically(drafts, database)
+            names = [d.selected_name for d in decisions if d.selected_name]
+            selection_key = digest([review_signature, names, CONTRACT_VERSION])
+            changed = st.session_state.get("selection_key") != selection_key
+            if changed:
                 clear_result()
                 st.session_state.selection_key = selection_key
-            if drafts:
-                st.caption(f"{len(names)}개 항목입니다. 원본과 비교하고 한 번만 확인해 주세요.")
-            if drafts and st.button("목록 확인 완료 · 분석 보기", type="primary", key="confirm", width="stretch"):
+            start_manual = bool(drafts) and st.button("바로 분석", type="primary", key="confirm", width="stretch")
+            auto_run = uploaded is not None and bool(drafts) and changed
+            if start_manual or auto_run:
                 try:
                     with st.spinner("성분 정보를 정리하고 있습니다"):
-                        request = AnalysisRequest(tuple(ConfirmedIngredient(name) for name in names))
+                        request = AnalysisRequest(tuple(ConfirmedIngredient(name) for name in names), automatic=True, automatic_decisions=decisions)
                         st.session_state.result = analyze_confirmed(request)
                         st.session_state.stage = "complete"
                 except (ValueError, OSError) as exc:

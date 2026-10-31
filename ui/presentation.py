@@ -25,7 +25,7 @@ def intro() -> None:
             st.image(str(Path(__file__).with_name("assets").joinpath("ingredient-study.svg")), width="stretch")
     st.html('''<ol class="journey" aria-label="분석 순서">
       <li><span>01</span><div><strong>사진 올리기</strong><small>성분표를 자동으로 읽어요</small></div></li>
-      <li><span>02</span><div><strong>목록 확인하기</strong><small>불확실한 이름만 고쳐주세요</small></div></li>
+      <li><span>02</span><div><strong>자동으로 정리하기</strong><small>가까운 이름을 자동 선택해요</small></div></li>
       <li><span>03</span><div><strong>성분 살펴보기</strong><small>같은 목록으로 표와 그래프를 만들어요</small></div></li>
     </ol><div id="analyze" class="section-heading"><p class="eyebrow">내 제품 알아보기</p><h2>성분표부터 시작해 볼까요?</h2><p>사진을 올리면 인식부터 이름 정리까지 자동으로 진행합니다.</p></div>''')
 

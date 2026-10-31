@@ -15,7 +15,7 @@ from ui.reporting import build_pdf,ingredient_groups,origin_label,visible_ratio
 
 def test_same_result_powers_seven_groups_chart_and_pdf_with_estimate_label():
     r=analyze_confirmed(AnalysisRequest(tuple(ConfirmedIngredient(n) for n in ['VACCINIUM MACROCARPON (CRANBERRY) SEED OIL','SYNTHETIC BEESWAX','미등록신원료'])))
-    assert CONTRACT_VERSION==2
+    assert CONTRACT_VERSION==3
     assert len(ingredient_groups(r))==7
     assert visible_ratio(r) is r.detail_count_ratio
     assert '추정' in origin_label(r.rows[0])

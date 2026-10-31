@@ -91,7 +91,13 @@ def build_pdf(result: AnalysisResult) -> bytes:
                             title="친환경 제품 성분 정보 분석", author="성분 정보 분석")
     content = [p("친환경 제품 성분 정보 분석", title),
                p(datetime.now(timezone(timedelta(hours=9))).strftime("작성일: %Y-%m-%d %H:%M (한국 시간)"), small),
-               p("사용자가 확인한 성분 목록의 리포트입니다. 제품의 친환경성·안전성을 인증하지 않습니다.")]
+               p("분석에 포함한 성분 목록의 리포트입니다. 제품의 친환경성·안전성을 인증하지 않습니다.")]
+    if result.automatic:
+        excluded = sum(not d.selected_name for d in result.automatic_decisions)
+        content.append(p(f"자동 분석: 미식별 {excluded}개 제외. 비율은 분석에 포함한 성분만 기준이며 전체 성분표의 비율이 아닐 수 있습니다."))
+        content.append(p("이름 자동 선택·제외 내역", heading))
+        for decision in result.automatic_decisions:
+            content.append(p(f"{decision.draft.raw_text} → {decision.selected_name or '제외'} · {decision.reason}", small))
     ratio = visible_ratio(result)
     if ratio:
         legend = [[p("원료 유래"), p("성분명 개수 비율")]] + [[p(k), p(f"{v:.1f}%")] for k, v in ratio.values.items()]
