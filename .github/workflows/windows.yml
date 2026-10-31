@@ -5,14 +5,21 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      all_photos:
+        description: "업로드한 실제 사진 42장 전체 검사"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
 
 jobs:
   windows:
+    name: ${{ github.event.inputs.all_photos == 'true' && 'Windows full photo benchmark' || 'windows' }}
     runs-on: windows-latest
-    timeout-minutes: 25
+    timeout-minutes: ${{ github.event.inputs.all_photos == 'true' && 60 || 25 }}
     defaults:
       run:
         shell: cmd
@@ -56,6 +63,15 @@ jobs:
         run: retry_ocr_windows.bat --no-pause
       - name: Run tests, real CPU OCR, and server checks
         run: check_windows.bat --no-pause
+      - name: Verify the accuracy target on all front photos
+        if: github.event.inputs.all_photos != 'true'
+        run: .venv\Scripts\python.exe -m scripts.check_real_ocr --front-only --workers 2 --output artifacts/real-front --min-recall 0.8 --min-precision 0.8
+      - name: Check uploaded rotated and oblique photos on Windows CPU
+        if: github.event.inputs.all_photos != 'true'
+        run: .venv\Scripts\python.exe -m scripts.check_real_ocr --files 20261029_224910.jpg 20261029_225517.jpg --min-recall 0.8 --min-precision 0.8
+      - name: Check all uploaded photos on Windows CPU
+        if: github.event.inputs.all_photos == 'true'
+        run: .venv\Scripts\python.exe -m scripts.check_real_ocr --workers 2
       - name: Upload diagnostic reports
         if: always()
         uses: actions/upload-artifact@v4

@@ -39,6 +39,20 @@ MODELS = (
 )
 
 
+# 공식 배포 커밋과 파일 SHA를 고정한다. 사진은 다운로드 서버로 전송하지 않는다.
+NEURAL_MODELS = (
+    Model('PP-OCRv5 글자 줄 검출', 'ppocr_v5/det.onnx',
+          'https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_onnx/resolve/e6f4fa85f00e168c862bc462aebca69eef9b3d3d/inference.onnx',
+          'a431985659dc921974177a95adcfbb90fd9e51989a5e04d70d0b75f597b6e61d'),
+    Model('PP-OCRv5 한국어 이름 인식', 'ppocr_v5/korean.onnx',
+          'https://huggingface.co/PaddlePaddle/korean_PP-OCRv5_mobile_rec_onnx/resolve/5c6f574b8e2230adf4287b33e736d71b9fabd28e/inference.onnx',
+          '92f0b7785e64fc9090106a241cf4c1eb97472824558272751b88a2a4476d3a08'),
+    Model('PP-OCRv5 한국어 문자 사전', 'ppocr_v5/korean.yml',
+          'https://huggingface.co/PaddlePaddle/korean_PP-OCRv5_mobile_rec_onnx/resolve/5c6f574b8e2230adf4287b33e736d71b9fabd28e/inference.yml',
+          'f757fa1c40e99edcf27e9cce879b93eb2a51fa46f5ef39095689b8c37dd75998'),
+)
+
+
 def digest(path):
     with path.open('rb') as f:
         return hashlib.file_digest(f, 'sha256').hexdigest()
@@ -61,7 +75,7 @@ def guidance(exc):
     if isinstance(reason,ssl.SSLCertVerificationError) or 'CERTIFICATE_VERIFY_FAILED' in str(reason):
         return 'HTTPS 인증서 확인 실패입니다. PC 날짜·시간과 학교/회사 네트워크의 인증서 설정을 확인해 주세요. 인증서 검증을 끄지 마세요.'
     if isinstance(exc,urllib.error.HTTPError):
-        return f'다운로드 서버가 HTTP {exc.code}로 응답했습니다. 해당 네트워크의 GitHub 접근 제한·프록시 설정을 확인해 주세요.'
+        return f'다운로드 서버가 HTTP {exc.code}로 응답했습니다. 해당 네트워크의 모델 서버(GitHub·Hugging Face) 접근 제한·프록시 설정을 확인해 주세요.'
     if isinstance(exc,urllib.error.URLError) or isinstance(reason,(TimeoutError,ConnectionError)):
         return '다운로드 연결 실패입니다. 다른 네트워크(예: 휴대폰 핫스팟)에서 다시 시도하면 학교/회사망 제한인지 구분할 수 있습니다.'
     if isinstance(exc,PermissionError):
@@ -133,4 +147,4 @@ def ensure_model(cache,model,emit=print):
 
 
 def prepare_all(cache,emit=print):
-    for model in MODELS:ensure_model(cache,model,emit)
+    for model in (*MODELS, *NEURAL_MODELS):ensure_model(cache,model,emit)

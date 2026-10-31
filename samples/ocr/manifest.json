@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "source": "사용자가 제공한 실제 촬영 사진 42장. 한글 전성분을 사진에서 직접 대조해 전사. 같은 제품의 다른 각도 3장은 같은 정답을 공유.",
+  "scoring": "성분명 단위 precision/recall/F1. DB의 정확 별칭만 정답과 동등 취급. 함량 주석은 성분명과 분리하며 숫자를 이름에서 삭제하지 않는다. 사용자 확인 전 제안명과 교정 전 원문을 별도 평가.",
+  "notes": [
+    "앞면은 각 그룹의 첫 파일로 지정했다. 나머지 각도는 alternate이며 실제 EXIF 적용 후 선택 회전 각도는 실행 보고서에 기록한다.",
+    "01 쌀겨수 20,000 ppm; 05 녹차씨오일 등 ppm; 12 세라마이드엔피 5,000 ppb; 13 펩타이드 ppb; 14 다마스크장미꽃수 97 ppm 등의 주석은 원문에 보존하되 이름 적중률에서는 함량 숫자를 별도 필드로 본다.",
+    "OCR 코드에서 이 명세·정답 파일·사진 이름·해시를 읽어 답을 생성하면 안 된다. 외부 사이트의 제품 성분목록을 정답으로 대신하지 않는다."
+  ],
+  "photos": [
+    {
+      "file": "20261029_224822.jpg",
+      "sha256": "efb15c0ad34ad994b324e32fe19f2861ecf3b576a6e5e52f7a26cb3043f68eea",
+      "group": 1,
+      "view": "front",
+      "expected": "expected/01-rice-mask.txt"
+    },
+    {
+      "file": "20261029_224900.jpg",
+      "sha256": "cea14c39274e94e2c1550197f112cbb3161fb7355ab4df069ca4ac2a18813e83",
+      "group": 1,
+      "view": "alternate",
+      "expected": "expected/01-rice-mask.txt"
+    },
+    {
+      "file": "20261029_224910.jpg",
+      "sha256": "cc59dac58f8a4a3046d80ae5c17d9bf7036b6e675665258d2d172232e6159ffb",
+      "group": 1,
+      "view": "alternate",
+      "expected": "expected/01-rice-mask.txt"
+    },
+    {
+      "file": "20261029_225428.jpg",
+      "sha256": "25a1bc9d3b3381d8cdc3f39aad72b4980172c4c7bd2ea311899cbc5f3937e224",
+      "group": 2,
+      "view": "front",
+      "expected": "expected/02-evening-cleanser.txt"
+    },
+    {
+      "file": "20261029_225434.jpg",
+      "sha256": "fecbc786e236cef30c02627daec09efb3567bb962d0da5f76d7f891961034f5f",
+      "group": 2,
+      "view": "alternate",
+      "expected": "expected/02-evening-cleanser.txt"
+    },
+    {
+      "file": "20261029_225437.jpg",
+      "sha256": "62172855ee90b9487164a3f918b36969e7c53cbe9193057fd25630e21cea6186",
+      "group": 2,
+      "view": "alternate",
+      "expected": "expected/02-evening-cleanser.txt"
+    },
+    {
+      "file": "20261029_225449.jpg",
+      "sha256": "1cfb2788d5ab4ec5134923511dd06d0476b52957777d20b218d90f74144083a6",
+      "group": 3,
+      "view": "front",
+      "expected": "expected/03-ruby-cleanser.txt"
+    },
+    {
+      "file": "20261029_225517.jpg",
+      "sha256": "96da412c3c103206c85a4bc6395b2ecc8abf7b80718ddc6f28a685f29b3fac85",
+      "group": 3,
+      "view": "alternate",
+      "expected": "expected/03-ruby-cleanser.txt"
+    },
+    {
+      "file": "20261029_225529.jpg",
+      "sha256": "c295842e5fb2e702857826083a10ae40fa1b1a7e16bf02103771da4ee89272f6",
+      "group": 3,
+      "view": "alternate",
+      "expected": "expected/03-ruby-cleanser.txt"
+    },
+    {
+      "file": "20261029_225641.jpg",
+      "sha256": "3556bb9caf6450f43e3b1b08dbd65f658f1b7e8a4532ed06f44afdc2ca0341b3",
+      "group": 4,
+      "view": "front",
+      "expected": "expected/04-sun-label.txt"
+    },
+    {
+      "file": "20261029_225701.jpg",
+      "sha256": "f6dde9875293fe85512b3704ce3a7174eeb155095be405cf24d933b561170d00",
+      "group": 4,
+      "view": "alternate",
+      "expected": "expected/04-sun-label.txt"
+    },
+    {
+      "file": "20261029_225917.jpg",
+      "sha256": "fa339eb759de4323ae0457f31589147bd0bcbc98f0f146959ce7bd6d3d08e35a",
+      "group": 4,
+      "view": "alternate",
+      "expected": "expected/04-sun-label.txt"
+    },
+    {
+      "file": "20261029_230857.jpg",
+      "sha256": "73e910d884b9976f370b5640e41af9bee38e35d8abbd125a71fea6fb5b4336ce",
+      "group": 5,
+      "view": "front",
+      "expected": "expected/05-green-cream.txt"
+    },
+    {
+      "file": "20261029_230906.jpg",
+      "sha256": "4be14458597acb86b9ae41357bf0ae122d43754de20dcc0ed6167ddf1a8581c3",
+      "group": 5,
+      "view": "alternate",
+      "expected": "expected/05-green-cream.txt"
+    },
+    {
+      "file": "20261029_230910.jpg",
+      "sha256": "bcd5086e49f05664a400e3933e3bb10c150a27ac8858b5c7ca154f8dbfef7a1c",
+      "group": 5,
+      "view": "alternate",
+      "expected": "expected/05-green-cream.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_03.jpg",
+      "sha256": "1cd4c1d89ad922dc3a5d253fa6d537949a3575135edcf970b34b53ea27535554",
+      "group": 6,
+      "view": "front",
+      "expected": "expected/06-cica-cream.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_04.jpg",
+      "sha256": "8fab1cfe56fe10d355abe80896df24c0becdc2e7c9dc0d9729fd9046c597c7f4",
+      "group": 6,
+      "view": "alternate",
+      "expected": "expected/06-cica-cream.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_05.jpg",
+      "sha256": "30ddad7f9f5bb6c567b0531a4aff8ac9400fb13ab0e743d563fef0f3de2ed510",
+      "group": 6,
+      "view": "alternate",
+      "expected": "expected/06-cica-cream.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_06.jpg",
+      "sha256": "31d22df1cd031789d20f4c0d3a815b049e3978901bcdcc9a7355933d2dd149ce",
+      "group": 7,
+      "view": "front",
+      "expected": "expected/07-calming-patch.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_07.jpg",
+      "sha256": "b6986712e075b1c928822a7b039814976f7158536b3036b99de77ecfb3f38bd4",
+      "group": 7,
+      "view": "alternate",
+      "expected": "expected/07-calming-patch.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_08.jpg",
+      "sha256": "02a06fd73432e9e3e617b4cb6c135204cd961df9932bf3de2b93643ea17a6889",
+      "group": 7,
+      "view": "alternate",
+      "expected": "expected/07-calming-patch.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_09.jpg",
+      "sha256": "a535da7677b8c68925e7c77066f7c5a5dbfa557023226dd00f843b080c40a265",
+      "group": 8,
+      "view": "front",
+      "expected": "expected/08-body-mist.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_10.jpg",
+      "sha256": "21db20cf494314b71a016c5f95f3e651d4fc73fe6bdb6d490febf481145d7cd6",
+      "group": 8,
+      "view": "alternate",
+      "expected": "expected/08-body-mist.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_11.jpg",
+      "sha256": "5322859d0f61650703d926df340c9dbf05da005c7887fcfb96a170f9fb1acb0b",
+      "group": 8,
+      "view": "alternate",
+      "expected": "expected/08-body-mist.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_12.jpg",
+      "sha256": "b0f83a87712d19d3aa4fc6c5a6e4c423a250196912b84a5408174c6d912fb892",
+      "group": 9,
+      "view": "front",
+      "expected": "expected/09-yellow-treatment.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_13.jpg",
+      "sha256": "35dacf8221896b447757226623af977609c5d7d6039176fee2f77c5618e1f75d",
+      "group": 9,
+      "view": "alternate",
+      "expected": "expected/09-yellow-treatment.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_013107058_14.jpg",
+      "sha256": "5e5dda728e817aa6070f64ab939b3098197d092c1a6c91772b097d490b7854d5",
+      "group": 9,
+      "view": "alternate",
+      "expected": "expected/09-yellow-treatment.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444.jpg",
+      "sha256": "f241585e7e5bd960ddc90603d408703850389a8c508d24f9cc4c5ad8aa8746fc",
+      "group": 10,
+      "view": "front",
+      "expected": "expected/10-wedding-spray.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_01.jpg",
+      "sha256": "e896ca16cd22a316fea723c7c5443bfb069fa7f7c744084965dfeb72be46a88a",
+      "group": 10,
+      "view": "alternate",
+      "expected": "expected/10-wedding-spray.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_02.jpg",
+      "sha256": "e69e66ad8aa1827744a33a7415038e5476aadb5cc01fb16647ad17fc11a3bd9d",
+      "group": 10,
+      "view": "alternate",
+      "expected": "expected/10-wedding-spray.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_03.jpg",
+      "sha256": "ce12d3266185e29730dcc3e81c21c4696a84b6a4ee44b16bed51528b7c694430",
+      "group": 11,
+      "view": "front",
+      "expected": "expected/11-pink-cushion.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_04.jpg",
+      "sha256": "fe4bdaa396fe72a849acfb3abd897b4642a74d780d5eb3d8fc392c24df70d103",
+      "group": 11,
+      "view": "alternate",
+      "expected": "expected/11-pink-cushion.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_05.jpg",
+      "sha256": "37f5030186caadccacee24a55223941681574585bdd534cd311e2bc77bac1f8c",
+      "group": 11,
+      "view": "alternate",
+      "expected": "expected/11-pink-cushion.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_06.jpg",
+      "sha256": "1f91e83679826e075aa7bc99599841d725aa0dc98dfdc1821898f19e48780fb0",
+      "group": 12,
+      "view": "front",
+      "expected": "expected/12-mochi-emulsion.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_07.jpg",
+      "sha256": "8612eb8e3f1b0e54e70ce7c1898e4db6d3fc18ae5386eda51c94f22bc01e7681",
+      "group": 12,
+      "view": "alternate",
+      "expected": "expected/12-mochi-emulsion.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_08.jpg",
+      "sha256": "08e97d7a95315366f43da833e44d5cd3aae5fa3c14024136d215c4e9d71050ed",
+      "group": 12,
+      "view": "alternate",
+      "expected": "expected/12-mochi-emulsion.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_09.jpg",
+      "sha256": "ff5e2b096893d170ad7135b01e1e74480f495da9a2147dd2db868d9f9e14edcb",
+      "group": 13,
+      "view": "front",
+      "expected": "expected/13-peptide-refill.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_10.jpg",
+      "sha256": "ac6c07545f729ed64dbc5eecdd0461655e55e0d00b0085b0ff67b9bcc0337de4",
+      "group": 13,
+      "view": "alternate",
+      "expected": "expected/13-peptide-refill.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_11.jpg",
+      "sha256": "fe5ecfcbe441e25dc584a518c89fe0142fd753eee75b09d0ca06351f239d23ee",
+      "group": 13,
+      "view": "alternate",
+      "expected": "expected/13-peptide-refill.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_12.jpg",
+      "sha256": "dfb2e16ed0d79516fced0777eb5a81b649e74184edf3f93a9fa346f28979df29",
+      "group": 14,
+      "view": "front",
+      "expected": "expected/14-rose-mist.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_13.jpg",
+      "sha256": "f92f2fd8a9f60b45c0d33ea49afcdfa144fc342a358f7c7919aee175b98b3377",
+      "group": 14,
+      "view": "alternate",
+      "expected": "expected/14-rose-mist.txt"
+    },
+    {
+      "file": "KakaoTalk_20261030_020321444_14.jpg",
+      "sha256": "d5aaab814a4ba8a7511adb767fbd23858e9789b3f27f19a61af18203b9eaf2bf",
+      "group": 14,
+      "view": "alternate",
+      "expected": "expected/14-rose-mist.txt"
+    }
+  ]
+}

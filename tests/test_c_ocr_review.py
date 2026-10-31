@@ -36,7 +36,7 @@ def test_ocr_proposal_keeps_source_choice_until_single_confirmation(monkeypatch)
 
 
 def test_scan_version_changes_cache_key_and_edited_text_uses_manual_review():
-    assert PIPELINE_VERSION=='rows-ensemble-3'
+    assert PIPELINE_VERSION=='ppocr-v5-korean-1'
     d=IngredientDraft('원문','제안','needs_review')
     output=ScanOutput(IngredientScan('ok',OCRResult('ok'),(d,)),Image.new('RGB',(5,5)))
     assert site.visible_review('제안',output)==(d,)

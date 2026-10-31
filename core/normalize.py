@@ -85,7 +85,9 @@ def normalize_text(raw_text: str) -> list[Token]:
             char in ",，" and re.fullmatch(r"\d+(?:,\d+)*", prefix) is not None
             and re.match(r"\d+(?:,\d+)*[-‐‑–]", suffix) is not None
         )
-        if depth == 0 and char in ",，;；\n\r·•" and not is_numeric_comma:
+        quantity_comma = (char in ",，" and re.search(r"\d$", prefix) is not None
+                          and re.match(r"\d{3}(?:,\d{3})*(?:\.\d+)?(?:ppm|ppb|%)\)?(?:[,;\s]|$)", suffix) is not None)
+        if depth == 0 and char in ",，;；\n\r·•" and not is_numeric_comma and not quantity_comma:
             chunks.append(raw_text[start:i])
             start = i + 1
     chunks.append(raw_text[start:])
