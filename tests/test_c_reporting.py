@@ -22,7 +22,7 @@ def test_groups_preserve_rows_and_pdf_contains_same_percentages_and_korean():
     report = result("정제수", "미네랄오일", "시어버터", "미등록기호<&>", "정제수")
     groups = ingredient_groups(report)
     assert sum(len(rows) for _, rows in groups) == 4
-    assert [row.canonical_name for origin, rows in groups for row in rows if origin == "기타"] == ["정제수"]
+    assert [row.canonical_name for origin, rows in groups for row in rows if origin == "광물·무기물"] == ["정제수"]
     data = build_pdf(report)
     pdf = PdfReader(BytesIO(data))
     text = "\n".join(page.extract_text() for page in pdf.pages)
@@ -39,7 +39,8 @@ def test_long_pdf_paginates_instead_of_losing_rows():
     base = result("정제수")
     rows = tuple(replace(base.rows[0], canonical_name=f"긴성분이름-{n}",
                          functions=("긴 기능 설명 " * 30,)) for n in range(90))
-    report = replace(base, rows=rows, count_ratio=replace(base.count_ratio, denominator=90))
+    report = replace(base, rows=rows, count_ratio=replace(base.count_ratio, denominator=90),
+                     detail_count_ratio=replace(base.detail_count_ratio, denominator=90))
     pdf = PdfReader(BytesIO(build_pdf(report)))
     assert len(pdf.pages) > 3
     text = "\n".join(page.extract_text() for page in pdf.pages)
@@ -76,8 +77,8 @@ def test_pdf_is_session_local_and_invalidated_with_input(monkeypatch):
     assert len(calls) == 1
     text = "\n".join(p.extract_text() for p in PdfReader(BytesIO(app.session_state["pdf_export"]["data"])).pages)
     assert "미네랄오일" in text
-    assert list(app.dataframe[0].value["성분"]) == ["미네랄오일"]
-    assert list(app.dataframe[1].value["성분"]) == ["정제수"]
+    assert list(app.dataframe[0].value["성분"]) == ["정제수"]
+    assert list(app.dataframe[1].value["성분"]) == ["미네랄오일"]
     app.run()
     assert len(calls) == 1
     other = AppTest.from_file(str(ROOT / "app.py"), default_timeout=20).run()

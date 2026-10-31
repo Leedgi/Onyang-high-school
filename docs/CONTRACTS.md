@@ -107,3 +107,20 @@ C가 CONTRACT_VERSION을 올리고 이전 호출을 위한 어댑터·검사를 
 공개 함수/인자/반환형과 CONTRACT_VERSION=1은 유지한다. 내부 단일 행 인식과 줄별 보정은 기존 processing/passes에 변환과 좌표 정보를 남긴다. bbox는 실제 선택된 영상의 픽셀이며 카메라 원본 좌표로 해석하지 않는다. 선택 영상 크기도 image_size에 일치시킨다.
 
 PIPELINE_VERSION=rows-ensemble-3으로 사진 source_key 및 공유 모델 자원 키를 바꾼다. 같은 사진에 남은 이전 결과/PDF를 재사용하지 않는다. OCR 자동 입력이 그대로일 때는 A의 원문/미확정 초안을 그대로 검토한다. 제안명을 다시 이름 대조해 exact로 바꾸지 않는다. 원문과 후보를 선택할 수 있고 최종 사용자 확인에서만 ConfirmedIngredient를 만든다. 사용자가 입력 목록을 수정하면 기존 prepare_review를 쓴다. 숫자 변경은 유사도·엔진 합의만으로 확정하지 않는다. 사진/원문은 세션에만 두고 공유 캐시에는 모델/DB만 보존한다.
+
+## v2: 선택적7분류와 v1 호환 (2026-10-31)
+
+CONTRACT_VERSION=2. A/B 공개 함수와 인자, 기존4분류 origin/count_ratio/amount_ratio 및 원인 코드는 유지한다.
+IngredientRecord와 ClassifiedIngredient 끝에 기본값이 있는 detail_origin, detail_confidence, detail_reason,
+detail_source_url, detail_is_estimate를 추가한다. detail_origin은 빈 문자열(v1) 또는
+식물 유래/동물 유래/광물·무기물/발효·미생물 유래/석유계/합성/확인 필요다.
+AnalysisResult.detail_count_ratio는 기본None인 선택적7분류 비율이다. B가 같은 중복 제거 확정 목록으로 계산하며 미등록·확인 필요도 분모에 넣는다.
+C의 화면/PDF는 detail_count_ratio가 있으면 사용하고 없으면 기존 count_ratio로 표시하는 v1 어댑터를 사용한다.
+함량·유사도·위험성 점수로 7분류를 재해석하지 않는다.
+
+이름 추정은 기존 origin을 확정 유래로 바꾸거나 검토 성분 수를 늘리지 않는다. (추정) 표시와 검토 수준·방법 출처를 화면/PDF에 보존한다.
+합성은 석유계와 동의어가 아니다. 7범주에는 원료 유형과 제조/가공 방식이 함께 포함되어 제품의 비건·안전·친환경성 판정이 아니다.
+선택적파일 origin_taxonomy_sources.json과 audit/과거추가자료의 SHA·행·범주·기본 DB 집계를 검사한다.
+새 파일·주의 추가 자료도 DB 지문에 포함되어 바뀌면 이전 결과/PDF를 무효화한다.
+파일이 전혀 없는 v1 프로젝트는 기존 로딩을 유지하지만 일부만 누락된 확장은 오류다.
+원래8열 Ingredient CSV는 유지하며 새 필드는 검토표를 연결할 때만 채운다.

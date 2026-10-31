@@ -23,4 +23,5 @@ def classify(item: ConfirmedIngredient, database: IngredientDatabase) -> Classif
         item, record.name, record.origin, record.reason, record.uncertainty_reason,
         method,
         record.functions, record.source_url, record.checked_on,
+        record.detail_origin, record.detail_confidence, record.detail_reason, record.detail_source_url, record.detail_is_estimate,
     )

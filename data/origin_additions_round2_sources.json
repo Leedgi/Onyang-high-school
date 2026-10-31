@@ -1,0 +1,15 @@
+{
+  "format_version": 1,
+  "records": 2138,
+  "sha256": "2a39e49ba7eb6ba5e9226a935ae6ccb8160de0a7094452e2760964fcba16dcd1",
+  "checked_on": "2026-10-31",
+  "method": "Conservative INCI identity/plant genus and plant-part heuristics; no supplier-origin verification.",
+  "category_counts": {
+    "기타": 1443,
+    "식물성": 695
+  },
+  "sources": [
+    "https://cosmileeurope.eu/inci/",
+    "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-ingredient-database_en"
+  ]
+}

@@ -38,16 +38,19 @@ def upload_help() -> None:
 
 
 def ratio_summary(ratio) -> None:
-    colors = {"석유계": "#356351", "식물성": "#7f9d68", "기타": "#b5c7a2", "확인 필요": "#e5e7df"}
+    from core.models import DETAIL_ORIGIN_COLORS
+    colors = {"석유계": "#356351", "식물성": "#7f9d68", "기타": "#b5c7a2", "확인 필요": "#e5e7df", **DETAIL_ORIGIN_COLORS}
     rows = ''.join(f'<li><span><i style="background:{colors[name]}" aria-hidden="true"></i>{escape(name)}</span><strong>{value:.1f}<small>%</small></strong></li>' for name, value in ratio.values.items())
     st.html(f'''<div class="ratio-summary"><p class="eyebrow">성분명 개수 기준</p><h3>무엇으로 이루어져 있을까요?</h3><p>중복을 제외한 <strong>{int(ratio.denominator)}개 성분</strong>의 원료 유래를 살펴봅니다.</p><ul>{rows}</ul>
-      <div class="quiet-note">‘확인 필요’도 비율에 포함됩니다.<br>이 비율은 실제 배합 함량이나 안전성 점수가 아닙니다.</div></div>''')
+      <div class="quiet-note">‘확인 필요’도 비율에 포함됩니다.<br>이 비율은 실제 배합 함량이나 안전성 점수가 아닙니다. 7분류에는 이름 기반 추정이 포함되며 합성은 석유계와 동의어가 아닙니다.</div></div>''')
 
 
 def footer(database=None) -> None:
     st.html('<div id="guide" class="section-heading"><p class="eyebrow">알고 사용하기</p><h2>자주 묻는 질문</h2></div>')
     with st.expander("식물성 성분이면 더 안전한가요?"):
         st.write("아니요. 식물성이라는 유래만으로 안전성을 판단할 수 없습니다. 사용 농도, 개인의 피부 상태, 제품의 사용 방법에 따라 영향이 달라질 수 있습니다.")
+    with st.expander("7분류의 ‘추정’과 ‘합성’은 무슨 뜻인가요?"):
+        st.write("추정은 성분명 규칙으로 분류한 것이며 제조사 원료를 확인한 결과가 아닙니다. 합성은 가공·합성 공정의 분류로 석유계와 같지 않습니다. 7범주는 원료 종류와 가공 방식을 함께 포함한 설명용 분류이며 제품의 비건·안전·친환경성을 보증하지 않습니다.")
     with st.expander("‘확인 필요’는 무슨 뜻인가요?"):
         st.write("성분명이나 원료의 유래를 확인할 근거가 부족하다는 뜻입니다. 위험하거나 유해하다고 판정한 것이 아닙니다. OCR 인식 결과와 성분명을 먼저 확인해 주세요.")
     with st.expander("화학식이 표시되지 않는 성분은 왜 있나요?"):

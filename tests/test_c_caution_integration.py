@@ -62,7 +62,7 @@ def test_health_and_environment_cards_and_pdf_preserve_sources_and_conditions():
     warnings='\n'.join(w.value for w in app.warning)
     assert '인체 영향 · 성분별 주의 있음' in warnings
     assert '환경 영향 · 성분별 시험자료 있음' in warnings
-    assert not app.info
+    assert all("7분류" in info.value for info in app.info)
     captions='\n'.join(c.value for c in app.caption)
     assert '자료 확인일: 2026-10-30' in captions
     assert '개별 주의 자료가 없는 성분: 정제수' in captions

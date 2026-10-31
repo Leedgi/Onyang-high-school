@@ -81,7 +81,7 @@ def evidence_rule(name, definition, plant_genera=frozenset()):
 def base_database(root):
     with TemporaryDirectory(prefix='origin-base-') as folder:
         target=Path(folder)
-        shutil.copytree(root/'data',target/'data',ignore=shutil.ignore_patterns('origin_*.csv','origin_sources.json','origin_review.json','origin_route_review.json'))
+        shutil.copytree(root/'data',target/'data',ignore=shutil.ignore_patterns('origin_*.csv','origin_*.json'))
         return load_ingredients(target)
 
 

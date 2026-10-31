@@ -3,7 +3,7 @@
 | 역할 | 브랜치 | 담당 경로 |
 | --- | --- | --- |
 | A 입력·인식 | `feature/a-recognition` | `features/recognition.py`, `core/image_input.py`, `core/ocr.py`, `core/lstm_ocr.py`, `core/auto_preprocess.py`, `core/scan.py`, `core/word_refine.py`, `core/ingredient_text.py`, `core/normalize.py`, `core/match.py`, `tests/test_a_*.py`, `tests/test_ocr_postprocess.py`, `tests/fixtures/`, `samples/ocr/`(사용자가 제공한 시험 사진·정답·검사 명세), `docs/a/` |
-| B 분석·자료·추천 | `feature/b-analysis` | `features/analysis.py`, `core/analysis.py`, `core/classify.py`, `core/ratio.py`, `core/caution.py`, 향후 추가할 `core/recommend.py`, `data/`, `scripts/build_ingredient_data.py`, `scripts/build_caution_data.py`, `scripts/build_kcia_data.py`, `scripts/build_origin_data.py`, `scripts/import_kcia_names.py`, `tests/test_b_*.py`, `docs/b/` |
+| B 분석·자료·추천 | `feature/b-analysis` | `features/analysis.py`, `core/analysis.py`, `core/classify.py`, `core/ratio.py`, `core/caution.py`, 향후 추가할 `core/recommend.py`, `data/`, `scripts/build_ingredient_data.py`, `scripts/build_caution_data.py`, `scripts/build_kcia_data.py`, `scripts/build_origin_data.py`, `scripts/import_kcia_names.py`, `scripts/build_taxonomy_data.py`, `tests/test_b_*.py`, `docs/b/` |
 | C Web·통합 | `feature/c-web` | `app.py`, `ui/`, `tests/test_c_*.py`, 배포·화면·공통 파일 |
 
 C가 모아 관리하는 공통 파일: `shared/`, `core/models.py`, `core/database.py`, `config.toml`,

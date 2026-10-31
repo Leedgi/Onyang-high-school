@@ -1,0 +1,31 @@
+{
+  "base_commit": "91310b69fb8ce0e2511a8c3db1a887ceb14265d4",
+  "requires_setup": false,
+  "runtime_files": 21,
+  "optional_management_files": 2,
+  "files": {
+    "core/analysis.py": "1ce543b3e15c76c126c969ea4fcf97f3f6d0b70758a13918387abd18769f60aa",
+    "core/classify.py": "a20de1a56966744cc11f695c471ddcc5dbfe6d40097c89f74b21d5f1146de853",
+    "core/database.py": "fad24bfc917022fcce733d7d254c6a0196dd28d494332065d9da4085a91c9d8d",
+    "core/models.py": "2fbaf0f82101486bc1d97525ebf28eafb30ba09a0c773bb6ba0e523037ae443b",
+    "core/ratio.py": "3c7e8cb3475cdedb1475c17658e3be074961ee3c062225f7db77a6998804600f",
+    "data/caution_additions.csv": "44ab17b7445fbb857f82823f72451ee07f17e0863a894d93903cb069be1e4367",
+    "data/caution_additions_sources.json": "9c32de9947b70d7bfa714583a7dd726926de43176c382b3befa503ab35a02c15",
+    "data/origin_additions.csv": "d934b333427f7f21b4bf06b54d47753125503cbd7c134f5dc8c477109a08660a",
+    "data/origin_additions_round2.csv": "2a39e49ba7eb6ba5e9226a935ae6ccb8160de0a7094452e2760964fcba16dcd1",
+    "data/origin_additions_round2_sources.json": "5180fb9c069352182e8ae4a094686e582e2dfc96d6480bda00d8481e695b5ea4",
+    "data/origin_additions_round3.csv": "002801fdd9ce96de9518b648298a4c1a5c6fb1d867add76cb87a0b555b4b1d18",
+    "data/origin_additions_round3_sources.json": "f890cdd08437f3de4e512ceea11643892567ac091cf9bbcd99162c70be6c9128",
+    "data/origin_additions_round4.csv": "e73f2ba83fd87c5603b9194020b8ff552b9302adaa221e0b9d4a6063c3a2e363",
+    "data/origin_additions_round4_sources.json": "6bd251410f05ca9d2ac6244ce093a01953074c6aa20e97132c73977c001f1b1b",
+    "data/origin_additions_sources.json": "46182252b855298d305f4fad0fe5fbf5a6fa4a6278e5a3e95ca99be59b370747",
+    "data/origin_detail_audit.csv": "d74e98730b0e33e5e0026c60ae2bcd3fd2d1814f204d42201bd426e076928016",
+    "data/origin_taxonomy_sources.json": "71c90342bce544ae1a269f5d58c5acd4c435b8cac7fa35b49cbca83f8f6e76f7",
+    "scripts/build_origin_data.py": "ac6ad72c20582c0bf9363c52eb94f1d001f5eb533543879d3c424c9942970cf5",
+    "scripts/build_taxonomy_data.py": "271142e78672a984ebb94908d6f5318b5c3b4aa4ddda7fc94f0e12f6dd1ef1c2",
+    "shared/contracts.py": "1cb673a760de9aa9bf1bd620c04e197757dbf4096dbac7ffcf66a5b0661fa59a",
+    "ui/presentation.py": "4fa7b20e760452d0112dbbc5b6ccba5bd17413e26aa6aae4b6c2dedc666cabc2",
+    "ui/reporting.py": "40bdb7f390121117a194edbbfebc9e6f573bf1d1c997a2fc2bf8a8cb4eaa70ab",
+    "ui/site.py": "30cf6c2230b3b959759f7a2e933e91d1a8f0df4539d4809a7dc3424a2a9d8b7c"
+  }
+}

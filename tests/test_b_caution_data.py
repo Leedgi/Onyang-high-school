@@ -20,14 +20,14 @@ def analyze(*names):
 def test_reviewed_targets_have_source_conditions_and_runtime_records():
     review = json.loads((ROOT/'data/reviewed/caution_review.json').read_text())
     records = load_cautions()
-    assert len(review['ingredients']) == 30 and len(records) == 63
+    assert len(review['ingredients']) == 30 and len(records) == 66
     for item in review['ingredients']:
         for name in item['target_names']:
             result = analyze(name)
             assert result.cautions[result.rows[0].canonical_name], name
     for record in records:
         assert all(getattr(record, name).strip() for name in record.__dataclass_fields__)
-        assert record.checked_on == '2026-10-30'
+        assert record.checked_on == ('2026-10-31' if record.name in {'MANDELIC ACID','MALIC ACID','TARTARIC ACID'} else '2026-10-30')
         assert record.source_url.startswith(('https://www.fda.gov/', 'https://pubchem.ncbi.nlm.nih.gov/'))
 
 
