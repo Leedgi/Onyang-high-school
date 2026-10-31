@@ -50,6 +50,10 @@ jobs:
           python -c "from pathlib import Path; import subprocess; backups=list(Path('.venv-backups').iterdir()); assert len(backups)==1; assert (backups[0]/'upgrade-marker.txt').is_file(); subprocess.run([str(backups[0]/'Scripts/python.exe'),'-c','import sys; assert sys.version_info[:2]==(3,12)'],check=True)"
           python scripts\setup_windows_env.py
           python -c "from pathlib import Path; assert len(list(Path('.venv-backups').iterdir()))==1"
+      - name: Verify native Windows recovery from a Python download error
+        run: .venv\Scripts\python.exe -m scripts.check_model_download
+      - name: Verify model-only retry reuses the installed models
+        run: retry_ocr_windows.bat --no-pause
       - name: Run tests, real CPU OCR, and server checks
         run: check_windows.bat --no-pause
       - name: Upload diagnostic reports

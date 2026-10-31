@@ -81,3 +81,12 @@ DB 입력 → 체크섬·정확 명칭·충돌 검사 → 같은 AnalysisResult�
 실제 GitHub Windows x64/Python 3.12 러너에서 setup_windows.bat, 전체60개 검사, 실제 CPU OCR, 서버 검사를 통과했다([실행41070170583](https://github.com/Leedgi/Onyang-high-school/actions/runs/41070170583)). 사용자 개인 PC를 원격으로 검사한 것은 아니다. Git의 CSV/JSON 줄바꿈 변환 때문에 생기던 체크섬 실패를 .gitattributes의 LF 고정으로 수정했다.
 
 추가5,749개 유래는 고정2019 정의의 명시적 근거를 규칙으로 대조한 결과이며 모두 최신 개별 수동 검토라고 표현하지 않는다. 식물성5,504/석유계11/기타234개를 보완해 통합 유래는 식물성5,679/석유계17/기타278/확인필요26,823개다. 자세한 범위는 data/origin_sources.json과 data/README.md를 따른다. 제조 경로가 여러 개인 주요5개 성분은 원문과 경로 설명을 표시하며 origin_uncertain을 유지한다. 새 의존성은 없다.
+
+
+### OCR 모델 준비 중 URLError가 나올 때
+
+URLError는 모델을 받는 네트워크 단계의 오류다. 예전 공통 문구에 있던 저장 공간·권한 문제가 확정된 것은 아니다. 최신 설치 스크립트는 주소 조회/DNS, 인증서, 연결 시간 초과 등 실제 원인을 `artifacts/ocr-setup.txt`에 UTF-8로 남긴다. 사진이나 프록시 환경 변수는 기록하지 않는다.
+
+의존성 설치를 이미 마쳤다면 **retry_ocr_windows.bat**을 실행해 모델만 다시 준비한다. 명령으로 실행하려면 저장소 폴더의 PowerShell에서 `.\.venv\Scripts\python.exe -m scripts.prepare_ocr`만 실행해 모델 준비를 재시도한다. 검증된 모델은 재사용한다. Python 다운로드가 두 번 실패하면 Windows 기본 curl로 공식 HTTPS 주소를 재시도하며 인증서 검증과 고정 SHA-256 검증을 유지한다. 검증되지 않은 파일은 사용하지 않는다.
+
+계속 연결에 실패하면 휴대폰 핫스팟 같은 다른 네트워크에서 같은 명령을 실행해 학교·회사망 제한인지 구분할 수 있다. 인증서 오류일 때는 PC 날짜·시간과 네트워크 인증서 설정을 확인한다. SSL 검증이나 보안 프로그램을 끄는 방식은 사용하지 않는다. 새 진단 TXT에서 실제 오류를 확인해 문의한다.
