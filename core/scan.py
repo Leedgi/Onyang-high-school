@@ -113,7 +113,9 @@ def scan_ingredients(image: Image.Image, engine: OCREngine, database: Ingredient
             _, refined_drafts, fraction = _quality(precise, database)
             count = sum(d.status in {"exact", "alias"} for d in refined_drafts)
             accepted = refined_region.method == "heading" or (count >= 3 and fraction >= .35)
-            score = (6 if refined_region.method == "heading" else 3) + min(count,30) + fraction*4
+            score = ((6 if refined_region.method == "heading" else 3) + min(count,30) + fraction*4
+                     + (mean(b.confidence for b in precise.blocks) if precise.blocks else 0.)*2
+                     + min(len(refined_drafts),40)*.05)
             orientation_passes.append({"stage":"orientation_refine","rotation":fallback_angle,
                                        "region_method":refined_region.method,"eligible":accepted,
                                        "selection_score":score,"ocr":asdict(precise)})

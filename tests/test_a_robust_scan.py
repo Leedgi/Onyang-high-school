@@ -93,3 +93,23 @@ def test_independent_ocr_agreement_does_not_silently_change_numbers():
         def recognize(self,image,*args,**kwargs):return output('1,2-헥산다이올')
     result,passes=refine_words(Image.new('RGB',(1000,80),'white'),ocr,(draft,),Engine(),load_ingredients(),lambda _:None)
     assert result==(draft,) and not passes[0]['applied_as_unconfirmed_proposal']
+
+
+def test_weak_false_heading_does_not_outscore_precise_upright_evidence(monkeypatch):
+    import core.scan as scan
+    monkeypatch.setattr(scan,'refine_words',lambda image,ocr,drafts,*args:(drafts,()))
+    class Engine:
+        def __init__(self):self.coarse=0;self.precise=0
+        def recognize(self,image,reading_order='rows',*,accurate=False):
+            if not accurate:
+                self.coarse+=1
+                if self.coarse==1:
+                    r=output('전성분: 정제수')
+                    from dataclasses import replace
+                    return replace(r,blocks=tuple(replace(b,confidence=.99) for b in r.blocks))
+                return OCRResult('empty')
+            self.precise+=1
+            if self.precise in (1,3,4):return OCRResult('empty')
+            return output('전성분: 정제수, 글리세린, 미네랄오일')
+    result=scan_ingredients(Image.new('RGB',(1000,140),'white'),Engine(),load_ingredients())
+    assert result.result.status=='ok' and result.result.processing['rotation']==180
