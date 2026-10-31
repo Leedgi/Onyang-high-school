@@ -56,6 +56,8 @@ jobs:
         run: retry_ocr_windows.bat --no-pause
       - name: Run tests, real CPU OCR, and server checks
         run: check_windows.bat --no-pause
+      - name: Check uploaded real photos on Windows CPU
+        run: .venv\Scripts\python.exe -m scripts.check_real_ocr --files 20261029_224822.jpg 20261029_224910.jpg 20261029_225428.jpg 20261029_225449.jpg 20261029_225517.jpg KakaoTalk_20261030_020321444_12.jpg
       - name: Upload diagnostic reports
         if: always()
         uses: actions/upload-artifact@v4

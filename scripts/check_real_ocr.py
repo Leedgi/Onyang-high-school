@@ -55,7 +55,7 @@ def _recognize(task):
 
 def _name_key(value, database):
     cleaned, _ = clean_ocr_fragment(value)
-    # 評価의 대상은 성분명이다. 숫자/슬래시/nano는 보존하고 완전한 함량 주석만 제외한다.
+    # 평가의 대상은 성분명이다. 숫자/슬래시/nano는 보존하고 완전한 함량 주석만 제외한다.
     cleaned = re.sub(r'\(\s*[\d,.]+\s*(?:ppm|ppb|%)\s*\)', '', cleaned, flags=re.I).strip()
     record = database.find(cleaned)
     return normalize_key(record.name if record else cleaned)

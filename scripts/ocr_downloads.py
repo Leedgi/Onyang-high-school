@@ -75,7 +75,7 @@ def guidance(exc):
     if isinstance(reason,ssl.SSLCertVerificationError) or 'CERTIFICATE_VERIFY_FAILED' in str(reason):
         return 'HTTPS 인증서 확인 실패입니다. PC 날짜·시간과 학교/회사 네트워크의 인증서 설정을 확인해 주세요. 인증서 검증을 끄지 마세요.'
     if isinstance(exc,urllib.error.HTTPError):
-        return f'다운로드 서버가 HTTP {exc.code}로 응답했습니다. 해당 네트워크의 GitHub 접근 제한·프록시 설정을 확인해 주세요.'
+        return f'다운로드 서버가 HTTP {exc.code}로 응답했습니다. 해당 네트워크의 모델 서버(GitHub·Hugging Face) 접근 제한·프록시 설정을 확인해 주세요.'
     if isinstance(exc,urllib.error.URLError) or isinstance(reason,(TimeoutError,ConnectionError)):
         return '다운로드 연결 실패입니다. 다른 네트워크(예: 휴대폰 핫스팟)에서 다시 시도하면 학교/회사망 제한인지 구분할 수 있습니다.'
     if isinstance(exc,PermissionError):
