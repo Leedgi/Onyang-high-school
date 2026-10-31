@@ -21,7 +21,11 @@ if errorlevel 1 goto failed
 ".venv\Scripts\python.exe" -m pip check
 if errorlevel 1 goto failed
 ".venv\Scripts\python.exe" -m scripts.prepare_ocr
-if errorlevel 1 goto failed
+if errorlevel 1 (
+    echo OCR details: artifacts\ocr-setup.txt
+    echo Retry models only: .venv\Scripts\python.exe -m scripts.prepare_ocr
+    goto failed
+)
 echo.
 echo Setup completed. Double-click run_windows.bat to open the app.
 popd
