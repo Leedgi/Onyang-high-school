@@ -39,6 +39,20 @@ MODELS = (
 )
 
 
+# 공식 배포 커밋과 파일 SHA를 고정한다. 사진은 다운로드 서버로 전송하지 않는다.
+NEURAL_MODELS = (
+    Model('PP-OCRv5 글자 줄 검출', 'ppocr_v5/det.onnx',
+          'https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det_onnx/resolve/e6f4fa85f00e168c862bc462aebca69eef9b3d3d/inference.onnx',
+          'a431985659dc921974177a95adcfbb90fd9e51989a5e04d70d0b75f597b6e61d'),
+    Model('PP-OCRv5 한국어 이름 인식', 'ppocr_v5/korean.onnx',
+          'https://huggingface.co/PaddlePaddle/korean_PP-OCRv5_mobile_rec_onnx/resolve/5c6f574b8e2230adf4287b33e736d71b9fabd28e/inference.onnx',
+          '92f0b7785e64fc9090106a241cf4c1eb97472824558272751b88a2a4476d3a08'),
+    Model('PP-OCRv5 한국어 문자 사전', 'ppocr_v5/korean.yml',
+          'https://huggingface.co/PaddlePaddle/korean_PP-OCRv5_mobile_rec_onnx/resolve/5c6f574b8e2230adf4287b33e736d71b9fabd28e/inference.yml',
+          'f757fa1c40e99edcf27e9cce879b93eb2a51fa46f5ef39095689b8c37dd75998'),
+)
+
+
 def digest(path):
     with path.open('rb') as f:
         return hashlib.file_digest(f, 'sha256').hexdigest()
@@ -133,4 +147,4 @@ def ensure_model(cache,model,emit=print):
 
 
 def prepare_all(cache,emit=print):
-    for model in MODELS:ensure_model(cache,model,emit)
+    for model in (*MODELS, *NEURAL_MODELS):ensure_model(cache,model,emit)

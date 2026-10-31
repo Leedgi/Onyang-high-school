@@ -10,7 +10,7 @@ from scripts.ocr_downloads import guidance, prepare_all, safe_error
 
 def prepare(emit):
     emit(f'Python {platform.python_version()} · {platform.system()} · {platform.machine()}')
-    for name in ('torch','torchvision','easyocr','tesserocr'):
+    for name in ('torch','torchvision','easyocr','tesserocr','onnxruntime'):
         try:
             module=importlib.import_module(name)
             emit(f'{name}: 불러오기 성공 · {getattr(module,"__version__","설치됨")}')
@@ -25,7 +25,7 @@ def prepare(emit):
         emit(guidance(exc))
         return 1
     engine=OCREngine()
-    for label,action in [('글자 영역 엔진',engine.prepare),('인쇄 글자 엔진',engine.prepare_accurate)]:
+    for label,action in [('새 한국어 줄 인식 엔진',engine.prepare_neural),('글자 영역 엔진',engine.prepare),('인쇄 글자 엔진',engine.prepare_accurate)]:
         emit(label+'을 확인하고 있습니다.')
         result=action()
         if result.status!='ready':
