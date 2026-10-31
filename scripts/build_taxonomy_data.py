@@ -34,7 +34,9 @@ def build(root=ROOT):
     from collections import Counter
     meta['records']=len(rows);meta['category_counts']=dict(Counter(r['detail_category'] for r in rows));meta['confidence_counts']=dict(Counter(r['confidence'] for r in rows))
     meta['files']={name:digest(data/name) for name in sorted(FILES)}
-    for name in meta['base_files']:meta['base_files'][name]=digest(data/name)
+    base_files=('ingredients.csv','ingredient_names.csv','sources.json','kcia_sources.json','kcia_ingredients.csv',
+                'kcia_standard_names.csv','kcia_import_conflicts.csv','origin_ingredients.csv','origin_sources.json')
+    meta['base_files']={name:digest(data/name) for name in base_files}
     meta['line_endings']='CSV는 LF로 통일한다. 원본 파일 SHA는 original_import_files에 보존한다.'
     path.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     return meta

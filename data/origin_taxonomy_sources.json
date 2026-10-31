@@ -35,23 +35,15 @@
     "origin_detail_audit.csv": "d74e98730b0e33e5e0026c60ae2bcd3fd2d1814f204d42201bd426e076928016"
   },
   "base_files": {
-    "alternatives.csv": "e132d097cc9cb1f2436b25141f7300dfbad211d128b377596acefe223df8d192",
-    "caution_aliases.csv": "164a0096591346dec28a87a596e73364bcd5517212673a421ddb9f8814b8d235",
-    "caution_sources.json": "858063d75d329951d1a0d2815a8154fde8cd5431a90d2a282bc725567d484577",
-    "cautions.csv": "39274a27dd6f9e4562c5791f1844da602e97daa507244b057369df5b47e70fb4",
-    "curation.csv": "0a33781ad4af5bc5f7ebfc376ddf4b02d87657203c29c385441d1486ce18fd62",
-    "environmental_evidence.csv": "912592c97681ad75be494e1a00171d56ff9567669d7d8f69c8f0501b3987bb6b",
-    "ingredient_names.csv": "dcf0bb30e2dea5c7575defe0485d320dd13e5f9ba739b9e9d2732ae4c6b2cf3f",
     "ingredients.csv": "c56346f972503c2a158f48613e38bd293843d3ee6920779fd2cf4a5e6436e9dd",
-    "kcia_import_conflicts.csv": "0b30c7e24954c5d91ec5e50b52ea96ba6a918e8149980111d72a2e582929709c",
-    "kcia_ingredients.csv": "37ea0c6a40e7f4b2ff613c933375759c7da7aa1f26bb64db8ff744e3b6d6fab1",
+    "ingredient_names.csv": "dcf0bb30e2dea5c7575defe0485d320dd13e5f9ba739b9e9d2732ae4c6b2cf3f",
+    "sources.json": "f65b5cb41f924b263755e180e2861a9c8cb384b7f5d25e2f34e8c3843400968d",
     "kcia_sources.json": "d86b99e65257ccb3570476209c224eab5a6aaaebd1956da10af7b916657f7182",
+    "kcia_ingredients.csv": "37ea0c6a40e7f4b2ff613c933375759c7da7aa1f26bb64db8ff744e3b6d6fab1",
     "kcia_standard_names.csv": "d686a3cd86de9fb9ddb3c33e2ee40e72f621889246f6dd2f8a69f36ea910aab9",
+    "kcia_import_conflicts.csv": "0b30c7e24954c5d91ec5e50b52ea96ba6a918e8149980111d72a2e582929709c",
     "origin_ingredients.csv": "992f9fb509553d4b7f41112688c2f95f0e363fae6c0cf899eabfbef8d29a5d55",
-    "origin_sources.json": "055ae1f2baf8a67c8015cb415b7898c797d4867dd8b94025752849af10f79df3",
-    "products.csv": "18fcf1736372363946b7e66cb2542dbd9c7d3e9dce6292a17cbcb4a27db0fe9a",
-    "source_evidence.csv": "0a93a2050dd89312ab084f5ca84f25f8971772db69db152dc5b6b0585cebaf77",
-    "sources.json": "f65b5cb41f924b263755e180e2861a9c8cb384b7f5d25e2f34e8c3843400968d"
+    "origin_sources.json": "055ae1f2baf8a67c8015cb415b7898c797d4867dd8b94025752849af10f79df3"
   },
   "scope": "7분류는 추정이 포함된 성분명·원료 유형 분류다. 제조사 공급원·제품의 비건/안전/환경성 확정 아님. 기존4분류 origin과 검토집계는 보존한다.",
   "source_verification": "첨부본의 출처와 날짜를 가져왔다. 모든 개별 링크를 이번 통합에서 재검증한 것은 아니다.",
