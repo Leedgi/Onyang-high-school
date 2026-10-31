@@ -1,0 +1,21 @@
+{
+  "format_version": 1,
+  "records": 9,
+  "sha256": "f664b9fe8ff461e2910ec6ee84b423081d745c8c6b3a42c5d77a4f78a7b94d24",
+  "checked_on": "2026-10-31",
+  "method": "Individual COSMILE Europe ingredient pages; no automatic guess for petroleum origin.",
+  "category_counts": {
+    "기타": 9
+  },
+  "sources": [
+    "https://cosmileeurope.eu/inci/detail/7965/lanolin-oil/",
+    "https://cosmileeurope.eu/inci/detail/7962/lanolin-alcohol/",
+    "https://cosmileeurope.eu/inci/detail/22185/lanolin-wax/",
+    "https://cosmileeurope.eu/inci/detail/7961/lanolin-acid/",
+    "https://cosmileeurope.eu/inci/detail/6648/hydrogenated-lanolin/",
+    "https://cosmileeurope.eu/inci/detail/6649/hydrogenated-lanolin-alcohol/",
+    "https://cosmileeurope.eu/inci/detail/15761/synthetic-beeswax/",
+    "https://cosmileeurope.eu/inci/detail/4640/dimethiconol-beeswax/",
+    "https://cosmileeurope.eu/inci/detail/3052/charcoal-powder/"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "format_version": 1,
+  "method": "기존 CosIng 정의에서 식물성으로 분류된 속명 + 명시적인 식물 부위와 원료 형태가 있는 INCI 명칭에 한정한 보수적 명칭 추정. 개별 제조 원료 검증이 아니며 확정 유래가 아님.",
+  "records": 1102,
+  "sha256": "33efd4b15edd0723bec5cebc36e792e85986784bf51641e7d1c1f56c81912713",
+  "checked_on": "2026-10-31",
+  "source": "https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-ingredient-database_en"
+}
