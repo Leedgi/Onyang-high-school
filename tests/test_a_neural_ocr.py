@@ -37,3 +37,43 @@ def test_matching_cache_lives_only_inside_one_request_even_on_failure():
     except ValueError:
         pass
     assert _request_matches.get() is None
+
+
+def test_quantity_note_is_preserved_while_matching_only_known_name():
+    result=find_candidates('쌀겨수(20,000 ppm)',load_ingredients())
+    assert result.status in {'exact','alias'}
+    assert result.raw_text=='쌀겨수(20,000 ppm)'
+    assert any('표시 함량' in step for step in result.transformations)
+    for value in ['글리세린(nano)','폴리(C6-14올레핀)','1,3-헥산다이올']:
+        match=find_candidates(value,load_ingredients())
+        assert not any('표시 함량' in step for step in match.transformations)
+
+
+def test_only_complete_numeric_safe_names_can_split_at_misread_punctuation():
+    from core.ingredient_text import split_known_sequence
+    db=load_ingredients()
+    assert split_known_sequence('폴리솔베이트80.1.2-헥산다이올',db)==('폴리솔베이트80','1.2-헥산다이올')
+    assert split_known_sequence('정제수.알수없는원료',db)==('정제수.알수없는원료',)
+
+
+def test_short_jamo_correction_is_a_proposal_and_different_digits_are_preserved():
+    from core.ingredient_text import ingredient_drafts
+    from core.models import OCRResult, OCRLine
+    ocr=OCRResult('ok','리모넷, 1,3-헥산다이올',(),(OCRLine('리모넷, 1,3-헥산다이올',()),))
+    drafts=ingredient_drafts(ocr,load_ingredients())
+    assert drafts[0].raw_text=='리모넷'
+    assert drafts[0].name=='리모넨' and drafts[0].status=='correction_proposed'
+    assert drafts[1].name=='1,3-헥산다이올'
+    assert all(not d.confirmed for d in drafts)
+
+
+def test_asterisk_footnote_is_not_an_extra_ingredient_and_nano_is_not_removed():
+    from core.ingredient_text import ingredient_drafts
+    from core.models import OCRResult, OCRLine
+    text='리날룰 (*에센셜 오일의 설명입니다.)'
+    ocr=OCRResult('ok',text,(),(OCRLine(text,()),))
+    drafts=ingredient_drafts(ocr,load_ingredients())
+    assert len(drafts)==1 and drafts[0].name=='리날룰'
+    assert ocr.raw_text==text
+    result=find_candidates('티타늄디옥사이드[nano]',load_ingredients())
+    assert 'nano' in result.cleaned_text

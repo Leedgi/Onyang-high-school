@@ -68,7 +68,15 @@ def locate_region(ocr: OCRResult, size: tuple[int, int], database: IngredientDat
     previous_bottom = anchor[3]
     for line, bounds in rows[start:]:
         left, top, right, bottom = bounds
-        if selected and section_end_span(line.raw_text):
+        end = section_end_span(line.raw_text)
+        if selected and end:
+            prefix = line.raw_text[:end[0]].strip()
+            if prefix:
+                subset = OCRResult("ok", prefix, ocr.blocks, (type(line)(prefix,line.source_indices),))
+                if any(d.status in {"exact","alias","correction_proposed"} for d in ingredient_drafts(subset,database)):
+                    selected.append(bounds)
+                    stop_top = bottom
+                    break
             stop_top = top
             break
         if top - previous_bottom > typical * 2.2:

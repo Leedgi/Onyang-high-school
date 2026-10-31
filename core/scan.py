@@ -243,10 +243,17 @@ def _preferred_label(ocr):
         return ocr
     lines = []
     for line in ocr.lines[korean:]:
-        if lines and (section_end_span(line.raw_text) or heading_span(line.raw_text)):
+        end = section_end_span(line.raw_text)
+        if lines and heading_span(line.raw_text):
+            break
+        if lines and end:
+            if line.raw_text[:end[0]].strip():
+                lines.append(line)
             break
         lines.append(line)
-    return replace(ocr, raw_text="\n".join(line.raw_text for line in lines), lines=tuple(lines))
+    used = {index for line in lines for index in line.source_indices}
+    return replace(ocr, raw_text="\n".join(line.raw_text for line in lines), lines=tuple(lines),
+                   blocks=tuple(b for b in ocr.blocks if b.source_index in used))
 
 
 def _neural_score(ocr, database):
@@ -269,6 +276,16 @@ def _scan_neural(image, engine, database, progress):
         score, drafts, fraction = _neural_score(ocr, database)
         passes.append({"stage": "neural_orientation", "rotation": angle, "selection_score": score, "ocr": asdict(ocr)})
         choices.append((score, angle, rotated, ocr))
+    if max(item[0] for item in choices) < 15:
+        # 작은 글씨·곡면에서 축소 검출이 약하면 네 방향 모두 원본의 글자를
+        # 더 큰 검출 해상도·줄 윤곽 보정으로 다시 비교한다.
+        for angle in (0, 180, 90, 270):
+            report(f"작은 글씨의 방향을 높은 해상도로 다시 확인하고 있습니다 · {angle}°")
+            rotated = image.rotate(angle, expand=True)
+            ocr = engine.recognize_neural(rotated, limit=2400, dewarp=True)
+            score, _, _ = _neural_score(ocr, database)
+            passes.append({"stage":"neural_orientation_refine", "rotation":angle, "selection_score":score, "ocr":asdict(ocr)})
+            choices.append((score,angle,rotated,ocr))
     _, rotation, upright, coarse = max(choices, key=lambda item: item[0])
     # 긴 글자 줄의 방향을 사용한다. 포장지 테두리나 배경 선으로 기울기를 정하지 않는다.
     angles = []
@@ -289,7 +306,9 @@ def _scan_neural(image, engine, database, progress):
     # 원래 화면 전체에서 읽은 경로도 보존한다. 영역 확대 후 검출 조각이
     # 달라졌다는 이유만으로 원래 잘 읽힌 글자를 버리지 않는다.
     if abs(deskew) < 3.:
-        coarse = engine.recognize_neural(upright, limit=1600)
+        alternate = engine.recognize_neural(upright, limit=1600)
+        if _neural_score(alternate,database)[0] > _neural_score(coarse,database)[0]:
+            coarse = alternate
     # 성분 영역을 고를 때 한글 목록과 다른 언어 목록을 이어 붙이지 않는다.
     coarse = _preferred_label(coarse)
     region = locate_region(coarse, upright.size, database)

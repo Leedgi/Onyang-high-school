@@ -68,6 +68,12 @@ def find_candidates(raw_text: str, database: IngredientDatabase, settings: Match
 def _find_candidates(raw_text: str, database: IngredientDatabase, settings: MatchSettings | None = None) -> MatchResult:
     settings = settings or MatchSettings()
     cleaned, changes = clean_ocr_fragment(raw_text)
+    quantity = re.fullmatch(r"(.+?)\s*\(?\s*[\d,.]+\s*(?:ppm|ppb|%)\s*\)?", cleaned, re.I)
+    if quantity and database.find(quantity[1].strip()):
+        # 숫자를 성분의 이름에서 지우는 규칙이 아니다. 단위가 붙은 표시 주석만
+        # 검색에서 분리하고 원문·변환 기록에 남긴다. 배합 함량으로 확정하지 않는다.
+        cleaned = quantity[1].strip()
+        changes = (*changes, "표시 함량 주석 보존·성분명만 대조(배합 함량 미확정)")
     parenthetical = re.fullmatch(r"(.+?)\s*\(([^()]*)\)", cleaned)
     parenthetical_record = None
     if parenthetical:
