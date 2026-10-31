@@ -171,23 +171,77 @@ def element_counts(formula: str) -> dict[str, int]:
     return counts
 
 
+@st.cache_data(ttl=86400, show_spinner=False)
+def pubchem_formula(name: str):
+    """PubChem 단일 화합물 검색. 여러 CID가 나오면 자동 확정하지 않음."""
+    import json
+    from urllib.parse import quote
+    from urllib.request import Request, urlopen
+    if not name or len(name) > 120:
+        return None
+    try:
+        url = ("https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/"
+               + quote(name, safe="") + "/property/MolecularFormula/JSON")
+        req = Request(url, headers={"User-Agent": "OnyangSchoolChemistry/1.0"})
+        with urlopen(req, timeout=6) as response:
+            payload = json.load(response)
+        records = payload.get("PropertyTable", {}).get("Properties", [])
+        if len(records) != 1:
+            return None
+        record = records[0]
+        formula = record.get("MolecularFormula", "")
+        if not isinstance(formula, str) or not re.fullmatch(r"(?:[A-Z][a-z]?\d*)+", formula):
+            return None
+        cid = record.get("CID")
+        if type(cid) is not int or cid <= 0:
+            return None
+        return {"formula": formula, "cid": cid, "url": "https://pubchem.ncbi.nlm.nih.gov/compound/" + str(cid)}
+    except Exception:
+        return None
+
 def render_chemistry_panel(result) -> None:
     """기존 AnalysisResult의 성분명만 읽고 DB·분석 결과는 변경하지 않는다."""
     names = list(dict.fromkeys(row.canonical_name for row in result.rows if row.canonical_name))
+    if not names:
+        st.info('분석할 성분이 없습니다.')
+        return
     known = [name for name in names if chemical_info(name)]
     st.subheader('🌱 화학 성분 분석')
     st.caption('통합과학에서 배우는 화학식·구성 원소·산과 염기의 성질을 살펴봅니다. 단일 화학식이 명확한 일부 성분만 제공해요.')
     if not known:
-        st.info('현재 분석 목록에서 화학 정보가 준비된 성분이 없습니다. 정보가 없다는 뜻이지 안전하거나 중성이라는 뜻은 아닙니다.')
-        return
-    selected = st.selectbox('화학 정보를 확인할 성분', known, key='chemistry_selected_ingredient')
-    formula, acid_base, role = chemical_info(selected)
+        st.info('등록된 화학 정보가 없습니다. 아래에서 성분을 선택해 PubChem 화학식을 조회할 수 있습니다.')
+    selected = st.selectbox('화학 정보를 확인할 성분', names, key='chemistry_selected_ingredient')
+    existing = chemical_info(selected)
+    formula, acid_base, role = existing if existing else (None, None, '아직 산·염기 특성을 검증하지 않은 성분입니다.')
+    if not existing:
+        st.caption('미등록 성분입니다. 영문 INCI 명칭을 입력하면 PubChem에서 단일 화합물의 화학식을 조회할 수 있습니다.')
+        lookup_name = st.text_input('PubChem 검색어 (영문 성분명)', value=selected if selected.isascii() else '', key='chemistry_pubchem_name_' + selected)
+        st.caption('조회 버튼을 누르면 입력한 검색어만 PubChem으로 전송합니다. 사진은 전송하지 않습니다.')
+        if st.button('화학식 온라인 조회', key='chemistry_pubchem_lookup'):
+            result_online = pubchem_formula(lookup_name.strip())
+            if result_online:
+                st.session_state['chemistry_pubchem_result'] = (selected, lookup_name.strip(), result_online)
+            else:
+                st.session_state.pop('chemistry_pubchem_result', None)
+                st.warning('일치하는 단일 화합물 정보를 확인하지 못했습니다. 혼합물·고분자 또는 검색어 불일치일 수 있습니다.')
+        saved = st.session_state.get('chemistry_pubchem_result')
+        if saved and len(saved) == 3 and saved[:2] == (selected, lookup_name.strip()):
+            formula = saved[2]['formula']
+            st.caption('PubChem 조회 결과 · ' + saved[2]['url'] + ' · 성분명과 물질의 동일성은 별도 확인이 필요합니다.')
+
     first, second = st.tabs(['구성 원소', '산·염기 특성'])
     with first:
         st.markdown(f'**{selected}** · 화학식: **{formula or "단일 화학식 없음"}**')
         if formula:
-            st.dataframe([{'원소 기호': symbol, '원소 이름': ELEMENTS.get(symbol, symbol), '원자 개수': number}
-                          for symbol, number in element_counts(formula).items()], hide_index=True, width='stretch')
+            try:
+                counts = element_counts(formula)
+            except ValueError:
+                counts = None
+            if counts:
+                st.dataframe([{'원소 기호': symbol, '원소 이름': ELEMENTS.get(symbol, symbol), '원자 개수': number}
+                          for symbol, number in counts.items()], hide_index=True, width='stretch')
+            else:
+                st.caption('이 화학식은 현재 원자 개수 자동 계산 형식에 맞지 않습니다.')
         st.caption('화학식에 나타난 분자 1개(또는 화학식 단위 1개)의 원자 개수입니다. 제품 속 함량은 알 수 없습니다.')
     with second:
         if acid_base:
