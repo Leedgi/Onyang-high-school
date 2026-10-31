@@ -62,7 +62,7 @@ def test_short_jamo_correction_is_a_proposal_and_different_digits_are_preserved(
     ocr=OCRResult('ok','리모넷, 1,3-헥산다이올',(),(OCRLine('리모넷, 1,3-헥산다이올',()),))
     drafts=ingredient_drafts(ocr,load_ingredients())
     assert drafts[0].raw_text=='리모넷'
-    assert drafts[0].name=='리모넨' and drafts[0].status=='correction_proposed'
+    assert drafts[0].name==load_ingredients().find('리모넨').name and drafts[0].status=='correction_proposed'
     assert drafts[1].name=='1,3-헥산다이올'
     assert all(not d.confirmed for d in drafts)
 
@@ -73,7 +73,7 @@ def test_asterisk_footnote_is_not_an_extra_ingredient_and_nano_is_not_removed():
     text='리날룰 (*에센셜 오일의 설명입니다.)'
     ocr=OCRResult('ok',text,(),(OCRLine(text,()),))
     drafts=ingredient_drafts(ocr,load_ingredients())
-    assert len(drafts)==1 and drafts[0].name=='리날룰'
+    assert len(drafts)==1 and drafts[0].name==load_ingredients().find('리날룰').name
     assert ocr.raw_text==text
     result=find_candidates('티타늄디옥사이드[nano]',load_ingredients())
     assert 'nano' in result.cleaned_text
