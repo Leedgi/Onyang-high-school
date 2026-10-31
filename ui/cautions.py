@@ -1,5 +1,6 @@
 """v1 주의 레코드를 조건·출처와 함께 표시한다. 위해성 등급을 새로 계산하지 않는다."""
 import streamlit as st
+from ui.ingredient_interpretation import contextual_notes
 
 
 
@@ -45,3 +46,14 @@ def render_cautions(result) -> None:
         if missing:
             st.caption("이번 DB에 개별 주의 자료가 없는 성분: " + ", ".join(missing) + ". 자료 없음은 안전 판정이 아닙니다.")
     st.caption("원료 유래로 안전성·환경성을 판정하지 않습니다. 성분별 안내는 완제품 영향 판정과 구분해 읽어주세요.")
+
+    st.subheader("인식된 성분별 추가 검토사항")
+    names = list(dict.fromkeys(row.canonical_name for row in result.rows if row.canonical_name))
+    if names:
+        selected = st.selectbox("주의 설명을 확인할 성분", names, key="caution_explain_selected")
+        human_note, environment_note, level = contextual_notes(selected)
+        st.markdown("**인체 관련 설명**")
+        st.write(human_note)
+        st.markdown("**환경 관련 설명**")
+        st.write(environment_note)
+        st.caption("근거 수준: " + level + ". 실제 제품의 안전성·환경 위해성 판정이 아닙니다.")
