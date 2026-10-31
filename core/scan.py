@@ -281,7 +281,7 @@ def _scan_neural(image, engine, database, progress):
             if abs(angle) <= 40:
                 angles.append(float(angle))
     deskew = float(median(angles)) if len(angles) >= 3 else 0.
-    if abs(deskew) >= .8:
+    if abs(deskew) >= 3.:
         report("검출한 글자 줄을 기준으로 사진의 기울기를 바로잡고 있습니다")
         upright = upright.rotate(deskew, Image.Resampling.BICUBIC, expand=True, fillcolor="white")
         coarse = engine.recognize_neural(upright, limit=1600)
@@ -297,7 +297,7 @@ def _scan_neural(image, engine, database, progress):
     variants = []
     for label, dewarp in (("원근 보정 줄 인식", False), ("검출 윤곽 곡면 보정", True)):
         report(f"원본 해상도로 성분표를 읽고 있습니다 · {label}")
-        ocr = _preferred_label(engine.recognize_neural(selected_image, limit=2400, dewarp=dewarp))
+        ocr = _preferred_label(engine.recognize_neural(selected_image, limit=1600, dewarp=dewarp))
         score, drafts, fraction = _neural_score(ocr, database)
         variants.append((score, label, ocr, drafts, fraction))
         passes.append({"stage": "neural_region", "variant": label, "selection_score": score, "ocr": asdict(ocr)})

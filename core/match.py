@@ -1,5 +1,7 @@
 """정확·별칭·RapidFuzz 후보. 검색 결과를 분석용 성분으로 자동 확정하지 않는다."""
 from dataclasses import dataclass
+from contextlib import contextmanager
+from contextvars import ContextVar
 from pathlib import Path
 import math
 import tomllib
@@ -36,7 +38,34 @@ def load_match_settings(path: Path = ROOT / "config.toml") -> MatchSettings:
         raise ValueError("config.toml의 matching 설정과 항목 이름을 확인해 주세요.") from exc
 
 
+
+# 한 장/한 번의 사용자 입력 안에서만 재사용한다. 세션 사이의 원문 캐시는 만들지 않는다.
+_request_matches = ContextVar("ocr_request_matches", default=None)
+
+
+@contextmanager
+def matching_request():
+    token = _request_matches.set({})
+    try:
+        yield
+    finally:
+        _request_matches.reset(token)
+
+
 def find_candidates(raw_text: str, database: IngredientDatabase, settings: MatchSettings | None = None) -> MatchResult:
+    settings = settings or MatchSettings()
+    cache = _request_matches.get()
+    key = (raw_text, id(database), settings)
+    if cache is not None and key in cache:
+        return cache[key]
+    result = _find_candidates(raw_text, database, settings)
+    if cache is not None:
+        if len(cache) >= 8192:
+            cache.pop(next(iter(cache)))
+        cache[key] = result
+    return result
+
+def _find_candidates(raw_text: str, database: IngredientDatabase, settings: MatchSettings | None = None) -> MatchResult:
     settings = settings or MatchSettings()
     cleaned, changes = clean_ocr_fragment(raw_text)
     parenthetical = re.fullmatch(r"(.+?)\s*\(([^()]*)\)", cleaned)

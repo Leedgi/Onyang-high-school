@@ -4,7 +4,7 @@ from collections.abc import Callable
 from core.database import load_ingredients
 from core.image_input import load_image
 from core.ingredient_text import split_known_sequence
-from core.match import find_candidates, load_match_settings
+from core.match import find_candidates, load_match_settings, matching_request
 from core.normalize import clean_ocr_fragment, normalize_text
 from core.ocr import OCREngine
 from core.scan import scan_ingredients
@@ -15,7 +15,8 @@ def recognize_photo(data: bytes, filename: str, *, engine: OCREngine,
                     progress: Callable[[str], None] | None = None) -> ScanOutput:
     """사진 검사→자동 영역·보정·OCR→미확정 목록. 잘못된 파일은 ValueError."""
     image = load_image(data, filename)
-    return scan_ingredients(image, engine, load_ingredients(), progress=progress)
+    with matching_request():
+        return scan_ingredients(image, engine, load_ingredients(), progress=progress)
 
 
 def prepare_review(text: str) -> tuple[IngredientDraft, ...]:

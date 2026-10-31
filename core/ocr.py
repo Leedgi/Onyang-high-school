@@ -34,6 +34,12 @@ def _row_lines(blocks: list[OCRBlock]) -> list[OCRLine]:
         center = (top + bottom) / 2
         matching = []
         for index, row in enumerate(rows):
+            # 같은 줄의 조각은 좌우로 나뉜다. 휜 긴 줄들의 큰 사각형이 겹쳐도
+            # 수평으로 겹치는 별도 인쇄 줄을 한 줄로 합치지 않는다.
+            left, _, right, _ = _bounds(block)
+            if any(max(0, min(right, _bounds(other)[2]) - max(left, _bounds(other)[0]))
+                   > .2 * min(right-left, _bounds(other)[2]-_bounds(other)[0]) for other in row):
+                continue
             row_top = median(_bounds(b)[1] for b in row)
             row_bottom = median(_bounds(b)[3] for b in row)
             distance = abs(center - (row_top + row_bottom) / 2)

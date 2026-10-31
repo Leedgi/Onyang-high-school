@@ -10,9 +10,9 @@ from core.match import find_candidates, MatchSettings
 from core.models import IngredientDraft, OCRResult
 from core.normalize import normalize_key, normalize_text, clean_ocr_fragment, search_view
 
-HEADING = re.compile(r"[\[【(〈<]?(?:전성[분문본]|全成分|(?:full)?ingredients?)[\]】)〉>]?[:：]?", re.I)
+HEADING = re.compile(r"[\[【(〈<]?(?:전성[분문본부]|全成分|(?:full)?ingredients?)[\]】)〉>]?[:：]?", re.I)
 SECTION_END = re.compile(
-    r"사용\s*(?:기한|방법|상의|시\s*주의)|내용량|화장품\s*(?:제조|책임)|제조\s*(?:업자|판매|번호|일)|"
+    r"사용\s*(?:기한|방법|법|상의|시\s*주의)|내용량|용량|화장품\s*(?:제조|책임)|제조\s*(?:업자|판매|번호|일)|"
     r"소비자\s*상담|고객\s*(?:상담|센터)|보관\s*방법|주의\s*사항|유통\s*기한|"
     r"made\s*in|expiry|directions|warnings?\b|manufactur|batch\s*(?:no|number)", re.I,
 )
@@ -20,7 +20,7 @@ SECTION_END = re.compile(
 
 def heading_span(text: str) -> tuple[int, int] | None:
     _, compact, positions = search_view(text)
-    match = HEADING.search(compact)
+    match = HEADING.search(compact) or re.match(r"[\[【(〈<]?성분[\]】)〉>]?[:：]", compact)
     # 긴 광고 문장 중간의 '성분' 같은 단어는 시작 표지로 사용하지 않는다.
     return (positions[match.start()], positions[match.end() - 1] + 1) if match and match.start() <= 8 else None
 
