@@ -8,7 +8,7 @@ from core.models import (
 from core.scan import ScanOutput
 
 CONTRACT_VERSION = 1
-PIPELINE_VERSION = "rows-ensemble-3"
+PIPELINE_VERSION = "ppocr-v5-korean-1"
 Mode = Literal["count", "partial", "full"]
 
 
