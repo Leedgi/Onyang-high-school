@@ -9,7 +9,7 @@ from ui.feedback import render_error_report
 
 def intro() -> None:
     st.html('''<nav class="site-nav" aria-label="주 메뉴">
-      <a class="wordmark" href="#top"><span class="brand-symbol" aria-hidden="true">잎</span>성분 정보 분석<span class="brand-dot">.</span></a>
+      <a class="wordmark" href="#top"><span class="brand-symbol" aria-hidden="true">🌱</span>성분 정보 분석</a>
       <div class="nav-links"><a href="#analyze">성분표 분석</a><a href="#guide">이용 안내</a><a href="#report">오류 제보</a></div>
     </nav><div id="top"></div>''')
     with st.container(key="hero"):
@@ -19,7 +19,7 @@ def intro() -> None:
             st.title("친환경 제품 성분 정보 분석")
             st.write("작은 글씨 속 성분, 이제 쉽게 읽어보세요.")
             st.caption("성분표 사진 한 장으로 이름을 정리하고, 원료의 유래와 근거를 차근차근 살펴보세요.")
-            st.html('''<div class="hero-actions"><a class="primary-link" href="#analyze">내 성분표 분석하기 <span aria-hidden="true">→</span></a><a class="text-link" href="#guide">어떻게 이용하나요? <span aria-hidden="true">→</span></a></div>
+            st.html('''<div class="hero-actions"><a class="primary-link" href="#analyze">내 성분표 분석하기 <span aria-hidden="true">→</span></a></div>
               <p class="privacy-note">사진을 외부 AI 서비스로 보내지 않습니다.</p>''')
         with visual:
             st.image(str(Path(__file__).with_name("assets").joinpath("ingredient-study.svg")), width="stretch")
@@ -33,7 +33,7 @@ def intro() -> None:
 def upload_help() -> None:
     st.html('''<aside class="upload-help"><span class="small-label">더 잘 읽히는 사진</span>
       <h3>글씨가 선명하게,<br>성분표가 한눈에.</h3>
-      <ul><li>제품 뒷면의 전성분을 모두 담아주세요.</li><li>반사되는 빛을 피하고 초점을 맞춰주세요.</li><li>거꾸로 된 사진과 곡면 라벨도 자동 보정을 시도합니다.</li></ul>
+      <ul><li>제품 뒷면의 전성분을 모두 담아주세요.</li><li>반사되는 빛을 피하고 초점을 맞춰주세요.</li><li>사진을 수평으로 찍어주세요</li></ul>
       <p>사진이 없어도 아래에서 성분명을 직접 입력할 수 있어요.</p></aside>''')
 
 
