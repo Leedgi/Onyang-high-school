@@ -34,7 +34,7 @@ def test_new_review_is_used_by_result_graph_and_pdf_after_one_confirmation():
     assert result.count_ratio.denominator == 4
     assert result.count_ratio.values['식물성'] == 50
     assert result.count_ratio.values['확인 필요'] == 25
-    assert any('제조 원료 공급원 확인 필요 1개' in c.value for c in app.caption)
+    assert next(r for r in result.rows if r.canonical_name=='글리세린').uncertainty_reason=='origin_uncertain'
     text = '\n'.join(p.extract_text() for p in PdfReader(BytesIO(app.session_state['pdf_export']['data'])).pages)
     assert 'kcia.or.kr' in text and '50.0%' in text
     assert '완제품의 pH' in text

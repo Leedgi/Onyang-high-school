@@ -124,3 +124,17 @@ C의 화면/PDF는 detail_count_ratio가 있으면 사용하고 없으면 기존
 새 파일·주의 추가 자료도 DB 지문에 포함되어 바뀌면 이전 결과/PDF를 무효화한다.
 파일이 전혀 없는 v1 프로젝트는 기존 로딩을 유지하지만 일부만 누락된 확장은 오류다.
 원래8열 Ingredient CSV는 유지하며 새 필드는 검토표를 연결할 때만 채운다.
+
+## v3: 사용자 요청에 따른 자동 선택 (2026-10-31)
+
+기존 수동 API의 기본 동작은 유지한다. AnalysisRequest의 automatic=False와
+빈 automatic_decisions 기본값은 v2 호출과 호환된다. automatic=True는 사용자가 요청한
+자동 선택 정책이다. C가 IngredientDraft를 보존한 AutomaticDecision(draft, selected_name,
+score, reason)을 넘긴다. selected_name이 빈 항목은 제외이며 원문은 세션에만 남는다.
+B는 자동 요청에서 이름 유래 추정을 detail_*에만 반영한다. 원래 origin/근거와 함량은 유지한다.
+AnalysisResult.automatic_decisions와 automatic을 화면/PDF에 함께 표시한다.
+제외 항목은 표·그래프 분모에서 빠지므로 비율은 분석에 포함한 성분만의 값임을 표시한다.
+이름이 등록되어 있고 유래만 모르는 성분은 제외하지 않는다. 추정 불가 시 확인 필요를 유지한다.
+숫자가 다른 성분으로 자동 이름 변경하지 않으며 동점 선택은 정답 확정으로 표현하지 않는다.
+사진은 추가 확인 없이 분석하고 직접 입력·재시도는 유지한다. 이전의 최종 확인 버튼 지침은
+이 자동 흐름에 한해 최신 사용자 요청으로 대체한다. 공개 A 함수와 B 함수 시그니처는 유지한다.

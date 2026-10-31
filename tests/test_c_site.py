@@ -30,17 +30,17 @@ def test_no_demo_and_single_confirmation():
     assert page.session_state["result"] is None
 
 
-def test_candidate_selection_clears_previous_result_without_apply_button():
+def test_candidate_is_automatically_selected_without_selection_question():
     page = app()
     page.text_area(key="input_text").set_value("미네활오잃").run()
     page.button(key="confirm").click().run()
-    assert page.session_state["result"].rows[0].uncertainty_reason == "db_missing"
-    page.selectbox[0].set_value("미네랄오일").run()
+    assert not page.exception and not [x for x in page.selectbox if x.key and x.key.startswith("candidate_")]
+    result = page.session_state["result"]
+    assert result.rows[0].canonical_name == "미네랄오일"
+    assert result.automatic_decisions[0].draft.raw_text == "미네활오잃"
+    assert result.automatic_decisions[0].score < 100
+    page.text_area(key="input_text").set_value("정제수").run()
     assert page.session_state["result"] is None
-    page.button(key="confirm").click().run()
-    assert not page.exception
-    assert page.session_state["result"].rows[0].canonical_name == "미네랄오일"
-    assert len([button for button in page.button if button.key == "confirm"]) == 1
 
 
 def test_upload_automatically_runs_once_then_new_photo_invalidates(monkeypatch):
@@ -59,15 +59,15 @@ def test_upload_automatically_runs_once_then_new_photo_invalidates(monkeypatch):
     monkeypatch.setattr(site, "recognize_photo", recognize)
     page = app()
     assert calls == ["first.png"]
-    assert page.session_state["result"] is None
-    page.button(key="confirm").click().run()
+    assert page.session_state["result"] is not None
+    page.run()
     assert calls == ["first.png"]
     assert page.session_state["result"] is not None
     upload[0] = SimpleNamespace(name="second.png", getvalue=lambda: b"test-second")
     page.run()
     assert not page.exception
     assert calls == ["first.png", "second.png"]
-    assert page.session_state["result"] is None
+    assert page.session_state["result"] is not None
     upload[0] = None
     page.run()
     assert not page.exception
@@ -119,8 +119,8 @@ def test_donut_keeps_unknowns_and_does_not_invent_safety_grades():
     assert list(page.dataframe[0].value.columns) == ["성분", "유래", "기능"]
     assert any("출처" in frame.value.columns for frame in page.dataframe)
     assert "확인 필요" in spec["layer"][0]["encoding"]["color"]["scale"]["domain"]
-    assert page.session_state["result"].count_ratio.denominator == 2
-    assert page.session_state["result"].count_ratio.values["확인 필요"] == 50
-    assert any("자료 부족" in info.value for info in page.info)
+    assert page.session_state["result"].count_ratio.denominator == 1
+    assert page.session_state["result"].count_ratio.values["확인 필요"] == 0
+    assert sum(not d.selected_name for d in page.session_state["result"].automatic_decisions) == 1
     page.text_area(key="input_text").set_value("정제수").run()
     assert not page.get("vega_lite_chart")

@@ -1,22 +1,24 @@
-"""공통 규격 v2(선택적7분류·v1 필드 호환). 필드·함수 이름 변경은 C가 모아서 반영한다."""
+"""공통 규격 v3(자동 분석 선택·v1/v2 기본값 호환). 필드·함수 이름 변경은 C가 모아서 반영한다."""
 from dataclasses import dataclass
 from typing import Literal
 
 from core.models import (
-    AnalysisResult, Candidate, ConfirmedIngredient, IngredientDraft, IngredientScan,
+    AnalysisResult, AutomaticDecision, Candidate, ConfirmedIngredient, IngredientDraft, IngredientScan,
 )
 from core.scan import ScanOutput
 
-CONTRACT_VERSION = 2
+CONTRACT_VERSION = 3
 PIPELINE_VERSION = "ppocr-v5-korean-1"
 Mode = Literal["count", "partial", "full"]
 
 
 @dataclass(frozen=True)
 class AnalysisRequest:
-    # C가 사용자의 최종 확인 뒤에만 생성한다. 후보 검색 결과를 바로 전달하지 않는다.
+    # 기본은 기존 확정 목록. automatic=True는 사용자가 요청한 자동 선택 정책이다.
     ingredients: tuple[ConfirmedIngredient, ...]
     mode: Mode = "count"
+    automatic: bool = False
+    automatic_decisions: tuple[AutomaticDecision, ...] = ()
 
 
 SESSION_DEFAULTS = {
