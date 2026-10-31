@@ -4,7 +4,7 @@ from core.classify import classify
 from core.database import IngredientDatabase
 from core.models import AnalysisResult, CautionRecord, ConfirmedIngredient
 from core.normalize import normalize_key
-from core.ratio import amount_ratio, count_ratio, validate_amounts
+from core.ratio import amount_ratio, count_ratio, validate_amounts, detail_count_ratio
 
 
 def analyze(
@@ -33,4 +33,5 @@ def analyze(
     return AnalysisResult(
         "complete" if rows else "no_data", database.dataset_kind, tuple(confirmed), rows,
         tuple(duplicates), count_ratio(rows), amounts, lookup_cautions(rows, cautions),
+        detail_count_ratio(rows) if database.detail_origin_counts is not None else None,
     )

@@ -8,17 +8,18 @@
     "광물·무기물": 510,
     "석유계": 17,
     "확인 필요": 8533,
-    "동물 유래": 635,
+    "동물 유래": 634,
     "식물 유래": 11551,
-    "합성": 9845,
+    "합성": 9846,
     "발효·미생물 유래": 1706
   },
   "confidence_counts": {
-    "기존 기타의 자동 세부분류(검증 필요)": 1588,
+    "기존 기타의 자동 세부분류(검증 필요)": 1587,
     "기존 DB 분류(근거 개별 재검증 안 됨)": 7493,
     "근거 부족": 8500,
     "이름 기반 추정(제조사 확인 필요)": 14073,
-    "명칭 규칙 추정(개별 검증 아님)": 1143
+    "명칭 규칙 추정(개별 검증 아님)": 1143,
+    "개별 출처 기재(첨부본)": 1
   },
   "files": {
     "caution_additions.csv": "44ab17b7445fbb857f82823f72451ee07f17e0863a894d93903cb069be1e4367",
@@ -31,7 +32,7 @@
     "origin_additions_round4.csv": "e73f2ba83fd87c5603b9194020b8ff552b9302adaa221e0b9d4a6063c3a2e363",
     "origin_additions_round4_sources.json": "6bd251410f05ca9d2ac6244ce093a01953074c6aa20e97132c73977c001f1b1b",
     "origin_additions_sources.json": "46182252b855298d305f4fad0fe5fbf5a6fa4a6278e5a3e95ca99be59b370747",
-    "origin_detail_audit.csv": "b532d477b8092e4c6396b3bdf3077498ed3d089dc8f3a901cbd5f52c1cd839b0"
+    "origin_detail_audit.csv": "d74e98730b0e33e5e0026c60ae2bcd3fd2d1814f204d42201bd426e076928016"
   },
   "base_files": {
     "alternatives.csv": "e132d097cc9cb1f2436b25141f7300dfbad211d128b377596acefe223df8d192",

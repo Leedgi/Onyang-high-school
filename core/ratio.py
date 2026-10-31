@@ -1,6 +1,6 @@
 import math
 
-from core.models import ClassifiedIngredient, ORIGINS, RatioResult
+from core.models import ClassifiedIngredient, ORIGINS, DETAIL_ORIGINS, RatioResult
 
 TOLERANCE = 1e-6
 
@@ -46,3 +46,17 @@ def amount_ratio(rows: tuple[ClassifiedIngredient, ...], mode: str) -> RatioResu
     values = {origin: math.fsum(row.confirmed.amount for row in known if row.origin == origin) for origin in ORIGINS}
     values["미공개"] = max(0.0, 100 - total)
     return RatioResult(values, 100, "제품 전체 기준 공개 함량 비율", "%", known[0].confirmed.basis)
+
+
+
+def detail_count_ratio(rows: tuple[ClassifiedIngredient, ...]) -> RatioResult | None:
+    """동일 확정 목록의 선택적7분류. 이름 기반 추정은 성분 개수에만 포함한다."""
+    if not rows:
+        return None
+    counts={origin:0 for origin in DETAIL_ORIGINS}
+    for row in rows:
+        category=row.detail_origin or {"식물성":"식물 유래","석유계":"석유계"}.get(row.origin,"확인 필요")
+        if category not in counts:raise ValueError("7분류 범주를 확인해 주세요.")
+        counts[category]+=1
+    return RatioResult({name:value/len(rows)*100 for name,value in counts.items()},len(rows),
+                       "성분명 개수 기준 비율 · 7분류(추정 포함)","%","count")
