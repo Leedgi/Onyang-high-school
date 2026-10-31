@@ -8,7 +8,7 @@ from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from core.models import CautionRecord, IngredientRecord, ORIGINS, UNCERTAINTIES
+from core.models import CautionRecord, IngredientRecord, ORIGINS, UNCERTAINTIES, DETAIL_ORIGINS, INGREDIENT_FIELDS
 from core.normalize import normalize_key
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,6 +57,9 @@ class IngredientDatabase:
         self.records = tuple(records)
         self.registry_count = registry_count
         self.curated_count = len(records) - registry_count
+        self.detail_origin_counts = ({origin:sum(r.detail_origin == origin for r in records) for origin in DETAIL_ORIGINS}
+                                     if any(r.detail_origin for r in records) else None)
+        self.estimated_count = sum(r.detail_is_estimate and r.detail_origin != "확인 필요" for r in records)
         self.origin_counts = {origin: sum(record.origin == origin for record in records) for origin in ORIGINS}
         self.index: dict[str, IngredientRecord] = {}
         checked_evidence = set()
@@ -75,12 +78,17 @@ class IngredientDatabase:
                         checked_evidence.add(pair)
                 elif record.uncertainty_reason != "evidence_insufficient":
                     raise ValueError("출처가 없는 실자료는 근거 자료 부족으로 남겨야 합니다.")
+            if record.detail_origin:
+                if record.detail_origin not in DETAIL_ORIGINS or not record.detail_confidence.strip() or not record.detail_reason.strip():
+                    raise ValueError("7분류의 범주·검토 수준·근거를 확인해 주세요.")
+                if type(record.detail_is_estimate) is not bool or not safe_source_url(record.detail_source_url):
+                    raise ValueError("7분류의 추정 표시·출처를 확인해 주세요.")
             for name in (record.name, *record.aliases):
                 key = normalize_key(name)
                 if not key or (key in self.index and self.index[key] != record):
                     raise ValueError(f"중복되거나 충돌하는 정식명·별칭: {name}")
                 self.index[key] = record
-        content = [(r.name, r.aliases, r.origin, r.reason, r.functions, r.source_url, r.checked_on, r.uncertainty_reason) for r in records]
+        content = [(r.name, r.aliases, r.origin, r.reason, r.functions, r.source_url, r.checked_on, r.uncertainty_reason, r.detail_origin, r.detail_confidence, r.detail_reason, r.detail_source_url, r.detail_is_estimate) for r in records]
         self.fingerprint = hashlib.sha256(json.dumps(content, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
 
     def find(self, name: str) -> IngredientRecord | None:
@@ -101,6 +109,11 @@ def load_ingredients(root: Path = ROOT) -> IngredientDatabase:
         path = root / "data" / name
         if path.exists():
             paths.append(path)
+    for name in ("origin_taxonomy_sources.json", "origin_detail_audit.csv", "origin_additions.csv", "origin_additions_sources.json",
+                 "origin_additions_round2.csv", "origin_additions_round2_sources.json", "origin_additions_round3.csv", "origin_additions_round3_sources.json",
+                 "origin_additions_round4.csv", "origin_additions_round4_sources.json", "caution_additions.csv", "caution_additions_sources.json"):
+        path=root/"data"/name
+        if path.exists():paths.append(path)
     stamp = tuple((str(path), path.stat().st_mtime_ns, path.stat().st_size) for path in paths)
     return _load_ingredients_cached(root, stamp)
 
@@ -158,6 +171,7 @@ def _load_ingredients_cached(root: Path, stamp: tuple) -> IngredientDatabase:
             index[alias] = position
     records, registry_count = apply_kcia_overlay(root, records, registry_count)
     records, registry_count = apply_origin_overlay(root, records, registry_count)
+    records = apply_detail_taxonomy(root, records)
     database = IngredientDatabase(records, "real", registry_count)
     components = [database.fingerprint]
     for path_string, _, _ in stamp:
@@ -187,7 +201,7 @@ def apply_kcia_overlay(root: Path, records: list[IngredientRecord], registry_cou
                 raise ValueError("KCIA 자료 체크섬이 일치하지 않습니다. 검토 입력과 생성물을 확인해 주세요.")
         name_only = set(range(len(records) - registry_count, len(records)))
         positions = {normalize_key(r.name): i for i, r in enumerate(records)}
-        for entry in read_csv(data / "kcia_ingredients.csv", set(IngredientRecord.__dataclass_fields__)):
+        for entry in read_csv(data / "kcia_ingredients.csv", INGREDIENT_FIELDS):
             entry = dict(entry)
             for key in ("aliases", "functions"):
                 entry[key] = tuple(filter(None, entry[key].split("|")))
@@ -231,7 +245,7 @@ def apply_origin_overlay(root: Path, records: list[IngredientRecord], registry_c
                     raise ValueError("유래 자료 체크섬이 일치하지 않습니다. 기본 자료와 검토 입력을 확인해 주세요.")
         positions = {normalize_key(r.name): i for i, r in enumerate(records)}
         seen = set()
-        for entry in read_csv(data / "origin_ingredients.csv", set(IngredientRecord.__dataclass_fields__)):
+        for entry in read_csv(data / "origin_ingredients.csv", INGREDIENT_FIELDS):
             entry = dict(entry)
             for key in ("aliases", "functions"):
                 entry[key] = tuple(filter(None, entry[key].split("|")))
@@ -274,4 +288,80 @@ def load_cautions(root: Path = ROOT) -> list[CautionRecord]:
             raise ValueError("주의 정보에는 성분명과 주의 이유가 필요합니다.")
         validate_evidence(row["source_url"], row["checked_on"])
         records.append(CautionRecord(**row))
+    path=root/"data/caution_additions.csv"
+    if path.exists():
+        metadata_path=root/"data/caution_additions_sources.json"
+        if not metadata_path.exists():raise ValueError("추가 주의 자료 출처 집계가 없습니다.")
+        metadata=json.loads(metadata_path.read_text(encoding="utf-8"))
+        if hashlib.sha256(path.read_bytes()).hexdigest()!=metadata["sha256"]:raise ValueError("추가 주의 자료 체크섬 불일치")
+        extra=read_csv(path,fields)
+        if len(extra)!=metadata["records"]:raise ValueError("추가 주의 자료 행 수 불일치")
+        seen={normalize_key(r.name) for r in records}
+        for row in extra:
+            key=normalize_key(row["name"])
+            if not key or key in seen or any(not value.strip() for value in row.values()):raise ValueError("추가 주의 자료의 빈 항목·중복 성분명")
+            validate_evidence(row["source_url"],row["checked_on"]);seen.add(key);records.append(CautionRecord(**row))
+    elif (root/"data/caution_additions_sources.json").exists():raise ValueError("추가 주의 CSV가 없습니다.")
     return records
+
+
+def apply_detail_taxonomy(root, records):
+    """현재 명칭→검증한 선택적 7분류→같은 레코드+추정 근거. 기존 4분류는 보존."""
+    data=root/'data';path=data/'origin_taxonomy_sources.json'
+    FILES = ("origin_additions.csv","origin_additions_sources.json", "origin_additions_round2.csv","origin_additions_round2_sources.json",
+             "origin_additions_round3.csv","origin_additions_round3_sources.json", "origin_additions_round4.csv","origin_additions_round4_sources.json",
+             "caution_additions.csv","caution_additions_sources.json","origin_detail_audit.csv")
+    if not path.exists():
+        if any((data/name).exists() for name in FILES if name.startswith('origin_')):
+            raise ValueError('7분류 확장 자료의 출처 집계가 없습니다.')
+        return records
+    try:
+        meta=json.loads(path.read_text(encoding='utf-8'))
+        if meta['format_version']!=1 or meta['taxonomy_version']!=1:raise ValueError('지원하지 않는 7분류 자료 버전')
+        date.fromisoformat(meta['imported_on'])
+        for name,expected in meta['base_files'].items():
+            if Path(name).name!=name or not (data/name).is_file() or hashlib.sha256((data/name).read_bytes()).hexdigest()!=expected:
+                raise ValueError('7분류 기본 DB 체크섬 불일치: '+name)
+        if set(meta['files'])!=set(FILES):raise ValueError('7분류 파일 집계를 확인해 주세요.')
+        for name in FILES:
+            if not (data/name).is_file() or hashlib.sha256((data/name).read_bytes()).hexdigest()!=meta['files'][name]:
+                raise ValueError('7분류 자료 체크섬 불일치: '+name)
+        canonical={normalize_key(r.name):r for r in records}
+        inferred=set();individual=set()
+        for name in FILES:
+            if not name.startswith('origin_additions') or not name.endswith('.csv'):continue
+            entries=read_csv(data/name,{'name','origin','reason','source_url','checked_on','evidence_level'})
+            sidecar=json.loads((data/(Path(name).stem+'_sources.json')).read_text(encoding='utf-8'))
+            if len(entries)!=sidecar['records'] or hashlib.sha256((data/name).read_bytes()).hexdigest()!=sidecar['sha256']:
+                raise ValueError('추가 유래 행 수·체크섬 불일치: '+name)
+            seen=set()
+            for row in entries:
+                key=normalize_key(row['name'])
+                if key in seen or key not in canonical or row['origin'] not in ORIGINS or not row['reason'].strip():raise ValueError('추가 유래 이름·분류 오류: '+row['name'])
+                if row['evidence_level'] not in {'individual_source','name_inference','name_identity','botanical_name_inference'}:raise ValueError('추가 유래 근거 수준 오류')
+                validate_evidence(row['source_url'],row['checked_on']);seen.add(key)
+                (individual if row['evidence_level']=='individual_source' else inferred).add(key)
+        audit=read_csv(data/'origin_detail_audit.csv',{'name','legacy_origin','detail_category','confidence','reason','source_url'})
+        from collections import Counter
+        if len(audit)!=meta['records'] or len(audit)!=len(records) or dict(Counter(r['detail_category'] for r in audit))!=meta['category_counts'] or dict(Counter(r['confidence'] for r in audit))!=meta['confidence_counts']:
+            raise ValueError('7분류 행 수·집계 불일치')
+        mapped={}
+        for row in audit:
+            key=normalize_key(row['name'])
+            if key in mapped or key not in canonical or row['detail_category'] not in DETAIL_ORIGINS or not row['confidence'].strip() or not row['reason'].strip():
+                raise ValueError('7분류 이름·범주·근거 오류: '+row['name'])
+            if row['legacy_origin'] not in ORIGINS:raise ValueError('7분류 이전 범주 오류')
+            if not safe_source_url(row['source_url']):raise ValueError('7분류 출처 URL 오류')
+            mapped[key]=row
+        if set(mapped)!=set(canonical):raise ValueError('7분류 명칭 누락·불일치')
+        updated=[]
+        for rec in records:
+            key=normalize_key(rec.name);row=mapped[key]
+            estimate=(row['detail_category']!='확인 필요' and
+                      (key in inferred or '추정' in row['confidence'] or '자동' in row['confidence'] or
+                       (rec.origin=='확인 필요' and key not in individual)))
+            updated.append(replace(rec,detail_origin=row['detail_category'],detail_confidence=row['confidence'],
+                                   detail_reason=row['reason'],detail_source_url=row['source_url'],detail_is_estimate=estimate))
+        return updated
+    except (KeyError,TypeError,json.JSONDecodeError) as exc:
+        raise ValueError('7분류 출처 집계의 형식을 확인해 주세요.') from exc

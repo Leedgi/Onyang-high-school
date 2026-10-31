@@ -1,4 +1,4 @@
-"""공통 규격 v1. 필드·함수 이름 변경은 C가 모아서 반영한다."""
+"""공통 규격 v2(선택적7분류·v1 필드 호환). 필드·함수 이름 변경은 C가 모아서 반영한다."""
 from dataclasses import dataclass
 from typing import Literal
 
@@ -7,7 +7,7 @@ from core.models import (
 )
 from core.scan import ScanOutput
 
-CONTRACT_VERSION = 1
+CONTRACT_VERSION = 2
 PIPELINE_VERSION = "ppocr-v5-korean-1"
 Mode = Literal["count", "partial", "full"]
 

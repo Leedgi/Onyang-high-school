@@ -4,6 +4,10 @@ from typing import Literal
 
 Origin = Literal["석유계", "식물성", "기타", "확인 필요"]
 ORIGINS = ("석유계", "식물성", "기타", "확인 필요")
+DETAIL_ORIGINS = ("식물 유래", "동물 유래", "광물·무기물", "발효·미생물 유래", "석유계", "합성", "확인 필요")
+DETAIL_ORIGIN_COLORS = {"식물 유래":"#7f9d68", "동물 유래":"#d39b8c", "광물·무기물":"#a1adbd",
+                        "발효·미생물 유래":"#70b8af", "석유계":"#356351", "합성":"#a895c9", "확인 필요":"#e5e7df"}
+INGREDIENT_FIELDS = {"name", "aliases", "origin", "reason", "functions", "source_url", "checked_on", "uncertainty_reason"}
 UNCERTAINTIES = {"db_missing", "name_unresolved", "origin_uncertain", "evidence_insufficient"}
 
 
@@ -109,6 +113,13 @@ class IngredientRecord:
     checked_on: str = ""
     uncertainty_reason: str = ""
 
+    # 선택적 7분류. 기존 origin은 검증 수준을 유지하는 4분류 호환 필드다.
+    detail_origin: str = ""
+    detail_confidence: str = ""
+    detail_reason: str = ""
+    detail_source_url: str = ""
+    detail_is_estimate: bool = False
+
 
 @dataclass(frozen=True)
 class CautionRecord:
@@ -135,6 +146,13 @@ class ClassifiedIngredient:
     source_url: str = ""
     checked_on: str = ""
 
+    # 선택적 7분류. 기존 origin은 검증 수준을 유지하는 4분류 호환 필드다.
+    detail_origin: str = ""
+    detail_confidence: str = ""
+    detail_reason: str = ""
+    detail_source_url: str = ""
+    detail_is_estimate: bool = False
+
 
 @dataclass(frozen=True)
 class RatioResult:
@@ -155,3 +173,5 @@ class AnalysisResult:
     count_ratio: RatioResult | None
     amount_ratio: RatioResult | None
     cautions: dict[str, tuple[CautionRecord, ...]] = field(default_factory=dict)
+
+    detail_count_ratio: RatioResult | None = None
