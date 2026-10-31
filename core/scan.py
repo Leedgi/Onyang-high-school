@@ -1,7 +1,7 @@
 """자동 영역 탐색 → 보정 → 두 경로 AI 재인식 → 성분 단위 초안. 외부 API를 호출하지 않는다."""
 from dataclasses import dataclass, asdict, replace
 from collections.abc import Callable
-from statistics import mean
+from statistics import mean, median
 
 from PIL import Image
 import cv2
@@ -62,6 +62,8 @@ def _known_support(drafts):
 
 def scan_ingredients(image: Image.Image, engine: OCREngine, database: IngredientDatabase,
                      progress: Callable[[str], None] | None = None) -> ScanOutput:
+    if getattr(engine, "neural_enabled", False):
+        return _scan_neural(image, engine, database, progress)
     report = progress or (lambda message: None)
     best = None
     orientation_passes = []
@@ -228,3 +230,86 @@ def scan_ingredients(image: Image.Image, engine: OCREngine, database: Ingredient
     metadata["word_reread_count"] = len(word_passes)
     passes = (*passes, *word_passes)
     return ScanOutput(IngredientScan("ok", ocr, drafts, metadata, tuple(passes), warnings), selected_image)
+
+
+
+def _preferred_label(ocr):
+    """한·영 병기가 있으면 한글 전성분 한 목록만 쓴다. 같은 이름을 두 번 세지 않는다."""
+    from core.ingredient_text import heading_span, section_end_span
+    import re
+    korean = next((i for i, line in enumerate(ocr.lines)
+                   if heading_span(line.raw_text) and re.search(r"전\s*성", line.raw_text)), None)
+    if korean is None:
+        return ocr
+    lines = []
+    for line in ocr.lines[korean:]:
+        if lines and (section_end_span(line.raw_text) or heading_span(line.raw_text)):
+            break
+        lines.append(line)
+    return replace(ocr, raw_text="\n".join(line.raw_text for line in lines), lines=tuple(lines))
+
+
+def _neural_score(ocr, database):
+    selected = _preferred_label(ocr)
+    quality, drafts, fraction = _quality(selected, database)
+    from core.ingredient_text import heading_span
+    heading = any(heading_span(line.raw_text) for line in selected.lines)
+    return _known_support(drafts) + min(2., len(drafts) * .02) + quality * 2 + (3 if heading else 0), drafts, fraction
+
+
+def _scan_neural(image, engine, database, progress):
+    report = progress or (lambda _: None)
+    passes, choices = [], []
+    for angle in (0, 180, 90, 270):
+        report(f"한국어 글자 줄과 사진 방향을 자동 비교하고 있습니다 · {angle}°")
+        rotated = image.rotate(angle, expand=True)
+        ocr = engine.recognize_neural(rotated, limit=1280)
+        if ocr.status in {"dependency_error", "model_error"}:
+            return ScanOutput(IngredientScan(ocr.status, ocr, message=ocr.message), image.copy())
+        score, drafts, fraction = _neural_score(ocr, database)
+        passes.append({"stage": "neural_orientation", "rotation": angle, "selection_score": score, "ocr": asdict(ocr)})
+        choices.append((score, angle, rotated, ocr))
+    _, rotation, upright, coarse = max(choices, key=lambda item: item[0])
+    # 긴 글자 줄의 방향을 사용한다. 포장지 테두리나 배경 선으로 기울기를 정하지 않는다.
+    angles = []
+    for block in coarse.blocks:
+        a, b, c, d = block.bbox
+        width = np.linalg.norm(np.array(a)-b)
+        height = np.linalg.norm(np.array(a)-d)
+        if width > height * 4:
+            angle = np.degrees(np.arctan2(b[1]-a[1], b[0]-a[0]))
+            if abs(angle) <= 40:
+                angles.append(float(angle))
+    deskew = float(median(angles)) if len(angles) >= 3 else 0.
+    if abs(deskew) >= .8:
+        report("검출한 글자 줄을 기준으로 사진의 기울기를 바로잡고 있습니다")
+        upright = upright.rotate(deskew, Image.Resampling.BICUBIC, expand=True, fillcolor="white")
+        coarse = engine.recognize_neural(upright, limit=1600)
+        passes.append({"stage": "neural_deskew", "degrees": deskew, "ocr": asdict(coarse)})
+    # 성분 영역을 고를 때 한글 목록과 다른 언어 목록을 이어 붙이지 않는다.
+    coarse = _preferred_label(coarse)
+    region = locate_region(coarse, upright.size, database)
+    if region.method == "not_found":
+        status = "empty" if not coarse.blocks else "region_not_found"
+        message = "전성분 영역을 찾지 못했습니다. 성분표를 가까이 촬영하거나 성분명을 직접 입력해 주세요."
+        return ScanOutput(IngredientScan(status, coarse, passes=tuple(passes), message=message), upright)
+    selected_image = upright.crop(region.box)
+    variants = []
+    for label, dewarp in (("원근 보정 줄 인식", False), ("검출 윤곽 곡면 보정", True)):
+        report(f"원본 해상도로 성분표를 읽고 있습니다 · {label}")
+        ocr = _preferred_label(engine.recognize_neural(selected_image, limit=2400, dewarp=dewarp))
+        score, drafts, fraction = _neural_score(ocr, database)
+        variants.append((score, label, ocr, drafts, fraction))
+        passes.append({"stage": "neural_region", "variant": label, "selection_score": score, "ocr": asdict(ocr)})
+    score, label, ocr, drafts, fraction = max(variants, key=lambda item: item[0])
+    if not drafts:
+        return ScanOutput(IngredientScan(ocr.status if ocr.status != "ok" else "empty", ocr,
+                                        passes=tuple(passes), message=ocr.message or "성분명을 읽지 못했습니다."), selected_image)
+    processing = {"pipeline_version": 7, "recognizer_model_revision": "ppocr-v5-korean-1",
+                  "locator_engine": "PP-OCRv5 DB", "recognizer_engine": "PP-OCRv5 Korean / ONNX CPU",
+                  "rotation": rotation, "deskew_degrees": deskew, "rotated_size": upright.size,
+                  "region_method": region.method, "crop_box": region.box, "scale": 1.,
+                  "image_size": selected_image.size, "selected_variant": label,
+                  "bbox_coordinate_system": "selected processed image pixels",
+                  "selection_note": "사진 픽셀·문자 사전을 이용한 경로 선택이며 정답률이 아닙니다."}
+    return ScanOutput(IngredientScan("ok", ocr, drafts, processing, tuple(passes)), selected_image)
