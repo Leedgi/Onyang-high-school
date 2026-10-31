@@ -40,7 +40,7 @@ def upload_help() -> None:
 def ratio_summary(ratio) -> None:
     from core.models import DETAIL_ORIGIN_COLORS
     colors = {"석유계": "#356351", "식물성": "#7f9d68", "기타": "#b5c7a2", "확인 필요": "#e5e7df", **DETAIL_ORIGIN_COLORS}
-    rows = ''.join(f'<li><span><i style="background:{colors[name]}" aria-hidden="true"></i>{escape(name)}</span><strong>{value:.1f}<small>%</small></strong></li>' for name, value in ratio.values.items())
+    rows = ''.join(f'<li><span><i style="background:{colors[name]}" aria-hidden="true"></i>{escape(name)}</span><strong>{value:.1f}<small>%</small></strong></li>' for name, value in ratio.values.items() if value > 0)
     st.html(f'''<div class="ratio-summary"><p class="eyebrow">성분명 개수 기준</p><h3>무엇으로 이루어져 있을까요?</h3><p>중복을 제외한 <strong>{int(ratio.denominator)}개 성분</strong>의 원료 유래를 살펴봅니다.</p><ul>{rows}</ul>
       <div class="quiet-note">‘확인 필요’도 비율에 포함됩니다.<br>이 비율은 실제 배합 함량이나 안전성 점수가 아닙니다. 7분류에는 이름 기반 추정이 포함되며 합성은 석유계와 동의어가 아닙니다.</div></div>''')
 

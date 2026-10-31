@@ -52,8 +52,11 @@ def render_cautions(result) -> None:
     if names:
         selected = st.selectbox("주의 설명을 확인할 성분", names, key="caution_explain_selected")
         human_note, environment_note, level = contextual_notes(selected)
-        st.markdown("**인체 관련 설명**")
-        st.write(human_note)
-        st.markdown("**환경 관련 설명**")
-        st.write(environment_note)
+        human, environment = st.columns(2, gap="medium")
+        with human, st.container(key="caution-human-note"):
+            st.markdown("**인체 관련 설명**")
+            st.write(human_note)
+        with environment, st.container(key="caution-environment-note"):
+            st.markdown("**환경 관련 설명**")
+            st.write(environment_note)
         st.caption("근거 수준: " + level + ". 실제 제품의 안전성·환경 위해성 판정이 아닙니다.")

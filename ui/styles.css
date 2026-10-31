@@ -185,3 +185,56 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
  .panel-label { gap:.45rem; }
  .panel-label h3 { font-size:1rem !important; }
 }
+
+/* Result report: one hierarchy, aligned cards, quiet supporting information. */
+.st-key-results { margin-top:1rem; padding-top:2rem; border-top:1px solid var(--line); }
+.report-heading { gap:.8rem; margin-bottom:.6rem; }
+.report-heading h2 { margin:0; font-size:1.7rem !important; }
+.report-status { margin-left:auto; white-space:nowrap; font-size:.72rem; font-style:normal; font-weight:600; color:#375d34; background:#e6efd8; border:1px solid #cfdfbd; border-radius:20px; padding:.35rem .7rem; }
+.report-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:.3rem 0 .25rem; }
+.report-stats>div { display:flex; align-items:center; justify-content:space-between; gap:.5rem; padding:1.05rem 1.2rem; background:#fff; border:1px solid var(--line); border-radius:10px; }
+.report-stats span { color:#63725e; font-size:.8rem; }
+.report-stats strong { color:var(--forest); font-size:1.65rem; font-weight:650; font-variant-numeric:tabular-nums; }
+.report-stats small { margin-left:.3rem; font-size:.75rem; font-weight:400; color:#6a7863; }
+.report-section-heading { margin:.2rem 0 .8rem; }
+.report-section-heading>span { color:#6f845e; letter-spacing:.1em; font-size:.65rem; font-weight:650; }
+.report-section-heading h3 { margin:.35rem 0 0; font-size:1.15rem !important; }
+.st-key-ratio-card { margin:.4rem 0 .9rem; padding:1.5rem; }
+.st-key-result-details { border:1px solid var(--line); border-radius:12px; background:#fff; padding:1.3rem 1.5rem 1.5rem; }
+.st-key-result-details [role="tabpanel"] { padding-top:1rem; }
+.st-key-result-details [data-testid="stVerticalBlock"] { gap:.8rem; }
+.st-key-result-details [data-testid="stTabs"] [role="tablist"] { gap:.6rem; }
+.st-key-result-details [data-testid="stTabs"] [role="tab"] { min-height:44px; padding:.55rem .9rem; }
+.report-note { margin:.2rem 0 .6rem; padding:.85rem 1rem; background:#f4f7ee; border-left:3px solid #bdd49a; border-radius:0 7px 7px 0; }
+.report-note strong { font-size:.8rem; color:#435f37; font-weight:600; }
+.report-note p { color:#687560; font-size:.75rem; line-height:1.8; margin:.3rem 0 0; }
+.st-key-result-details [class*="st-key-ingredient-group-"] { border:1px solid #e1e7da; border-radius:9px; padding:1rem; margin:.15rem 0 .4rem; }
+.st-key-result-details [class*="st-key-ingredient-group-"] h3 { font-size:.95rem !important; margin-bottom:.1rem; padding-top:0; }
+.st-key-result-details [data-testid="stDataFrame"] { border-radius:6px; }
+.st-key-chemical-composition,.st-key-chemical-properties,.st-key-caution-human-note,.st-key-caution-environment-note { height:100%; background:#f5f7f0; border:1px solid #dfe6d7; border-radius:9px; padding:1.1rem; }
+.st-key-chemical-composition [data-testid="stMetricValue"] { font-size:1.6rem; white-space:normal; overflow-wrap:anywhere; }
+.st-key-chemical-composition [data-testid="stMetricLabel"] { color:var(--muted); }
+.st-key-result-details [data-testid="stVerticalBlockBorderWrapper"] { border-color:#dfe6d7; border-radius:9px; }
+.st-key-report-download { background:var(--forest); border-radius:12px; padding:1.4rem 1.6rem; margin-top:.9rem; }
+.download-copy { display:flex; flex-direction:column; gap:.35rem; }
+.download-copy>span { font-size:.68rem; letter-spacing:.04em; color:var(--accent); }
+.download-copy strong { color:#f4f8ed; font-size:1.05rem; font-weight:600; }
+.download-copy p { color:#c8d8c7; font-size:.75rem; margin:0; }
+.st-key-report-download [data-testid="stCaptionContainer"] p { color:#c8d8c7; font-size:.7rem; }
+.st-key-report-download [data-testid="stDownloadButton"] button { background:var(--accent); border-color:var(--accent); color:var(--forest); min-height:46px; font-weight:600; }
+.st-key-report-download [data-testid="stDownloadButton"] button:hover { background:#e6f4bd; border-color:#e6f4bd; }
+@media(max-width:768px) {
+ .report-heading h2 { font-size:1.35rem !important; }
+ .report-stats { gap:.5rem; }
+ .report-stats>div { flex-direction:column; align-items:flex-start; gap:.2rem; padding:.75rem; }
+ .report-stats span { font-size:.67rem; }
+ .report-stats strong { font-size:1.35rem; }
+ .report-stats small { font-size:.65rem; }
+ .st-key-ratio-card { padding:1rem .6rem; }
+ .st-key-ratio-card>.report-section-heading { padding-left:.4rem; }
+ .st-key-result-details { padding:.8rem; }
+ .st-key-result-details [data-testid="stTabs"] [role="tablist"] { gap:.05rem; }
+ .st-key-result-details [data-testid="stTabs"] [role="tab"] { padding:.5rem .6rem; font-size:.82rem; }
+ .st-key-result-details [class*="st-key-ingredient-group-"] { padding:.75rem; }
+ .st-key-report-download { padding:1.2rem; }
+}
