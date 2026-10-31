@@ -9,7 +9,7 @@ from ui.feedback import render_error_report
 
 def intro() -> None:
     st.html('''<nav class="site-nav" aria-label="주 메뉴">
-      <a class="wordmark" href="#top"><span class="brand-symbol" aria-hidden="true">🌱</span>성분 정보 분석<span class="brand-dot">.</span></a>
+      <a class="wordmark" href="#top"><span class="brand-symbol" aria-hidden="true">잎</span>성분 정보 분석<span class="brand-dot">.</span></a>
       <div class="nav-links"><a href="#analyze">성분표 분석</a><a href="#guide">이용 안내</a><a href="#report">오류 제보</a></div>
     </nav><div id="top"></div>''')
     with st.container(key="hero"):
@@ -19,7 +19,7 @@ def intro() -> None:
             st.title("친환경 제품 성분 정보 분석")
             st.write("작은 글씨 속 성분, 이제 쉽게 읽어보세요.")
             st.caption("성분표 사진 한 장으로 이름을 정리하고, 원료의 유래와 근거를 차근차근 살펴보세요.")
-            st.html('''<div class="hero-actions"><a class="primary-link" href="#analyze">내 성분표 분석하기 <span aria-hidden="true">→</span></a></div>
+            st.html('''<div class="hero-actions"><a class="primary-link" href="#analyze">내 성분표 분석하기 <span aria-hidden="true">→</span></a><a class="text-link" href="#guide">어떻게 이용하나요? <span aria-hidden="true">→</span></a></div>
               <p class="privacy-note">사진을 외부 AI 서비스로 보내지 않습니다.</p>''')
         with visual:
             st.image(str(Path(__file__).with_name("assets").joinpath("ingredient-study.svg")), width="stretch")
@@ -47,15 +47,16 @@ def ratio_summary(ratio) -> None:
 def footer(database=None) -> None:
     st.html('<div id="guide" class="section-heading"><p class="eyebrow">알고 사용하기</p><h2>자주 묻는 질문</h2></div>')
     with st.expander("식물성 성분이면 더 안전한가요?"):
-        st.write("원료의 유래만으로 안전성이나 환경성을 판단할 수 없습니다. 이 서비스는 제품의 친환경성이나 안전성을 인증하지 않습니다.")
+        st.write("아니요. 식물성이라는 유래만으로 안전성을 판단할 수 없습니다. 사용 농도, 개인의 피부 상태, 제품의 사용 방법에 따라 영향이 달라질 수 있습니다.")
     with st.expander("‘확인 필요’는 무슨 뜻인가요?"):
-        st.write("DB에 이름이 없거나 제조 유래·근거가 충분하지 않은 경우입니다. 위험하다는 뜻이 아닙니다. 결과의 자료 안내에서 성분별 근거를 확인할 수 있습니다.")
+        st.write("성분명이나 원료의 유래를 확인할 근거가 부족하다는 뜻입니다. 위험하거나 유해하다고 판정한 것이 아닙니다. OCR 인식 결과와 성분명을 먼저 확인해 주세요.")
+    with st.expander("화학식이 표시되지 않는 성분은 왜 있나요?"):
+        st.write("식물 추출물·혼합물·일부 고분자는 하나의 화학식으로 표현하기 어렵습니다. 또한 검증된 화학 정보가 아직 없는 성분은 잘못된 값을 보여주지 않기 위해 제외합니다.")
+    with st.expander("산성 성분이 있으면 화장품도 산성인가요?"):
+        st.write("아니요. 분석 결과는 개별 성분의 성질을 설명합니다. 완제품의 pH는 성분의 농도와 배합에 따라 달라지므로 성분표만으로 알 수 없습니다. 정제수 자체는 순수한 상태에서 25°C 기준 중성이지만, 정제수가 들어간 화장품이 중성이라는 뜻은 아닙니다.")
+    with st.expander("주의 정보가 없는 성분은 안전한가요?"):
+        st.write("그렇지 않습니다. 주의 정보가 없다는 것은 현재 검토한 자료에 해당 기록이 없다는 뜻입니다. 제품 전체의 안전성을 판정한 결과가 아닙니다.")
     with st.expander("어떤 자료를 사용하나요?"):
-        if database is not None:
-            st.write(f"현재 {len(database.records):,}개 성분을 검색합니다. 개별 검토·정의 규칙 대조 {database.curated_count:,}개와 이름 전용 {database.registry_count:,}개를 구분합니다. 이름 전용 항목은 유래 근거가 없어 확인 필요로 남습니다.")
-        st.write("대한화장품협회 공개 표준화 명칭 목록(2026-09-30)을 연결하고, 공개 정의 144개를 별도로 검토했습니다. 회원사 전용 ‘성분의 기원’은 열람하지 않았습니다. 분류는 공개 정의를 바탕으로 한 서비스 자체 검토이며 협회 인증이 아닙니다.")
-        st.write("추가 5,749개는 2019년 정의의 명시적 근거를 규칙으로 대조했습니다. 개별 수동 검토 수와 구분하며 검토한 식물 과·속과 재료 형태, 석유 원료 등의 근거가 있을 때만 분류합니다.")
-        st.write("일부 기존 근거는 2019년 비공식 스냅샷입니다. 명칭 등재와 정의 검토는 최신 규제·안전성 검토를 대신하지 않습니다. 지방산·글리세린 등은 제조사의 실제 공급원 확인이 필요합니다.")
-        st.write("별도 주의 DB는 FDA 안내의 인체 주의 27개 물질과 PubChem/HSDB의 생분해성 시험 3개 물질을 검토했습니다. 자료의 발표 시점과 열람일을 구분하며, 전 성분의 안전성을 검토한 것은 아닙니다.")
+        st.write("성분명과 유래 정보는 프로젝트의 기존 성분 DB를 사용합니다. 주의 정보는 별도 검토 자료에 근거하며, 화학식과 산·염기 특성은 화면에 수록된 일부 성분의 교육용 정보입니다. 모든 성분의 안전성이나 완제품 pH를 검증한 것은 아닙니다.")
     render_error_report()
     st.html('''<footer class="site-footer"><span class="footer-brand">성분 정보 분석.</span><p>좋은 선택은, 성분을 이해하는 데서 시작됩니다.</p><small>성분 정보 제공 서비스 · 제품의 안전성 및 친환경성 인증이 아닙니다.</small></footer>''')
