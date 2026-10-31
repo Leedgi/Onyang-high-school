@@ -105,7 +105,9 @@ def _plausible_spelling(raw: str, match) -> bool:
 
 def _can_propose_spelling(raw: str, match) -> bool:
     return (_plausible_spelling(raw, match) and match.status == "fuzzy"
-            and (match.score_gap is None or match.score_gap >= 15))
+            and (match.score_gap is None or match.score_gap >= 5)
+            and sum(Levenshtein.distance(normalize_key(raw), normalize_key(c.matched_name)) == 1
+                    for c in match.candidates) == 1)
 
 
 def ingredient_drafts(ocr: OCRResult, database: IngredientDatabase) -> tuple[IngredientDraft, ...]:
@@ -132,8 +134,10 @@ def ingredient_drafts(ocr: OCRResult, database: IngredientDatabase) -> tuple[Ing
     for text, indices in entries:
         separator = " " if joined else ""
         if joined and not joined.rstrip().endswith((",", "，", ";", "；")):
-            previous = normalize_text(joined)[-1].name
-            following = normalize_text(text)[0].name
+            before = normalize_text(joined)
+            after = normalize_text(text)
+            previous = before[-1].name if before else ""
+            following = after[0].name if after else ""
             previous_match = find_candidates(previous, database)
             previous_complete = previous_match.status in {"exact", "alias"} or _can_propose_spelling(previous, previous_match)
             following_parts = split_known_sequence(following, database)
