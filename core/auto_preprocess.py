@@ -28,7 +28,8 @@ def _line_regions(ocr: OCRResult):
         if points:
             xs, ys = zip(*points)
             output.append((line, (min(xs), min(ys), max(xs), max(ys))))
-    return sorted(output, key=lambda item: item[1][1])
+    # OCR이 글자 줄의 기울기를 반영해 정한 읽기 순서를 보존한다.
+    return output
 
 
 def locate_region(ocr: OCRResult, size: tuple[int, int], database: IngredientDatabase) -> Region:
@@ -95,7 +96,7 @@ def locate_region(ocr: OCRResult, size: tuple[int, int], database: IngredientDat
     lower_edge = max(b[3] for b in selected) + pad
     if stop_top is not None:
         lower_edge = max(lower_edge, stop_top - max(2, typical * 0.15))
-        lower_edge = min(lower_edge, stop_top)
+        lower_edge = max(max(b[3] for b in selected) + max(2,pad*.15), min(lower_edge, stop_top))
     box = (
         max(0, math.floor(min(b[0] for b in selected) - pad)),
         max(0, math.floor(min(b[1] for b in selected) - pad)),

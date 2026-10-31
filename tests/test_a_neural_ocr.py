@@ -77,3 +77,11 @@ def test_asterisk_footnote_is_not_an_extra_ingredient_and_nano_is_not_removed():
     assert ocr.raw_text==text
     result=find_candidates('티타늄디옥사이드[nano]',load_ingredients())
     assert 'nano' in result.cleaned_text
+
+
+def test_generic_ingredient_heading_does_not_capture_product_title():
+    from core.ingredient_text import heading_span, section_end_span
+    assert heading_span('성분 탐구실 시험 로션') is None
+    assert heading_span('성분: 정제수, 글리세린') is not None
+    assert heading_span('성분 정제수, 에탄올, 향료') is not None
+    assert section_end_span('사용할 때의 주의사항: 원문')[0]==0
