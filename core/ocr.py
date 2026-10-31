@@ -180,11 +180,11 @@ class OCREngine:
                 self._lstm = LSTMReader()
             return self._lstm.recognize_line(image)
 
-    def recognize_neural(self, image, *, limit=1600, dewarp=False):
+    def recognize_neural(self, image, *, limit=1600, dewarp=False, tiles=False):
         with self._lock:
             if self._neural is None:
                 self._neural = NeuralReader()
-            return self._neural.recognize(image, limit=limit, dewarp=dewarp)
+            return self._neural.recognize(image, limit=limit, dewarp=dewarp, tiles=tiles)
 
     def prepare_neural(self):
         with self._lock:
@@ -217,6 +217,7 @@ class NeuralReader:
             try:
                 import onnxruntime as ort
                 import yaml
+                ort.disable_telemetry_events()
             except ImportError:
                 return OCRResult("dependency_error", message="새 한국어 OCR 도구를 설치하려면 setup_windows.bat을 한 번 실행해 주세요.")
             try:
@@ -257,6 +258,32 @@ class NeuralReader:
                 confidence.append(float(score))
             previous = index
         return unicodedata.normalize("NFC", "".join(text)), sum(confidence) / max(1, len(confidence))
+
+    def read_tiled(self, bgr):
+        """긴 곡면 줄은 겹치는 짧은 창으로 재인식한다. 겹침이 검증되지 않으면 원래 줄 유지."""
+        height, width = bgr.shape[:2]
+        if width <= height * 18:
+            return self.read_line(bgr)
+        window = max(128, round(height * 14))
+        overlap = max(48, round(height * 4))
+        starts = list(range(0, max(1, width-window+1), window-overlap))
+        if starts[-1] + window < width:
+            starts.append(width-window)
+        joined, confidence = "", []
+        for start in starts:
+            text, score = self.read_line(bgr[:, start:min(width,start+window)])
+            if not text:
+                return self.read_line(bgr)
+            if not joined:
+                joined = text
+            else:
+                # 같은 사진 픽셀의 겹침에서 나온 정확히 같은 문자열만 한 번 남긴다.
+                matches = [n for n in range(3,min(len(joined),len(text),64)+1) if joined.endswith(text[:n])]
+                if not matches:
+                    return self.read_line(bgr)
+                joined += text[max(matches):]
+            confidence.append(score)
+        return joined, sum(confidence)/len(confidence)
 
     def detect(self, bgr, limit):
         import cv2
@@ -324,7 +351,7 @@ class NeuralReader:
         my = center[None] + np.linspace(-half, half, height_out, dtype=np.float32)[:, None]
         return cv2.remap(cropped, mx, my, cv2.INTER_CUBIC, borderMode=cv2.BORDER_REPLICATE)
 
-    def recognize(self, image, *, limit=1600, dewarp=False):
+    def recognize(self, image, *, limit=1600, dewarp=False, tiles=False):
         import cv2
         with self._lock:
             prepared = self.prepare()
@@ -334,9 +361,24 @@ class NeuralReader:
                 bgr = cv2.cvtColor(np.asarray(image.convert("RGB")), cv2.COLOR_RGB2BGR)
                 output = []
                 for box, contour in self.detect(bgr, limit):
-                    text, confidence = self.read_line(self.crop_line(bgr, box, contour, dewarp))
+                    patch = self.crop_line(bgr, box, contour, dewarp)
+                    text, confidence = self.read_tiled(patch) if tiles else self.read_line(patch)
                     if text.strip() and confidence >= .3:
                         output.append((box.tolist(), text, min(1., confidence)))
-                return parse_output(output)
+                parsed = parse_output(output)
+                slopes = []
+                for box, _, _ in output:
+                    a, b, _, d = np.asarray(box)
+                    if np.linalg.norm(b-a) > 4*np.linalg.norm(d-a):
+                        angle = math.atan2(b[1]-a[1], b[0]-a[0])
+                        if abs(angle) < math.radians(40):
+                            slopes.append(angle)
+                if len(slopes) >= 3:
+                    angle = median(slopes)
+                    cosine, sine = math.cos(angle), math.sin(angle)
+                    projected = [OCRBlock(b.raw_text, tuple((x*cosine+y*sine,-x*sine+y*cosine) for x,y in b.bbox), b.confidence, b.source_index) for b in parsed.blocks]
+                    lines = tuple(_row_lines(projected))
+                    return OCRResult(parsed.status, "\n".join(line.raw_text for line in lines), parsed.blocks, lines)
+                return parsed
             except Exception as exc:
                 return OCRResult("execution_error", message=f"한국어 줄 인식 실패 ({type(exc).__name__}). 다시 촬영하거나 직접 입력해 주세요.")

@@ -238,7 +238,7 @@ def _preferred_label(ocr):
     from core.ingredient_text import heading_span, section_end_span
     import re
     korean = next((i for i, line in enumerate(ocr.lines)
-                   if heading_span(line.raw_text) and re.search(r"전\s*성", line.raw_text)), None)
+                   if heading_span(line.raw_text) and re.search(r"(?:전\s*)?성\s*[분문본부]", line.raw_text)), None)
     if korean is None:
         return ocr
     lines = []
@@ -286,6 +286,10 @@ def _scan_neural(image, engine, database, progress):
         upright = upright.rotate(deskew, Image.Resampling.BICUBIC, expand=True, fillcolor="white")
         coarse = engine.recognize_neural(upright, limit=1600)
         passes.append({"stage": "neural_deskew", "degrees": deskew, "ocr": asdict(coarse)})
+    # 원래 화면 전체에서 읽은 경로도 보존한다. 영역 확대 후 검출 조각이
+    # 달라졌다는 이유만으로 원래 잘 읽힌 글자를 버리지 않는다.
+    if abs(deskew) < 3.:
+        coarse = engine.recognize_neural(upright, limit=1600)
     # 성분 영역을 고를 때 한글 목록과 다른 언어 목록을 이어 붙이지 않는다.
     coarse = _preferred_label(coarse)
     region = locate_region(coarse, upright.size, database)
@@ -294,10 +298,14 @@ def _scan_neural(image, engine, database, progress):
         message = "전성분 영역을 찾지 못했습니다. 성분표를 가까이 촬영하거나 성분명을 직접 입력해 주세요."
         return ScanOutput(IngredientScan(status, coarse, passes=tuple(passes), message=message), upright)
     selected_image = upright.crop(region.box)
-    variants = []
-    for label, dewarp in (("원근 보정 줄 인식", False), ("검출 윤곽 곡면 보정", True)):
+    left, top, _, _ = region.box
+    mapped = replace(coarse, blocks=tuple(replace(b, bbox=tuple((x-left,y-top) for x,y in b.bbox)) for b in coarse.blocks))
+    initial_score, initial_drafts, initial_fraction = _neural_score(mapped, database)
+    variants = [(initial_score, "전체 화면의 원본 줄 인식", mapped, initial_drafts, initial_fraction)]
+    passes.append({"stage":"neural_region", "variant":"전체 화면의 원본 줄 인식", "selection_score":initial_score, "ocr":asdict(mapped)})
+    for label, dewarp, tiles in (("원근 보정 줄 인식", False, False), ("검출 윤곽 곡면 보정", True, False), ("겹침 검증 짧은 줄 인식", True, True)):
         report(f"원본 해상도로 성분표를 읽고 있습니다 · {label}")
-        ocr = _preferred_label(engine.recognize_neural(selected_image, limit=1600, dewarp=dewarp))
+        ocr = _preferred_label(engine.recognize_neural(selected_image, limit=1600, dewarp=dewarp, tiles=tiles))
         score, drafts, fraction = _neural_score(ocr, database)
         variants.append((score, label, ocr, drafts, fraction))
         passes.append({"stage": "neural_region", "variant": label, "selection_score": score, "ocr": asdict(ocr)})
