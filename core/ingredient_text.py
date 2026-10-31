@@ -119,8 +119,11 @@ def _spelling_eligible(query,target,score):
     if len(query)>=5 and score>=80 and distance==1:
         return True
     jamo=Levenshtein.distance(unicodedata.normalize("NFD",query),unicodedata.normalize("NFD",target))
-    return ((len(query)>=3 and score>=60 and distance==1 and jamo==1)
-            or (len(query)>=8 and score>=80 and distance<=2 and jamo<=2))
+    short_hangul = bool(re.fullmatch(r"[가-힣]{3,7}",query) and re.fullmatch(r"[가-힣]{3,7}",target))
+    non_hangul = lambda text: re.sub(r"[가-힣ㄱ-ㅣ\u1100-\u11ff]", "", text)
+    return ((short_hangul and score>=60 and distance==1 and jamo==1)
+            or (len(query)>=8 and score>=80 and distance<=2 and jamo<=2
+                and non_hangul(query)==non_hangul(target)))
 
 
 def _can_propose_spelling(raw: str, match) -> bool:
