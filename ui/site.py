@@ -103,74 +103,79 @@ def render_result(result) -> None:
         st.warning(f"분석할 성분을 식별하지 못했습니다. {len(result.automatic_decisions)}개 항목을 제외했습니다. 사진을 다시 올리거나 목록을 수정해 주세요." if result.automatic else "분석할 성분이 없습니다.")
         return
     with st.container(key="results"):
-        st.html('<div id="results" class="result-heading"><p class="eyebrow">내 성분 리포트</p></div>')
-        st.subheader("성분 분석 결과")
-        st.caption("분석에 포함한 성분만의 결과입니다. 사진·입력을 바꾸면 이전 결과를 지웁니다.")
-        if result.automatic:
-            excluded = sum(not d.selected_name for d in result.automatic_decisions)
-            estimated = sum(bool(d.selected_name) and d.reason != "DB 이름 일치" for d in result.automatic_decisions)
-            st.caption(f"이름 자동 추정 {estimated}개 · 미식별 제외 {excluded}개. 비율은 제외 후 중복을 뺀 성분 수 기준이며 전체 성분표의 비율이 아닐 수 있습니다.")
+        st.html('<div id="results" class="panel-label report-heading"><span>03</span><h2>성분 분석 결과</h2><em class="report-status">분석 완료</em></div>')
+        excluded = sum(not d.selected_name for d in result.automatic_decisions)
+        estimated = sum(row.detail_is_estimate for row in result.rows)
+        st.html(f'<div class="report-stats"><div><span>분석한 성분</span><strong>{len(result.rows)}<small>개</small></strong></div><div><span>유래 추정 포함</span><strong>{estimated}<small>개</small></strong></div><div><span>미식별 제외</span><strong>{excluded}<small>개</small></strong></div></div>')
+        st.caption("중복을 뺀 성분명 개수 기준입니다. 제외된 항목은 비율에 포함하지 않으며, 사진·입력을 바꾸면 결과를 새로 만듭니다.")
         with st.container(key="ratio-card"):
+            st.html('<div class="report-section-heading"><span>OVERVIEW</span><h3>원료 유래 한눈에 보기</h3></div>')
             visual, summary = st.columns([1, 1.1], gap="large", vertical_alignment="center")
             with visual:
                 render_chart(visible_ratio(result))
             with summary:
                 ratio_summary(visible_ratio(result))
-        ingredients, chemistry_tab, cautions_tab, evidence = st.tabs(["성분 목록", "화학 분석", "주의 정보", "자료 안내"])
-        with ingredients:
-            if result.detail_count_ratio:
-                st.info("7분류에는 이름 규칙 기반 추정이 포함됩니다. ‘(추정)’은 제조사의 실제 원료를 확인한 결과가 아닙니다. 합성은 석유계와 같은 뜻이 아닙니다.")
-            st.caption("성분을 유래별로 묶었습니다. 각 묶음 안에서는 원래 목록 순서를 유지합니다.")
-            for origin, rows in ingredient_groups(result):
-                st.subheader(f"{origin} · {len(rows)}개")
-                if origin == "확인 필요" and rows:
-                    reasons = {"origin_uncertain": "제조 원료 공급원 확인 필요",
-                               "evidence_insufficient": "이름은 등록됐지만 유래 근거 부족",
-                               "db_missing": "DB 미등록", "name_unresolved": "이름 대조 미확정"}
-                    st.caption(" · ".join(f"{label} {sum(r.uncertainty_reason == code for r in rows)}개"
-                                          for code, label in reasons.items()
-                                          if any(r.uncertainty_reason == code for r in rows)))
-                if rows:
+        with st.container(key="result-details"):
+            ingredients, chemistry_tab, cautions_tab, evidence = st.tabs(["성분 목록", "화학 분석", "주의 정보", "자료 안내"])
+            with ingredients:
+                st.html('<div class="report-section-heading"><span>INGREDIENTS</span><h3>유래별 성분 목록</h3></div>')
+                st.caption("성분을 유래별로 묶었습니다. 각 묶음 안에서는 원래 목록 순서를 유지합니다.")
+                if result.detail_count_ratio:
+                    st.html('<div class="report-note"><strong>추정 표시를 확인해 주세요</strong><p>7분류에는 이름 기반 추정이 포함됩니다. 제조사의 실제 원료를 확인한 결과는 아니며, 합성이 모두 석유계라는 뜻은 아닙니다.</p></div>')
+                for index, (origin, rows) in enumerate(ingredient_groups(result)):
+                    if not rows:
+                        continue
+                    with st.container(key=f"ingredient-group-{index}"):
+                        st.subheader(f"{origin} · {len(rows)}개")
+                        st.dataframe([{
+                            "성분": row.canonical_name, "유래": origin_label(row), "기능": ", ".join(row.functions) or "자료 없음",
+                        } for row in rows], hide_index=True, width="stretch")
+                routes = [row for row in result.rows if row.reason.startswith("[제조 경로 참고]")]
+                if routes:
+                    with st.expander("식물성일까, 석유계일까? · 제조 경로 참고"):
+                        st.caption("같은 성분도 제조 원료가 달라질 수 있습니다. 아래는 과거에 기록된 가능한 제조법이며 내 제품의 유래 판정은 아닙니다.")
+                        for row in routes:
+                            st.markdown(f"**{row.canonical_name}**")
+                            st.write(row.reason.removeprefix("[제조 경로 참고] "))
+                            st.link_button("제조 경로 원문", row.source_url)
+            with chemistry_tab:
+                render_chemistry_panel(result)
+            with cautions_tab:
+                st.html('<div class="report-section-heading"><span>CAUTIONS</span><h3>성분별 주의와 검토사항</h3></div>')
+                st.caption("제품 전체의 안전성이나 환경성을 판정한 결과는 아닙니다. 개별 자료의 적용 조건을 함께 확인하세요.")
+                with st.expander("먼저 알아둘 점 · pH, 인체·환경 영향"):
+                    for label, description in review_notes(result):
+                        st.markdown(f"**{label}**")
+                        st.write(description)
+                render_cautions(result)
+            with evidence:
+                st.html('<div class="report-section-heading"><span>SOURCES</span><h3>분석에 사용한 자료</h3></div>')
+                st.caption("자동 선택 기록과 유래 근거를 확인할 수 있습니다. 일부 근거는 2019년 자료이며 최신 규제·안전성 검토를 대신하지 않습니다.")
+                if result.automatic_decisions:
+                    with st.expander("자동 선택·제외 내역"):
+                        st.dataframe([{"원문": d.draft.raw_text, "선택": d.selected_name or "제외", "처리": d.reason} for d in result.automatic_decisions], hide_index=True, width="stretch")
+                with st.expander("성분별 근거·출처 확인", expanded=True):
                     st.dataframe([{
-                        "성분": row.canonical_name, "유래": origin_label(row), "기능": ", ".join(row.functions),
-                    } for row in rows], hide_index=True, width="stretch")
-                else:
-                    st.caption("해당 성분 없음")
-            routes = [row for row in result.rows if row.reason.startswith("[제조 경로 참고]")]
-            if routes:
-                with st.expander("식물성일까, 석유계일까? · 제조 경로 참고"):
-                    st.caption("같은 성분도 제조 원료가 달라질 수 있습니다. 아래는 과거에 기록된 가능한 제조법이며 내 제품의 유래 판정은 아닙니다.")
-                    for row in routes:
-                        st.markdown(f"**{row.canonical_name}**")
-                        st.write(row.reason.removeprefix("[제조 경로 참고] "))
-                        st.link_button("제조 경로 원문", row.source_url)
-        with chemistry_tab:
-            render_chemistry_panel(result)
-        with cautions_tab:
-            for label, description in review_notes(result):
-                st.warning(f"{label}\n\n{description}")
-            render_cautions(result)
-        with evidence:
-            with st.expander("자동 선택·제외 내역"):
-                st.dataframe([{ "원문": d.draft.raw_text, "선택": d.selected_name or "제외", "처리": d.reason } for d in result.automatic_decisions], hide_index=True)
-            st.write("확인이 필요한 이유와 원문 출처")
-            st.dataframe([{
-                "성분": row.canonical_name, "확인 필요 원인": row.uncertainty_reason,
-                "근거": row.reason, "출처": row.source_url, "확인일": row.checked_on,
-                "7분류": origin_label(row), "7분류 검토 수준": row.detail_confidence,
-                "7분류 근거": row.detail_reason, "7분류 자료 출처": row.detail_source_url,
-            } for row in result.rows], hide_index=True, width="stretch")
-            st.caption("일부 근거는 2019년 자료입니다. 최신 규제·안전성 검토를 대신하지 않으며, 이름 등재만으로 유래·사용 허용을 판단하지 않습니다.")
+                        "성분": row.canonical_name, "확인 필요 원인": row.uncertainty_reason,
+                        "근거": row.reason, "출처": row.source_url, "확인일": row.checked_on,
+                        "7분류": origin_label(row), "7분류 검토 수준": row.detail_confidence,
+                        "7분류 근거": row.detail_reason, "7분류 자료 출처": row.detail_source_url,
+                    } for row in result.rows], hide_index=True, width="stretch")
         signature = digest(asdict(result))
         try:
             cached = st.session_state.get("pdf_export")
             if cached is None or cached["signature"] != signature:
                 cached = {"signature": signature, "data": build_pdf(result)}
                 st.session_state.pdf_export = cached
-            st.download_button("PDF 분석 리포트 저장", cached["data"],
-                               file_name="ingredient-analysis.pdf", mime="application/pdf",
-                               icon=":material/download:", key="analysis_pdf", on_click="ignore")
-            st.caption("그래프·유래별 성분표·평가 한계·출처를 함께 저장합니다. 사진과 인식 원문은 PDF에 자동 첨부하지 않습니다.")
+            with st.container(key="report-download"):
+                description, download = st.columns([1.4, 1], gap="medium", vertical_alignment="center")
+                with description:
+                    st.html('<div class="download-copy"><span>내 성분 리포트</span><strong>결과를 PDF로 간직하세요.</strong><p>그래프 · 성분표 · 주의사항 · 출처</p></div>')
+                with download:
+                    st.download_button("PDF 분석 리포트 저장", cached["data"],
+                                       file_name="ingredient-analysis.pdf", mime="application/pdf",
+                                       icon=":material/download:", key="analysis_pdf", on_click="ignore", width="stretch")
+                st.caption("사진과 인식 원문은 PDF에 자동 첨부하지 않습니다.")
         except ImportError:
             st.error("PDF 저장 기능의 추가 설치가 필요합니다. setup_windows.bat을 한 번 실행한 뒤 앱을 다시 시작해 주세요.")
         except Exception:

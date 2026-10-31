@@ -206,7 +206,7 @@ def render_chemistry_panel(result) -> None:
         st.info('분석할 성분이 없습니다.')
         return
     known = [name for name in names if chemical_info(name)]
-    st.subheader('🌱 화학 성분 분석')
+    st.html('<div class="report-section-heading"><span>CHEMISTRY</span><h3>성분의 화학적 특성</h3></div>')
     st.caption('통합과학에서 배우는 화학식·구성 원소·산과 염기의 성질을 살펴봅니다. 단일 화학식이 명확한 일부 성분만 제공해요.')
     if not known:
         st.info('등록된 화학 정보가 없습니다. 아래에서 성분을 선택해 PubChem 화학식을 조회할 수 있습니다.')
@@ -229,9 +229,10 @@ def render_chemistry_panel(result) -> None:
             formula = saved[2]['formula']
             st.caption('PubChem 조회 결과 · ' + saved[2]['url'] + ' · 성분명과 물질의 동일성은 별도 확인이 필요합니다.')
 
-    first, second = st.tabs(['구성 원소', '산·염기 특성'])
-    with first:
-        st.markdown(f'**{selected}** · 화학식: **{formula or "단일 화학식 없음"}**')
+    first, second = st.columns(2, gap='medium')
+    with first, st.container(key='chemical-composition'):
+        st.markdown('**구성 원소**')
+        st.metric('화학식', formula or '단일 화학식 없음')
         if formula:
             try:
                 counts = element_counts(formula)
@@ -243,7 +244,8 @@ def render_chemistry_panel(result) -> None:
             else:
                 st.caption('이 화학식은 현재 원자 개수 자동 계산 형식에 맞지 않습니다.')
         st.caption('화학식에 나타난 분자 1개(또는 화학식 단위 1개)의 원자 개수입니다. 제품 속 함량은 알 수 없습니다.')
-    with second:
+    with second, st.container(key='chemical-properties'):
+        st.markdown('**산·염기 특성**')
         if acid_base:
             st.markdown(f'**{selected}: {acid_base}**')
             st.write(role.rstrip('.') + '.')
