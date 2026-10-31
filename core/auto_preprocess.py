@@ -224,3 +224,147 @@ def curved_text_variant(image: Image.Image, text_height: float) -> tuple[Image.I
         "horizontal_hypothesis_radians": theta,
         "note": "제한된 곡면 보정 가설이며 실제 측정 기하나 정답 확률이 아닙니다.",
     }
+
+
+def rectified_text_rows(image: Image.Image, text_height: float, theta: float = 0.0):
+    """검출 영역의 인쇄 줄을 각각 추적해 편다. 원본 좌표는 추적 정보에 남긴다."""
+    rgb=np.asarray(image.convert('RGB'));height,width=rgb.shape[:2]
+    if min(height,width)<24 or not 0<=theta<=1.1:
+        raise ValueError('줄 보정 입력 범위를 확인해 주세요.')
+    gray=cv2.cvtColor(rgb,cv2.COLOR_RGB2GRAY)
+    if np.median(gray)<100:gray=255-gray
+    nominal=float(np.clip(text_height,12,height/2))
+    block=max(15,int(nominal*1.5)|1)
+    ink=255-cv2.adaptiveThreshold(gray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,block,13)
+    count,labels,stats,_=cv2.connectedComponentsWithStats(ink,8)
+    character_heights=[]
+    for _,_,w,h,area in stats[1:]:
+        if max(6,nominal*.2)<=h<=nominal*1.6 and 2<=w<=nominal*2 and area>=8:
+            character_heights.append(h)
+    char_height=float(median(character_heights)) if len(character_heights)>=12 else nominal*.6
+    char_height=max(char_height,nominal*.5)
+    centers=np.linspace(.04,.96,25)
+    profiles=[]
+    for center in centers:
+        x=round(center*(width-1));half=max(4,width//30)
+        profile=ink[:,max(0,x-half):min(width,x+half+1)].mean(axis=1).astype(np.float32)
+        sigma=max(1,char_height*.08)
+        profiles.append(cv2.GaussianBlur(profile.reshape(-1,1),(1,0),sigmaY=sigma,sigmaX=0).ravel())
+    def peaks(profile):
+        distance=max(9,int(char_height*.9))
+        maxima=cv2.dilate(profile.reshape(-1,1),np.ones((distance*2+1,1),np.uint8)).ravel()
+        found=np.flatnonzero((profile>=maxima-.01)&(profile>max(3,profile.max()*.18)))
+        selected=[]
+        for point in sorted(found,key=lambda p:-profile[p]):
+            if all(abs(point-other)>=distance for other in selected):selected.append(int(point))
+        return sorted(selected)
+    options=[]
+    for i in range(25):
+        found=peaks(profiles[i]);intervals=np.diff(found)
+        irregularity=float(np.std(intervals)/max(1,np.mean(intervals))) if len(intervals) else 1.
+        options.append((len(found)-abs(centers[i]-.5)*.3-irregularity*3,i,found))
+    _,reference,seeds=max(options)
+    if not 2<=len(seeds)<=30:
+        raise ValueError('독립된 인쇄 줄을 충분히 추적하지 못했습니다.')
+    pitch=float(median(np.diff(seeds)))
+    if pitch<char_height*1.05:
+        raise ValueError('글자 획과 인쇄 줄을 구분하지 못했습니다.')
+    char_height=max(char_height,pitch*.58)
+    def centroid(profile,point):
+        radius=max(5,round(pitch*.40));a=max(0,round(point)-radius);b=min(height,round(point)+radius+1)
+        values=np.maximum(profile[a:b]-max(1,float(profile.max())*.08),0)
+        return float(np.dot(np.arange(a,b),values)/values.sum()) if values.sum()>1 else float(point)
+    fits=[];traces=[]
+    for seed in seeds:
+        points={reference:centroid(profiles[reference],seed)}
+        for step in (-1,1):
+            previous=points[reference];before=previous
+            for i in range(reference+step,25 if step==1 else -1,step):
+                prediction=previous+np.clip(previous-before,-pitch*.18,pitch*.18)
+                radius=round(pitch*.30);a=max(0,round(prediction)-radius);b=min(height,round(prediction)+radius+1)
+                values=profiles[i][a:b]
+                if len(values)==0 or values.max()<max(3,profiles[i].max()*.12):continue
+                score=values/max(1,float(values.max()))-abs(np.arange(a,b)-prediction)/pitch*.8
+                point=centroid(profiles[i],a+int(np.argmax(score)))
+                if abs(point-previous)>pitch*.42:continue
+                points[i]=point;before,previous=previous,point
+        xs=np.array([centers[i]*2-1 for i in points]);ys=np.array(list(points.values()))
+        degree=2 if len(points)>=8 and np.ptp(xs)>=.5 else 1 if len(points)>=3 else 0
+        fit=np.polyfit(xs,ys,degree)
+        for _ in range(2):
+            residual=abs(np.polyval(fit,xs)-ys);keep=residual<max(3,pitch*.16)
+            if keep.sum()<max(3,degree+2):break
+            fit=np.polyfit(xs[keep],ys[keep],degree)
+        error=float(np.sqrt(np.mean((np.polyval(fit,xs)-ys)**2)))
+        if error>pitch*.22:continue
+        fits.append(fit);traces.append({'seed':int(seed),'support':len(points),'rms_pixels':error,'coefficients':fit.tolist(),'horizontal_support_range':[float(xs.min()),float(xs.max())]})
+    if len(fits)<2 or len(fits)<len(seeds)*.8:
+        raise ValueError('줄 추적이 불완전해 원래 인식 경로를 유지합니다.')
+    # 한 글자 안의 획 두 개가 별도 줄의 씨앗으로 잡혔어도 추적 결과가 같은 줄이면 합친다.
+    unique_fits, unique_traces = [], []
+    sample_x = np.linspace(-.9, .9, 31)
+    for fit, trace in zip(fits, traces):
+        if unique_fits:
+            previous = np.polyval(unique_fits[-1], np.clip(sample_x, *unique_traces[-1]['horizontal_support_range']))
+            current = np.polyval(fit, np.clip(sample_x, *trace['horizontal_support_range']))
+            if np.median(abs(current-previous)) < pitch*.45 and np.max(abs(current-previous)) < pitch*.8:
+                if trace['rms_pixels'] < unique_traces[-1]['rms_pixels']:
+                    unique_fits[-1], unique_traces[-1] = fit, trace
+                continue
+        unique_fits.append(fit); unique_traces.append(trace)
+    fits, traces = unique_fits, unique_traces
+    if len(fits)<2:
+        raise ValueError('독립된 인쇄 줄을 충분히 추적하지 못했습니다.')
+    pitch=float(median(np.diff([np.polyval(f,np.clip(0,*t['horizontal_support_range'])) for f,t in zip(fits,traces)])))
+    char_height=max(char_height,pitch*.58)
+    # 이웃 줄 사이의 범위에서 글자 중심을 다시 구한다. 획의 봉우리를 기준선으로 오인하지 않는다.
+    sample_u=centers*2-1
+    for iteration in range(2):
+        predicted=np.array([np.polyval(f,np.clip(sample_u,*t['horizontal_support_range'])) for f,t in zip(fits,traces)])
+        refined=[]
+        for i,(fit,trace) in enumerate(zip(fits,traces)):
+            xs,ys=[],[]
+            for j,profile in enumerate(profiles):
+                if not trace['horizontal_support_range'][0]-.04<=sample_u[j]<=trace['horizontal_support_range'][1]+.04:continue
+                before=predicted[i,j]-predicted[i-1,j] if i else predicted[1,j]-predicted[0,j]
+                after=predicted[i+1,j]-predicted[i,j] if i+1<len(fits) else before
+                a=max(0,round(predicted[i,j]-before*.48));b=min(height,round(predicted[i,j]+after*.48)+1)
+                values=profile[a:b]
+                if len(values)==0 or values.max()<max(3,profile.max()*.12):continue
+                values=np.maximum(values-max(1,float(values.max())*.08),0)
+                if values.sum()<=1:continue
+                xs.append(sample_u[j]);ys.append(float(np.dot(np.arange(a,b),values)/values.sum()))
+            if xs:
+                degree=4 if len(xs)>=15 and np.ptp(xs)>=1.2 else 2 if len(xs)>=8 else 1 if len(xs)>=3 else 0
+                fit=np.polyfit(xs,ys,degree)
+                trace={**trace,'coefficients':fit.tolist(),'support':len(xs),
+                       'horizontal_support_range':[float(min(xs)),float(max(xs))],
+                       'rms_pixels':float(np.sqrt(np.mean((np.polyval(fit,xs)-ys)**2)))}
+            refined.append((fit,trace))
+        fits=[item[0] for item in refined];traces=[item[1] for item in refined]
+    x=np.arange(width,dtype=np.float32);u=x/max(1,width-1)*2-1
+    source_u=np.sin(u*theta)/math.sin(theta) if theta else u
+    source_x=(source_u+1)*.5*(width-1)
+    baselines=np.array([np.polyval(fit,np.clip(source_u,*trace['horizontal_support_range'])) for fit,trace in zip(fits,traces)])
+    gaps=np.diff(baselines,axis=0)
+    if gaps.min()<pitch*.35:
+        raise ValueError('추적한 줄들이 겹쳐 원래 인식 경로를 유지합니다.')
+    row_height=max(17,round(pitch*.92))
+    rows=[]
+    for i,baseline in enumerate(baselines):
+        upper=gaps[i-1] if i else gaps[0]
+        lower=gaps[i] if i<len(gaps) else gaps[-1]
+        half=np.clip(np.minimum(upper,lower)*.46,pitch*.30,pitch*.75)
+        source_y=np.linspace(-1,1,row_height,dtype=np.float32)[:,None]*half[None,:]+baseline[None,:]
+        source_x_map=np.broadcast_to(source_x,(row_height,width)).astype(np.float32)
+        m1,m2=cv2.convertMaps(source_x_map,source_y.astype(np.float32),cv2.CV_16SC2)
+        row=cv2.remap(rgb,m1,m2,cv2.INTER_CUBIC,borderMode=cv2.BORDER_CONSTANT,borderValue=(255,255,255))
+        # 글자 가장자리가 영상 경계에 닿지 않게 여백을 둔다.
+        pad=max(6,round(char_height*.25))
+        padded=cv2.copyMakeBorder(row,pad,pad,pad,pad,cv2.BORDER_CONSTANT,value=(255,255,255))
+        scale=min(2.,max(1.,64/row_height),2600/padded.shape[1])
+        patch=Image.fromarray(padded).resize((round(padded.shape[1]*scale),round(padded.shape[0]*scale)),Image.Resampling.LANCZOS)
+        rows.append(patch)
+    return tuple(rows),{'method':'tracked_rows','row_count':len(rows),'pitch':pitch,'character_height':char_height,
+                        'horizontal_hypothesis_radians':theta,'rows_in_source_image':traces,
+                        'note':'글자 줄 추적에 따른 보정 가설이며 실제 원통 반지름이나 정답 확률이 아닙니다.'}

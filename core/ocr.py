@@ -164,6 +164,14 @@ class OCREngine:
             except Exception:
                 return OCRResult("execution_error", message="사진의 글자를 인식하는 중 오류가 발생했습니다. 사진 크기·회전·영역을 조정해 다시 시도하거나 직접 입력해 주세요.", reading_order=reading_order)
 
+    def recognize_line(self, image: Image.Image) -> OCRResult:
+        """선택한 실제 글자 줄/단어를 단일 행 모드로 읽는다. 원문·좌표는 그대로 반환."""
+        with self._lock:
+            if self._lstm is None:
+                from core.lstm_ocr import LSTMReader
+                self._lstm = LSTMReader()
+            return self._lstm.recognize_line(image)
+
     def prepare_accurate(self) -> OCRResult:
         with self._lock:
             if self._lstm is None:

@@ -101,3 +101,9 @@ C가 CONTRACT_VERSION을 올리고 이전 호출을 위한 어댑터·검사를 
 ## Python 실행 환경 변경 (2026-10-31)
 
 기본 실행 환경은 표준 CPython3.14 x64 CPU다. 공개 함수/모델/CSV/CONTRACT_VERSION=1은 유지한다. 설치는 setup_windows.bat이3.14를 선택하고 scripts/setup_windows_env.py가 기존 .venv를 검사한다. 맞는 환경은 재사용하고 다른 버전/손상 환경은 .venv-backups/에 보존한 뒤 새로 만든다. .cache의 모델은 이동하지 않으며 run_windows.bat은 설치를 반복하지 않는다. 기존3.12 환경의 일회성 전환에는 setup을 다시 실행해야 한다. Python3.15는 현재 고정 OCR 의존성의 Windows 배포 파일이 없어 지원 대상으로 지정하지 않는다.
+
+## 인식 파이프라인6과 원문 검토 보존 (2026-10-31)
+
+공개 함수/인자/반환형과 CONTRACT_VERSION=1은 유지한다. 내부 단일 행 인식과 줄별 보정은 기존 processing/passes에 변환과 좌표 정보를 남긴다. bbox는 실제 선택된 영상의 픽셀이며 카메라 원본 좌표로 해석하지 않는다. 선택 영상 크기도 image_size에 일치시킨다.
+
+PIPELINE_VERSION=rows-ensemble-3으로 사진 source_key 및 공유 모델 자원 키를 바꾼다. 같은 사진에 남은 이전 결과/PDF를 재사용하지 않는다. OCR 자동 입력이 그대로일 때는 A의 원문/미확정 초안을 그대로 검토한다. 제안명을 다시 이름 대조해 exact로 바꾸지 않는다. 원문과 후보를 선택할 수 있고 최종 사용자 확인에서만 ConfirmedIngredient를 만든다. 사용자가 입력 목록을 수정하면 기존 prepare_review를 쓴다. 숫자 변경은 유사도·엔진 합의만으로 확정하지 않는다. 사진/원문은 세션에만 두고 공유 캐시에는 모델/DB만 보존한다.

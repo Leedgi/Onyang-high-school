@@ -7,10 +7,10 @@ from PIL import Image
 import cv2
 import numpy as np
 
-from core.auto_preprocess import locate_region, prepare_region, curved_text_variant
+from core.auto_preprocess import locate_region, prepare_region, curved_text_variant, rectified_text_rows
 from core.database import IngredientDatabase
 from core.ingredient_text import ingredient_drafts
-from core.models import IngredientScan, OCRResult
+from core.models import IngredientScan, OCRResult, OCRLine
 from core.normalize import normalize_key
 from core.ocr import OCREngine
 from core.word_refine import refine_words
@@ -27,7 +27,37 @@ def _quality(ocr: OCRResult, database: IngredientDatabase) -> tuple[float, tuple
     drafts = ingredient_drafts(ocr, database)
     exact = sum(draft.status in {"exact", "alias"} for draft in drafts) / max(1, len(drafts))
     confidence = mean(block.confidence for block in ocr.blocks) if ocr.blocks else 0.0
-    return confidence * 0.65 + exact * 0.35, drafts, exact
+    return confidence * 0.4 + exact * 0.6, drafts, exact
+
+
+
+def _read_rows(rows, engine):
+    canvas = Image.new("RGB", (max(row.width for row in rows), sum(row.height + 12 for row in rows)), "white")
+    blocks, lines, offsets = [], [], []
+    cursor = 0
+    for row in rows:
+        result = engine.recognize_line(row)
+        if result.status != "ok" or not result.blocks:
+            return canvas, result, offsets
+        indices = []
+        for block in result.blocks:
+            index = len(blocks)
+            blocks.append(replace(block, source_index=index, bbox=tuple((x, y + cursor) for x, y in block.bbox)))
+            indices.append(index)
+        lines.append(OCRLine(result.raw_text, tuple(indices)))
+        canvas.paste(row, (0, cursor))
+        offsets.append(cursor)
+        cursor += row.height + 12
+    return canvas, OCRResult("ok", "\n".join(line.raw_text for line in lines), tuple(blocks), tuple(lines)), offsets
+
+
+def _known_support(drafts):
+    known = {}
+    for draft in drafts:
+        if draft.candidates and draft.status in {"exact", "alias", "correction_proposed"}:
+            name = draft.candidates[0].name
+            known[name] = max(known.get(name, 0), 1 if draft.status in {"exact", "alias"} else .6)
+    return sum(known.values())
 
 
 def scan_ingredients(image: Image.Image, engine: OCREngine, database: IngredientDatabase,
@@ -62,6 +92,35 @@ def scan_ingredients(image: Image.Image, engine: OCREngine, database: Ingredient
         orientation_passes.append({"rotation": angle, "image_size": rotated.size, "region_method": region.method, "selection_score": score, "ocr": asdict(coarse)})
         if best is None or score > best[0]:
             best = (score, angle, rotated, coarse, region)
+    weak = (best is None or best[4].method == "not_found"
+            or sum(d.status in {"exact", "alias"} for d in ingredient_drafts(best[3], database)) < 3
+            or (best[4].method != "heading" and best[0] < 13))
+    if weak:
+        for fallback_angle in (0, 180, 90, 270):
+            report(f"불명확한 사진 방향을 인쇄 글자 엔진으로 다시 비교하고 있습니다 · {fallback_angle}°")
+            fallback_image = image.rotate(fallback_angle, expand=True)
+            probe = fallback_image.copy()
+            probe.thumbnail((1800, 1800), Image.Resampling.LANCZOS)
+            precise = engine.recognize(probe, "rows", accurate=True)
+            if precise.status in {"model_error", "dependency_error"}:
+                return ScanOutput(IngredientScan(precise.status, precise, message=precise.message), image.copy())
+            if precise.status != "ok":
+                continue
+            if probe.size != fallback_image.size:
+                sx, sy = fallback_image.width/probe.width, fallback_image.height/probe.height
+                precise = replace(precise, blocks=tuple(replace(b, bbox=tuple((x*sx,y*sy) for x,y in b.bbox)) for b in precise.blocks))
+            refined_region = locate_region(precise, fallback_image.size, database)
+            _, refined_drafts, fraction = _quality(precise, database)
+            count = sum(d.status in {"exact", "alias"} for d in refined_drafts)
+            accepted = refined_region.method == "heading" or (count >= 3 and fraction >= .35)
+            score = ((6 if refined_region.method == "heading" else 3) + min(count,30) + fraction*4
+                     + (mean(b.confidence for b in precise.blocks) if precise.blocks else 0.)*2
+                     + min(len(refined_drafts),40)*.05)
+            orientation_passes.append({"stage":"orientation_refine","rotation":fallback_angle,
+                                       "region_method":refined_region.method,"eligible":accepted,
+                                       "selection_score":score,"ocr":asdict(precise)})
+            if accepted and refined_region.method != "not_found" and (best is None or score>best[0]):
+                best=(score,fallback_angle,fallback_image,precise,refined_region)
     if best is None:
         first = orientation_passes[0]["ocr"]
         ocr = OCRResult(first["status"], message=first.get("message", "방향별 인식에 실패했습니다."))
@@ -80,7 +139,7 @@ def scan_ingredients(image: Image.Image, engine: OCREngine, database: Ingredient
         return ScanOutput(IngredientScan("execution_error", coarse, message=message), rotated)
     metadata.update({"rotation": angle, "rotated_size": rotated.size})
     metadata.update({"locator_engine": "EasyOCR / CRAFT", "recognizer_engine": "Tesseract LSTM / tessdata_best"})
-    metadata.update({"pipeline_version": 5, "recognizer_model_revision": LSTM_REVISION})
+    metadata.update({"pipeline_version": 6, "recognizer_model_revision": LSTM_REVISION})
     alternatives = []
     for label, candidate_image in (("확대·기울기 보정", normal), ("국소 조명 보정", enhanced)):
         report(f"성분 영역을 AI로 다시 읽고 있습니다 · {label}")
@@ -91,13 +150,35 @@ def scan_ingredients(image: Image.Image, engine: OCREngine, database: Ingredient
             quality, drafts, coverage = _quality(ocr, database)
             alternatives.append((label, candidate_image, ocr, quality, drafts, coverage))
     successful = [item for item in alternatives if item[2].status == "ok" and item[4]]
+    row_passes = []
+    primary = max(successful, key=lambda item: item[3]) if successful else alternatives[0]
+    if callable(getattr(engine, "recognize_line", None)) and (not successful or primary[5] < .98):
+        for theta in (0.0, .95):
+            label = f"줄별 곡면 보정 {theta:.2f}"
+            report(f"휜 인쇄 줄을 각각 펴서 다시 읽고 있습니다 · {theta:.2f}")
+            try:
+                rows, row_metadata = rectified_text_rows(primary[1], region.text_height * metadata["scale"], theta)
+                canvas, row_ocr, offsets = _read_rows(rows, engine)
+                score, row_drafts, fraction = _quality(row_ocr, database) if row_ocr.status == "ok" else (0., (), 0.)
+                eligible = (row_ocr.status == "ok" and bool(row_drafts)
+                            and len(normalize_key(row_ocr.raw_text)) >= .85 * len(normalize_key(primary[2].raw_text))
+                            and _known_support(row_drafts) >= _known_support(primary[4]))
+                row_passes.append({"stage": "tracked_rows", "variant": label, "processing": row_metadata,
+                                   "row_offsets_in_selected_image": offsets, "eligible": eligible,
+                                   "ocr": asdict(row_ocr), "image_size": canvas.size})
+                if eligible:
+                    alternatives.append((label, canvas, row_ocr, score, row_drafts, fraction))
+            except (ValueError, OSError, cv2.error, np.linalg.LinAlgError) as exc:
+                row_passes.append({"stage": "tracked_rows", "variant": label, "eligible": False,
+                                   "message": str(exc)})
+        successful = [item for item in alternatives if item[2].status == "ok" and item[4]]
     if not successful:
         failed = next((item[2] for item in alternatives if item[2].status not in {"ok", "empty"}), None)
         ocr = failed or alternatives[0][2]
         return ScanOutput(IngredientScan(ocr.status if failed else "empty", ocr, processing=metadata,
                                         warnings=warnings, message=ocr.message or "전성분 영역에서 목록을 읽지 못했습니다. 다시 시도하거나 직접 입력해 주세요."), normal)
     initial_longest = max(len(normalize_key(item[2].raw_text)) for item in successful)
-    best_initial = max(successful, key=lambda item: item[3] * .8 + .2 * len(normalize_key(item[2].raw_text)) / max(1, initial_longest))
+    best_initial = primary if primary[2].status == "ok" and primary[4] else max(successful, key=lambda item: item[3])
     if best_initial[5] < .92:
         report("곡면으로 눌리거나 휜 글자를 제한된 대안 경로로 다시 읽고 있습니다")
         try:
@@ -116,20 +197,32 @@ def scan_ingredients(image: Image.Image, engine: OCREngine, database: Ingredient
                 alternatives.append(("곡면 가설 보정", candidate, curve_ocr, score, curve_drafts, fraction))
         except (ValueError, OSError, cv2.error, np.linalg.LinAlgError):
             warnings = (*warnings, "곡면 대안 보정을 적용하지 못해 원래 보정 경로를 유지했습니다.")
-    longest = max(len(normalize_key(item[2].raw_text)) for item in successful)
+    longest = max(len(normalize_key(item[2].raw_text)) for item in alternatives if item[2].status == "ok")
+    most_known = max(1., max(_known_support(item[4]) for item in alternatives))
     # 한두 개 쉬운 이름만 읽은 경로가 긴 목록을 읽은 경로를 부당하게 이기지 않게 한다.
     alternatives = [(label, candidate_image, result,
-                     score * 0.8 + 0.2 * len(normalize_key(result.raw_text)) / max(1, longest), drafts, fraction)
+                     score * 0.2 + 0.15 * len(normalize_key(result.raw_text)) / max(1, longest) + 0.65 * _known_support(drafts) / most_known, drafts, fraction)
                     for label, candidate_image, result, score, drafts, fraction in alternatives]
     successful = [item for item in alternatives if item[2].status == "ok" and item[4]]
     chosen = max(successful, key=lambda item: item[3])
+    original_paths = [item for item in successful if not item[0].startswith("줄별 곡면")]
+    if original_paths and chosen[0].startswith("줄별 곡면"):
+        reference = max(original_paths, key=lambda item: item[3])
+        if _known_support(chosen[4]) <= _known_support(reference[4]) + .1 and chosen[3] < reference[3] + .015:
+            chosen = reference
     label, selected_image, ocr, quality, drafts, coverage = chosen
     if any(item[2].status not in {"ok", "empty"} for item in alternatives):
         warnings = (*warnings, "일부 재인식 과정이 실패해 성공한 경로만 사용했습니다.")
     metadata["selected_variant"] = label
+    metadata["prepared_region_image_size"] = normal.size
+    metadata["image_size"] = selected_image.size
+    if label.startswith("줄별 곡면"):
+        selected_rows = next(item for item in row_passes if item["variant"] == label)
+        metadata["row_rectification"] = {**selected_rows["processing"], "row_offsets": selected_rows["row_offsets_in_selected_image"],
+                                         "source_coordinate_system": "unrectified prepared region pixels"}
     metadata["selection_note"] = "OCR 점수와 사전 완전 일치를 참고한 경로 선택이며 정답률이 아닙니다."
-    passes = (*orientation_passes, *({"variant": variant, "image_size": variant_image.size, "ocr": asdict(result), "selection_score": score,
-                                   "dictionary_exact_fraction": fraction} for variant, variant_image, result, score, _, fraction in alternatives))
+    passes = (*orientation_passes, *row_passes, *({"variant": variant, "image_size": variant_image.size, "ocr": asdict(result), "selection_score": score,
+                                   "dictionary_exact_fraction": fraction, "known_name_support": _known_support(items)} for variant, variant_image, result, score, items, fraction in alternatives))
     report("줄 사이에서 끊긴 이름과 누락 구분자를 정리해 확인할 목록을 만들고 있습니다")
     drafts, word_passes = refine_words(selected_image, ocr, drafts, engine, database, report)
     metadata["word_reread_count"] = len(word_passes)

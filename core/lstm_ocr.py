@@ -1,5 +1,6 @@
 """인쇄된 한국어 라벨용 로컬 LSTM AI 인식기. Windows wheel에 실행 라이브러리가 포함된다."""
 import hashlib
+from dataclasses import replace
 import math
 from pathlib import Path
 from tempfile import NamedTemporaryFile
@@ -7,7 +8,7 @@ from threading import RLock
 import urllib.request
 
 from core.database import ROOT
-from core.models import OCRResult
+from core.models import OCRResult, OCRLine
 
 REVISION = "e12c65a915945e4c28e237a9b52bc4a8f39a0cec"
 MODEL_HASHES = {
@@ -70,17 +71,18 @@ class LSTMReader:
                 return OCRResult("model_error", message=f"인쇄 글자 AI 모델 준비·검증에 실패했습니다 ({type(exc).__name__}). 인터넷 연결과 저장 공간을 확인하고 설치를 다시 실행해 주세요.")
             return OCRResult("ready")
 
-    def _recognize(self, image, language):
+    def _recognize(self, image, language, single_line=False):
         from core.ocr import parse_output
         api = self._api(language)
         try:
+            api.SetPageSegMode(self._module.PSM.SINGLE_LINE if single_line else self._module.PSM.SINGLE_BLOCK)
             api.SetImage(image.convert("RGB"))
             api.SetSourceResolution(300)
             api.Recognize()
             iterator = api.GetIterator()
             output = []
             if iterator is not None:
-                level = self._module.RIL.TEXTLINE
+                level = self._module.RIL.WORD if single_line else self._module.RIL.TEXTLINE
                 while True:
                     text, box = iterator.GetUTF8Text(level), iterator.BoundingBox(level)
                     if text and text.strip() and box:
@@ -92,23 +94,34 @@ class LSTMReader:
                         output.append(([(x, y), (right, y), (right, bottom), (x, bottom)], text.strip(), confidence))
                     if not iterator.Next(level):
                         break
-            return parse_output(output)
+            result = parse_output(output)
+            if single_line and result.blocks:
+                # 쉼표의 작은 상자가 별도 물리적 줄로 밀리지 않도록 native 단어 순서를 보존한다.
+                line = OCRLine(" ".join(b.raw_text for b in result.blocks), tuple(b.source_index for b in result.blocks))
+                result = replace(result, raw_text=line.raw_text, lines=(line,), suppressed_indices=())
+            return result
         finally:
             # 공유 자원에 마지막 사용자의 사진·인식 결과를 남기지 않는다.
             api.Clear()
 
     def recognize(self, image) -> OCRResult:
+        return self._recognize_checked(image)
+
+    def recognize_line(self, image) -> OCRResult:
+        return self._recognize_checked(image, single_line=True)
+
+    def _recognize_checked(self, image, single_line=False) -> OCRResult:
         with self._lock:
             ready = self.prepare()
             if ready.status != "ready":
                 return ready
             try:
-                korean = self._recognize(image, "kor")
+                korean = self._recognize(image, "kor", single_line)
                 text = korean.raw_text
                 hangul = sum("가" <= char <= "힣" for char in text)
                 letters = sum(char.isalpha() for char in text)
                 if not text or hangul / max(1, letters) < 0.15:
-                    english = self._recognize(image, "eng")
+                    english = self._recognize(image, "eng", single_line)
                     if english.status == "ok":
                         return english
                 return korean
