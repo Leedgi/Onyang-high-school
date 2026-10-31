@@ -227,6 +227,4 @@ def scan_ingredients(image: Image.Image, engine: OCREngine, database: Ingredient
     drafts, word_passes = refine_words(selected_image, ocr, drafts, engine, database, report)
     metadata["word_reread_count"] = len(word_passes)
     passes = (*passes, *word_passes)
-    if any(item["ocr"]["status"] not in {"ok", "empty"} for item in word_passes):
-        warnings = (*warnings, "일부 단어 재인식이 실패한 항목은 원문과 확인 필요 상태를 유지했습니다.")
     return ScanOutput(IngredientScan("ok", ocr, drafts, metadata, tuple(passes), warnings), selected_image)
