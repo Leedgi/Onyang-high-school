@@ -19,7 +19,7 @@
 4. `scripts/bootstrap_branches.py`로 같은 초기 main에서 A feature/a-recognition, B feature/b-analysis,
    C feature/c-web을 준비한다. 세 작업은 독립된 Codex 체크아웃이나 clone에서 진행한다.
    파일을 나눠도 한 폴더에서 동시에 git switch하면 안 된다. 브랜치가 자동 동기화되는 것도 아니다.
-5. 실행 환경은 Windows 10/11 x64, Python 3.12 CPU를 우선한다. Linux 클라우드에서 검사했다면 그 사실을 구분한다.
+5. 실행 환경은 Windows 10/11 x64, Python 3.14 CPU를 우선한다. Linux 클라우드에서 검사했다면 그 사실을 구분한다.
    setup_windows.bat → run_windows.bat으로 시작하게 하고, 최초 의존성·모델 설치 외에는 반복 설치를 요구하지 않는다.
 6. 최소 사이트의 업로드 자동 인식·후처리·목록 확인·분석·그래프를 실행해 본다. tests와 서버 검사,
    가능하면 실제 CPU OCR 검사를 수행한다. 테스트용 입력을 실제 제품 인식 결과처럼 보여주지 않는다.

@@ -28,7 +28,7 @@
 4. `scripts/bootstrap_branches.py`로 같은 초기 main에서 A feature/a-recognition, B feature/b-analysis,
    C feature/c-web을 준비한다. 세 작업은 독립된 Codex 체크아웃이나 clone에서 진행한다.
    파일을 나눠도 한 폴더에서 동시에 git switch하면 안 된다. 브랜치가 자동 동기화되는 것도 아니다.
-5. 실행 환경은 Windows 10/11 x64, Python 3.12 CPU를 우선한다. Linux 클라우드에서 검사했다면 그 사실을 구분한다.
+5. 실행 환경은 Windows 10/11 x64, Python 3.14 CPU를 우선한다. Linux 클라우드에서 검사했다면 그 사실을 구분한다.
    setup_windows.bat → run_windows.bat으로 시작하게 하고, 최초 의존성·모델 설치 외에는 반복 설치를 요구하지 않는다.
 6. 최소 사이트의 업로드 자동 인식·후처리·목록 확인·분석·그래프를 실행해 본다. tests와 서버 검사,
    가능하면 실제 CPU OCR 검사를 수행한다. 테스트용 입력을 실제 제품 인식 결과처럼 보여주지 않는다.
@@ -84,7 +84,7 @@ DB는 270개 대표 성분 + 28,077개 이름 전용 항목이다. 후자는 유
 push 거절 시 fetch·병합·재검사하며 force push하지 않는다. 다른 Codex의 작업이 자동으로 보인다고 가정하지 않는다.
 공통 파일 변경은 docs/changes/역할-제목.md에 요청하고 C가 호환성과 테스트를 포함해 반영한다.
 
-Windows Python 3.12 x64 CPU 실행을 지원한다. Linux 검사를 Windows 실행 성공으로 바꿔 말하지 않는다.
+Windows Python 3.14 x64 CPU 실행을 지원한다. Linux 검사를 Windows 실행 성공으로 바꿔 말하지 않는다.
 작업 후 자기 기능 검사 + 전체 pytest + 서버 검사를 수행한다. OCR 변경은 실제 CPU 모델 검사도 한다.
 사용자 촬영 사진·인공 라벨·주입한 텍스트 오류·모의 OCR 결과를 구분해 보고한다.
 정확도를 보장하거나 실제 열지 않은 사진의 성능을 주장하지 않는다.
