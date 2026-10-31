@@ -21,9 +21,22 @@ from features.recognition import prepare_review, recognize_photo
 from shared.contracts import AnalysisRequest, ConfirmedIngredient, PIPELINE_VERSION, SESSION_DEFAULTS
 
 
-@st.cache_resource
-def get_engine() -> OCREngine:
+@st.cache_resource(max_entries=1)
+def _cached_engine(pipeline_version: str) -> OCREngine:
     return OCREngine()
+
+
+def get_engine() -> OCREngine:
+    return _cached_engine(PIPELINE_VERSION)
+
+
+def visible_review(text, output):
+    # 자동 제안명을 다시 exact로 대조해 미확정 상태를 잃지 않는다.
+    if output is not None and output.result.status == "ok":
+        initial = "\n".join(d.name for d in output.result.ingredients)
+        if text == initial:
+            return output.result.ingredients
+    return prepare_review(text)
 
 
 def digest(value) -> str:
@@ -223,7 +236,7 @@ def main() -> None:
             text = st.text_area("성분 목록 확인·수정", key="input_text", height=180,
                                 placeholder="사진을 올리거나 성분명을 쉼표 또는 줄바꿈으로 구분해 입력하세요.")
             try:
-                drafts = prepare_review(text)
+                drafts = visible_review(text, st.session_state.scan_output)
             except (ValueError, OSError) as exc:
                 clear_result()
                 st.error(f"성분 이름을 대조하지 못했습니다: {exc}")
@@ -239,7 +252,7 @@ def main() -> None:
                 if draft.status in {"exact", "alias"}:
                     names.append(draft.name)
                     continue
-                choices = [draft.name, *(candidate.name for candidate in draft.candidates if candidate.name != draft.name)]
+                choices = list(dict.fromkeys([draft.name, draft.raw_text, *(candidate.name for candidate in draft.candidates)]))
                 chosen = st.selectbox(f"{i + 1}. {draft.raw_text} · 일치하는 이름을 확인해 주세요", choices,
                                       key=f"candidate_{review_signature}_{i}")
                 if draft.candidates:

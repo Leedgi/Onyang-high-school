@@ -15,6 +15,8 @@ if errorlevel 1 goto failed
 if errorlevel 1 goto failed
 ".venv\Scripts\python.exe" -m scripts.check_auto_ocr
 if errorlevel 1 goto failed
+".venv\Scripts\python.exe" -m scripts.check_ocr_geometry
+if errorlevel 1 goto failed
 ".venv\Scripts\python.exe" -m scripts.check_server
 if errorlevel 1 goto failed
 echo All checks passed.
