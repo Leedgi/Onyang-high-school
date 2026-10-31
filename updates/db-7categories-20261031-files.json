@@ -22,7 +22,7 @@
     "data/origin_detail_audit.csv": "d74e98730b0e33e5e0026c60ae2bcd3fd2d1814f204d42201bd426e076928016",
     "data/origin_taxonomy_sources.json": "71c90342bce544ae1a269f5d58c5acd4c435b8cac7fa35b49cbca83f8f6e76f7",
     "scripts/build_origin_data.py": "ac6ad72c20582c0bf9363c52eb94f1d001f5eb533543879d3c424c9942970cf5",
-    "scripts/build_taxonomy_data.py": "27d87348c430b55795b68f6cf4d317bb5553c0f037b389f0a8efd776d89f4e94",
+    "scripts/build_taxonomy_data.py": "271142e78672a984ebb94908d6f5318b5c3b4aa4ddda7fc94f0e12f6dd1ef1c2",
     "shared/contracts.py": "1cb673a760de9aa9bf1bd620c04e197757dbf4096dbac7ffcf66a5b0661fa59a",
     "ui/presentation.py": "4fa7b20e760452d0112dbbc5b6ccba5bd17413e26aa6aae4b6c2dedc666cabc2",
     "ui/reporting.py": "40bdb7f390121117a194edbbfebc9e6f573bf1d1c997a2fc2bf8a8cb4eaa70ab",
