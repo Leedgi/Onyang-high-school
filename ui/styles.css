@@ -130,3 +130,58 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid #
 
 #report { scroll-margin-top:1.5rem; }
 @media(max-width:600px) { .nav-links { gap:.65rem; } .nav-links a:first-child { display:none; } }
+
+/* Restrained accents: citrus against forest, with one clear photo slot. */
+:root { --accent:#d7ed9b; --forest:#173f35; --soft:#edf2e7; }
+.site-nav { border-bottom-color:#d4ddcd; }
+.wordmark .brand-symbol { border-radius:11px 11px 11px 3px; box-shadow:3px 3px 0 var(--accent); }
+.hero-kicker { display:inline-flex; align-items:center; gap:.55rem; padding:.38rem .7rem; margin:0 0 1rem; border:1px solid #d7e0cd; border-radius:30px; background:#edf2e7; color:#476046; font-size:.73rem; font-weight:600; letter-spacing:.015em; }
+.hero-kicker>span { width:6px; height:6px; background:#5f7e3c; border-radius:50%; }
+.st-key-hero h1::after { content:""; display:block; width:60px; height:5px; margin-top:1.1rem; background:var(--accent); border-radius:3px; }
+.primary-link { padding:.7rem .75rem .7rem 1.15rem; border-radius:9px; gap:1.4rem; box-shadow:0 4px 12px #173f3510; }
+.action-arrow { display:grid; place-items:center; width:31px; height:31px; background:var(--accent); color:var(--forest); border-radius:6px; font-size:1.1rem; }
+.primary-link:hover .action-arrow { background:#e5f4bc; }
+.journey { padding:1.2rem 0; }
+.journey li>span { color:#54704a; background:var(--soft); min-width:40px; height:40px; display:grid; place-items:center; border-radius:50%; font-size:1.3rem; }
+.st-key-upload-panel { border-top:3px solid var(--forest); box-shadow:0 6px 24px #213c2510; }
+.single-badge { margin-left:auto; white-space:nowrap; font-size:.7rem; font-weight:650; font-style:normal; color:#3c5a2b; background:var(--accent); border-radius:30px; padding:.3rem .65rem; }
+.st-key-single-photo { background:#f5f7f0; border:1px solid #d5dfca; border-radius:10px; padding:1.3rem; margin:.65rem 0 .2rem; }
+.single-photo-intro { display:flex; align-items:center; gap:1rem; margin-bottom:.35rem; }
+.single-photo-icon { position:relative; display:block; flex-shrink:0; width:38px; height:48px; border:1.5px solid #86a16a; border-radius:5px; background:#fff; }
+.single-photo-icon::before { content:""; position:absolute; inset:7px 5px 14px; border:1px solid #a4b98c; border-radius:2px; }
+.single-photo-icon::after { content:""; position:absolute; width:19px; height:12px; left:8px; top:18px; background:#bdcfa7; clip-path:polygon(0 100%,38% 10%,65% 62%,82% 38%,100% 100%); }
+.single-photo-intro strong { color:var(--ink); font-size:1rem; letter-spacing:-.025em; }
+.single-photo-intro p { color:#63725e; font-size:.78rem; line-height:1.6; margin:.35rem 0 0; }
+.st-key-single-photo [data-testid="stFileUploaderDropzone"] { min-height:0; padding:0; border:0; background:transparent; justify-content:flex-start; }
+.st-key-single-photo [data-testid="stFileUploaderDropzoneInstructions"] { display:none; }
+.st-key-single-photo [data-testid="stFileUploaderDropzone"] button { font-size:0; min-height:42px; border-color:#426846; border-radius:7px; background:#fff; padding:.55rem 1rem; }
+.st-key-single-photo [data-testid="stFileUploaderDropzone"] button * { font-size:0; }
+.st-key-single-photo [data-testid="stFileUploaderDropzone"] button::after { content:"사진 1장 선택"; font-size:.85rem; color:var(--forest); font-weight:600; }
+.st-key-single-photo [data-testid="stFileUploaderDropzone"] button:hover { background:#e8efdf; }
+.upload-help { background:var(--forest); border:0; border-radius:10px; padding:1.4rem 1.6rem; }
+.upload-help .small-label { color:var(--accent); font-size:.72rem; }
+.upload-help h3 { color:#f6f8ef; }
+.upload-help li { color:#e0e9d9; }
+.upload-help li:before { color:var(--accent); }
+.upload-help>p { color:#c7d7c6; border-top:1px solid #ffffff22; padding-top:1rem; }
+.st-key-ratio-card { box-shadow:0 4px 20px #213c2508; border-top:3px solid #c9dbaf; }
+[data-testid="stTabs"] [role="tablist"] { gap:.5rem; padding-bottom:.5rem; }
+[data-testid="stTabs"] [role="tab"] { padding:.55rem .85rem; border-radius:7px; }
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] { background:#e7efdb; }
+.site-footer .footer-brand::after { content:""; display:inline-block; width:7px; height:7px; border-radius:50%; background:#8ea95f; margin:0 0 2px .55rem; }
+@media(max-width:768px) {
+ .hero-kicker { font-size:.68rem; }
+ .single-photo-intro { gap:.7rem; }
+ .st-key-single-photo { padding:1rem; }
+ .single-photo-intro p { font-size:.73rem; }
+ .upload-help { padding:1.15rem; }
+ .upload-help>p { margin-top:.8rem; }
+ .journey li>span { min-width:34px; height:34px; }
+ [data-testid="stTabs"] [role="tablist"] { gap:.2rem; }
+ [data-testid="stTabs"] [role="tab"] { padding:.5rem .65rem; }
+}
+@media(max-width:360px) {
+ .single-badge { font-size:.65rem; padding:.25rem .45rem; }
+ .panel-label { gap:.45rem; }
+ .panel-label h3 { font-size:1rem !important; }
+}
