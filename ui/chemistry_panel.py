@@ -1,5 +1,7 @@
 """고1 통합과학 수준의 성분별 화학 정보 안내. 기존 DB와 독립적이다."""
 import re
+import csv
+from pathlib import Path
 import streamlit as st
 
 # 단일 분자식이 명확한 성분만 수록한다. 혼합물/고분자는 추정하지 않는다.
@@ -78,7 +80,72 @@ CHEMISTRY = {
     '소듐아스코베이트': ('C6H7NaO6', '조건에 따라 약염기성', '아스코르브산의 염으로 수용액의 성질은 조건에 따라 달라짐'),
     '소듐하이알루로네이트': (None, None, '고분자이므로 단일 분자식과 산·염기성을 단정하지 않음'),
 }
-ELEMENTS = {'C': '탄소', 'H': '수소', 'O': '산소', 'N': '질소', 'Na': '나트륨', 'K': '칼륨', 'Zn': '아연', 'Ti': '타이타늄', 'Cl': '염소', 'P': '인'}
+# 영어 INCI 명칭도 동일하게 검색한다. 단일 화학식이 확인된 물질만 기재한다.
+ADDITIONAL_CHEMISTRY = {
+    'AQUA': ('H2O','중성','순수한 물은 25°C에서 중성입니다.'),
+    'WATER': ('H2O','중성','순수한 물은 25°C에서 중성입니다.'),
+    'GLYCERIN': ('C3H8O3','뚜렷한 산·염기성 없음','일반적인 사용 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    'GLYCEROL': ('C3H8O3','뚜렷한 산·염기성 없음','일반적인 사용 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    'CITRIC ACID': ('C6H8O7','산','유기산이며 pH 조절에 사용됩니다.'),
+    'LACTIC ACID': ('C3H6O3','산','유기산이며 pH 조절에 사용됩니다.'),
+    'GLYCOLIC ACID': ('C2H4O3','산','AHA 유기산입니다.'),
+    'SALICYLIC ACID': ('C7H6O3','산','유기산으로 사용 농도와 완제품 pH가 중요합니다.'),
+    'MANDELIC ACID': ('C8H8O3','산','유기산입니다.'),
+    'MALIC ACID': ('C4H6O5','산','유기산입니다.'),
+    'TARTARIC ACID': ('C4H6O6','산','유기산입니다.'),
+    'AZELAIC ACID': ('C9H16O4','산','유기산입니다.'),
+    'SUCCINIC ACID': ('C4H6O4','산','유기산입니다.'),
+    'ASCORBIC ACID': ('C6H8O6','산','아스코르브산입니다.'),
+    'BENZOIC ACID': ('C7H6O2','산','유기산입니다.'),
+    'SORBIC ACID': ('C6H8O2','산','유기산입니다.'),
+    'ACETIC ACID': ('C2H4O2','산','물에 녹으면 약산의 성질을 나타냅니다.'),
+    'PHOSPHORIC ACID': ('H3PO4','산','pH 조절에 사용될 수 있습니다.'),
+    'FUMARIC ACID': ('C4H4O4','산','유기산입니다.'),
+    'SODIUM HYDROXIDE': ('NaOH','염기','강염기로 pH 조절에 쓰입니다.'),
+    'POTASSIUM HYDROXIDE': ('KOH','염기','강염기로 pH 조절에 쓰입니다.'),
+    'TRIETHANOLAMINE': ('C6H15NO3','염기','아민 계열 염기로 pH 조절에 쓰입니다.'),
+    'AMMONIA': ('NH3','염기','수용액에서 염기성입니다.'),
+    'SODIUM BICARBONATE': ('NaHCO3','약염기성','수용액에서 약염기성을 나타냅니다.'),
+    'SODIUM CARBONATE': ('Na2CO3','염기','수용액에서 염기성을 나타냅니다.'),
+    'SODIUM CITRATE': ('C6H5Na3O7','조건에 따라 약염기성','시트르산 염으로 조성과 농도에 따라 달라집니다.'),
+    'SODIUM LACTATE': ('C3H5NaO3','조건에 따라 약염기성','젖산 염으로 조성과 농도에 따라 달라집니다.'),
+    'ETHANOL': ('C2H6O','뚜렷한 산·염기성 없음','일반적인 수용액 조건에서 강한 산·염기로 분류하지 않습니다.'),
+    'PROPANEDIOL': ('C3H8O2','뚜렷한 산·염기성 없음','일반적인 수용액 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    'PROPYLENE GLYCOL': ('C3H8O2','뚜렷한 산·염기성 없음','일반적인 수용액 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    'BUTYLENE GLYCOL': ('C4H10O2','뚜렷한 산·염기성 없음','일반적인 수용액 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    'PENTYLENE GLYCOL': ('C5H12O2','뚜렷한 산·염기성 없음','일반적인 수용액 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    '1,2-HEXANEDIOL': ('C6H14O2','뚜렷한 산·염기성 없음','일반적인 수용액 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    'PHENOXYETHANOL': ('C8H10O2','뚜렷한 산·염기성 없음','일반적인 수용액 조건에서 뚜렷한 산·염기성으로 분류하지 않습니다.'),
+    'NIACINAMIDE': ('C6H6N2O','뚜렷한 산·염기성 없음','완제품 pH는 별도로 측정해야 합니다.'),
+    'PANTHENOL': ('C9H19NO4','뚜렷한 산·염기성 없음','완제품 pH는 별도로 측정해야 합니다.'),
+    'CAFFEINE': ('C8H10N4O2','약염기성 성질','약한 염기성 작용을 할 수 있으나 제품 pH를 의미하지 않습니다.'),
+    'UREA': ('CH4N2O','뚜렷한 산·염기성 없음','완제품 pH는 별도로 측정해야 합니다.'),
+    'SODIUM CHLORIDE': ('NaCl','중성에 가까운 염','순수한 물에 녹인 염화나트륨은 보통 중성에 가깝습니다.'),
+    'ALLANTOIN': ('C4H6N4O3',None,'산·염기성은 배합 조건에 따라 평가해야 합니다.'),
+    'TOCOPHEROL': ('C29H50O2',None,'완제품 pH를 나타내지 않습니다.'),
+    'SODIUM BENZOATE': ('C7H5NaO2','조건에 따라 약염기성','약산의 나트륨염으로 용액 조건에 따라 달라집니다.'),
+    'POTASSIUM SORBATE': ('C6H7KO2','조건에 따라 약염기성','약산의 칼륨염으로 용액 조건에 따라 달라집니다.'),
+    'ZINC OXIDE': ('ZnO','양쪽성 산화물','산과 염기 양쪽과 반응할 수 있는 산화물입니다.'),
+    'TITANIUM DIOXIDE': ('TiO2',None,'불용성 고체의 pH를 성분명만으로 단정하지 않습니다.'),
+    'SODIUM HYALURONATE': (None,None,'고분자이므로 단일 분자식으로 표현하지 않습니다.'),
+}
+CHEMISTRY.update(ADDITIONAL_CHEMISTRY)
+
+def _load_chemistry_additions():
+    """추가 화학 데이터는 별도 CSV에서 읽어 기존 DB를 변경하지 않는다."""
+    path = Path(__file__).resolve().parents[1] / 'data' / 'chemistry_additions.csv'
+    if not path.exists():
+        return
+    with path.open(encoding='utf-8-sig', newline='') as handle:
+        for row in csv.DictReader(handle):
+            name = row['name'].strip()
+            if name and name not in CHEMISTRY:
+                CHEMISTRY[name] = (row['formula'], row['acid_base'], row['description'])
+
+_load_chemistry_additions()
+
+
+ELEMENTS = {'C': '탄소', 'H': '수소', 'O': '산소', 'N': '질소', 'Na': '나트륨', 'K': '칼륨', 'Zn': '아연', 'Ti': '타이타늄', 'Cl': '염소', 'P': '인', 'S': '황', 'Ca': '칼슘', 'Mg': '마그네슘', 'Al': '알루미늄', 'B': '붕소'}
 
 
 def _key(name: str) -> str:
@@ -107,7 +174,7 @@ def element_counts(formula: str) -> dict[str, int]:
 def render_chemistry_panel(result) -> None:
     """기존 AnalysisResult의 성분명만 읽고 DB·분석 결과는 변경하지 않는다."""
     names = list(dict.fromkeys(row.canonical_name for row in result.rows if row.canonical_name))
-    known = [name for name in names if chemical_info(name) and chemical_info(name)[0]]
+    known = [name for name in names if chemical_info(name)]
     st.subheader('🌱 화학 성분 분석')
     st.caption('통합과학에서 배우는 화학식·구성 원소·산과 염기의 성질을 살펴봅니다. 단일 화학식이 명확한 일부 성분만 제공해요.')
     if not known:
@@ -117,9 +184,10 @@ def render_chemistry_panel(result) -> None:
     formula, acid_base, role = chemical_info(selected)
     first, second = st.tabs(['구성 원소', '산·염기 특성'])
     with first:
-        st.markdown(f'**{selected}** · 화학식: **{formula}**')
-        st.dataframe([{'원소 기호': symbol, '원소 이름': ELEMENTS.get(symbol, symbol), '원자 개수': number}
-                      for symbol, number in element_counts(formula).items()], hide_index=True, width='stretch')
+        st.markdown(f'**{selected}** · 화학식: **{formula or "단일 화학식 없음"}**')
+        if formula:
+            st.dataframe([{'원소 기호': symbol, '원소 이름': ELEMENTS.get(symbol, symbol), '원자 개수': number}
+                          for symbol, number in element_counts(formula).items()], hide_index=True, width='stretch')
         st.caption('화학식에 나타난 분자 1개(또는 화학식 단위 1개)의 원자 개수입니다. 제품 속 함량은 알 수 없습니다.')
     with second:
         if acid_base:
