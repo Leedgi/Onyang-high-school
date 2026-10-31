@@ -3,11 +3,11 @@ from dataclasses import dataclass
 from typing import Literal
 
 from core.models import (
-    AnalysisResult, Candidate, ConfirmedIngredient, IngredientDraft, IngredientScan,
+    AnalysisResult, AutomaticDecision, Candidate, ConfirmedIngredient, IngredientDraft, IngredientScan,
 )
 from core.scan import ScanOutput
 
-CONTRACT_VERSION = 2
+CONTRACT_VERSION = 3
 PIPELINE_VERSION = "ppocr-v5-korean-1"
 Mode = Literal["count", "partial", "full"]
 
@@ -17,6 +17,8 @@ class AnalysisRequest:
     # C가 사용자의 최종 확인 뒤에만 생성한다. 후보 검색 결과를 바로 전달하지 않는다.
     ingredients: tuple[ConfirmedIngredient, ...]
     mode: Mode = "count"
+    automatic: bool = False
+    automatic_decisions: tuple[AutomaticDecision, ...] = ()
 
 
 SESSION_DEFAULTS = {

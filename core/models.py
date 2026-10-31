@@ -95,6 +95,14 @@ class IngredientScan:
 
 
 @dataclass(frozen=True)
+class AutomaticDecision:
+    draft: IngredientDraft
+    selected_name: str = ""
+    score: float | None = None
+    reason: str = ""
+
+
+@dataclass(frozen=True)
 class ConfirmedIngredient:
     name: str
     amount: float | None = None
@@ -175,3 +183,5 @@ class AnalysisResult:
     cautions: dict[str, tuple[CautionRecord, ...]] = field(default_factory=dict)
 
     detail_count_ratio: RatioResult | None = None
+    automatic_decisions: tuple[AutomaticDecision, ...] = ()
+    automatic: bool = False
