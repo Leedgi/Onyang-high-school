@@ -96,3 +96,8 @@ C가 CONTRACT_VERSION을 올리고 이전 호출을 위한 어댑터·검사를 
 함수/모델/CSV 열/enum/CONTRACT_VERSION은 유지한다. origin_ingredients.csv는 기존 IngredientRecord 열의 선택적 확장이다. origin_sources.json으로 기본·KCIA·확장·검토 입력 체크섬 및 병합 집계를 검증한다. 기존 origin=확인 필요인 정식명만 보완하고 별칭 변경/확정 유래의 덮어쓰기는 거부한다. 확장이 없는 자료는 이전 동작을 유지한다. 파일 변경은 DB 지문에 반영되고 오류는 이전 result/pdf_export를 지운다.
 
 제조 경로가 여러 개인 항목은 기존 reason의 [제조 경로 참고] 접두사로 설명하며 origin_uncertain을 유지한다. C는 같은 AnalysisResult.rows의 이유를 펼쳐 표시하고 PDF에도 보존한다. 후보 제조 경로를 그래프의 확정 유래에 섞거나 제품 배치 원료로 단정하지 않는다. 추가5,749개는2019 정의 규칙 대조이며 개별 최신 수동 검토와 구분한다. 현재 통합32,797개, 개별검토/정의규칙근거6,143개, 이름전용26,654개다.
+
+
+## Python 실행 환경 변경 (2026-10-31)
+
+기본 실행 환경은 표준 CPython3.14 x64 CPU다. 공개 함수/모델/CSV/CONTRACT_VERSION=1은 유지한다. 설치는 setup_windows.bat이3.14를 선택하고 scripts/setup_windows_env.py가 기존 .venv를 검사한다. 맞는 환경은 재사용하고 다른 버전/손상 환경은 .venv-backups/에 보존한 뒤 새로 만든다. .cache의 모델은 이동하지 않으며 run_windows.bat은 설치를 반복하지 않는다. 기존3.12 환경의 일회성 전환에는 setup을 다시 실행해야 한다. Python3.15는 현재 고정 OCR 의존성의 Windows 배포 파일이 없어 지원 대상으로 지정하지 않는다.

@@ -10,3 +10,6 @@ artifacts/
 
 # Local user error reports (never commit)
 reports/
+
+# Preserved environments from Python version upgrades
+.venv-backups/

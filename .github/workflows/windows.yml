@@ -24,9 +24,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: project with spaces
-      - uses: actions/setup-python@v5
+      - name: Install the previous Python for an upgrade test
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          architecture: x64
+      - name: Create an existing Python 3.12 environment
+        run: |
+          python -m venv .venv
+          echo preserved-from-312> .venv\upgrade-marker.txt
+      - name: Install the supported Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
           architecture: x64
           cache: pip
           cache-dependency-path: |
@@ -34,6 +44,12 @@ jobs:
             project with spaces/requirements-windows.txt
       - name: Install using the Windows setup entry point
         run: setup_windows.bat --no-pause
+      - name: Verify the Python upgrade preserves the previous environment
+        run: |
+          .venv\Scripts\python.exe --version
+          python -c "from pathlib import Path; import subprocess; backups=list(Path('.venv-backups').iterdir()); assert len(backups)==1; assert (backups[0]/'upgrade-marker.txt').is_file(); subprocess.run([str(backups[0]/'Scripts/python.exe'),'-c','import sys; assert sys.version_info[:2]==(3,12)'],check=True)"
+          python scripts\setup_windows_env.py
+          python -c "from pathlib import Path; assert len(list(Path('.venv-backups').iterdir()))==1"
       - name: Run tests, real CPU OCR, and server checks
         run: check_windows.bat --no-pause
       - name: Upload diagnostic reports

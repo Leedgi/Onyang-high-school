@@ -1,2 +1,2 @@
-# Windows 10/11 x64, Python 3.12. CUDA 설치는 필요하지 않다.
+# Windows 10/11 x64, Python 3.14. CUDA 설치는 필요하지 않다.
 -r requirements.txt

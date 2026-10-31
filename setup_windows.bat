@@ -6,23 +6,15 @@ set "PYTHONIOENCODING=utf-8"
 pushd "%~dp0"
 if errorlevel 1 exit /b 1
 
-set "BOOTSTRAP_PY=py -3.12"
-py -3.12 -c "import sys,struct; assert sys.version_info[:2] == (3,12) and struct.calcsize('P') == 8" >nul 2>&1
+set "BOOTSTRAP_PY=py -3.14"
+py -3.14 -c "import sys,struct,sysconfig; assert sys.version_info[:2] == (3,14) and struct.calcsize('P') == 8 and not sysconfig.get_config_var('Py_GIL_DISABLED')" >nul 2>&1
 if errorlevel 1 (
     set "BOOTSTRAP_PY=python"
-    python -c "import sys,struct; assert sys.version_info[:2] == (3,12) and struct.calcsize('P') == 8" >nul 2>&1
+    python -c "import sys,struct,sysconfig; assert sys.version_info[:2] == (3,14) and struct.calcsize('P') == 8 and not sysconfig.get_config_var('Py_GIL_DISABLED')" >nul 2>&1
     if errorlevel 1 goto missing_python
 )
 
-if exist ".venv" if not exist ".venv\Scripts\python.exe" (
-    echo An incompatible .venv folder exists. Move it aside and try again.
-    goto failed
-)
-if not exist ".venv\Scripts\python.exe" (
-    %BOOTSTRAP_PY% -m venv .venv
-    if errorlevel 1 goto failed
-)
-".venv\Scripts\python.exe" -c "import sys,struct; assert sys.version_info[:2] == (3,12) and struct.calcsize('P') == 8"
+%BOOTSTRAP_PY% scripts\setup_windows_env.py
 if errorlevel 1 goto failed
 ".venv\Scripts\python.exe" -m pip install -r requirements-windows.txt
 if errorlevel 1 goto failed
@@ -37,7 +29,9 @@ if /i not "%~1"=="--no-pause" pause
 exit /b 0
 
 :missing_python
-echo Python 3.12 x64 was not found. Install it from python.org and try again.
+echo Standard Python 3.14 x64 was not found.
+echo Download: https://www.python.org/ftp/python/3.14.10/python-3.14.10-amd64.exe
+echo Install Python 3.14, then run this setup again.
 :failed
 echo Setup failed. Read the error above, fix it, and run this file again.
 popd

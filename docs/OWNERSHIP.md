@@ -7,7 +7,7 @@
 | C Web·통합 | `feature/c-web` | `app.py`, `ui/`, `tests/test_c_*.py`, 배포·화면·공통 파일 |
 
 C가 모아 관리하는 공통 파일: `shared/`, `core/models.py`, `core/database.py`, `config.toml`,
-`requirements*.txt`, `*.bat`, `scripts/prepare_ocr.py`, `scripts/check_*.py`,
+`requirements*.txt`, `*.bat`, `scripts/prepare_ocr.py`, `scripts/setup_windows_env.py`, `scripts/check_*.py`,
 `scripts/bootstrap_branches.py`, `.github/`, `.gitignore`, `.gitattributes`, `pytest.ini`,
 `AGENTS.md`, `README.md`, `docs/CONTRACTS.md`, 이 문서, `prompts/`.
 자료의 내용은 B, DB 로더의 규격은 C가 담당한다. normalize.py는 A가 담당하지만

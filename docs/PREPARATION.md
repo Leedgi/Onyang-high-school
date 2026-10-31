@@ -22,7 +22,7 @@
 
 ## 실행
 
-Windows 10/11 x64에서 Python 3.12를 설치한 후 `setup_windows.bat`을 최초 한 번 실행하고, 이후에는 `run_windows.bat`을 실행한다. 의존성·모델 구성이 바뀐 때만 setup을 다시 실행한다. Linux의 .venv는 Windows로 복사하지 않는다.
+현재(2026-10-31) Windows 10/11 x64에서는 Python 3.14를 설치한 후 `setup_windows.bat`을 최초 한 번 실행하고, 이후에는 `run_windows.bat`을 실행한다. 의존성·모델 구성이 바뀐 때만 setup을 다시 실행한다. Linux의 .venv는 Windows로 복사하지 않는다.
 
 Linux 클라우드에서는 저장소에서 `.venv/bin/python -m streamlit run app.py`로 실행한다. 설치된 의존성과 모델은 유지하되 새 작업에서는 서버를 다시 시작해야 한다. 공개 배포는 수행하지 않았다.
 

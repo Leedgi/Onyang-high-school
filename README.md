@@ -10,11 +10,11 @@
 ## 처음 실행: Windows
 
 1. 이 폴더를 새 프로젝트의 최상위로 사용한다. 기존 프로젝트의 app.py·ui를 위에 덮어쓰지 않는다.
-2. Python 3.12 x64를 설치한 컴퓨터에서 `setup_windows.bat`을 한 번 실행한다. 최초 모델 다운로드에는 인터넷이 필요하다.
+2. [Python 3.14 x64 설치 파일](https://www.python.org/ftp/python/3.14.10/python-3.14.10-amd64.exe)을 설치한 컴퓨터에서 `setup_windows.bat`을 한 번 실행한다. 최초 모델 다운로드에는 인터넷이 필요하다.
 3. `run_windows.bat`을 실행하면 브라우저가 열린다. 성분표 사진을 올리면 자동으로 읽기 시작한다.
 4. 인식한 목록을 원본과 비교하고 필요한 이름만 수정한 뒤 `목록 확인 완료 · 분석 보기`를 누른다.
 
-코드만 업데이트했다면 앱 재시작으로 충분하다. requirements나 모델 구성이 바뀌었을 때 setup을 다시 실행한다.
+이번 Python 3.12 → 3.14 전환 때는 실행 중인 앱을 종료하고 Python 3.14 설치 후 setup을 한 번 실행한다. 기존 `.venv`는 `.venv-backups/`에 보존하고 새 3.14 환경을 만든다. OCR 모델 `.cache`는 유지한다. 이후 코드만 업데이트했다면 앱 재시작으로 충분하다. requirements나 모델 구성이 바뀌었을 때 setup을 다시 실행한다.
 개발 PC의 localhost 실행과 인터넷 공개 배포는 다르다. 현재 공개 주소·도메인·운영 서버는 만들지 않았다.
 공개 배포는 C가 대상 호스팅의 메모리·CPU OCR 시간·HTTPS·사진 처리 방침·모델 사전 준비를 확인해 진행한다.
 
@@ -29,14 +29,14 @@ GitHub에서 새 **빈 저장소**를 만든다(README·라이선스·gitignore 
 이 폴더에서 터미널/PowerShell을 열고 다음을 실행한다. URL은 실제 새 저장소 주소로 바꾼다.
 
 ```powershell
-py -3.12 scripts/bootstrap_branches.py --remote https://github.com/계정/새저장소.git --publish
+py -3.14 scripts/bootstrap_branches.py --remote https://github.com/계정/새저장소.git --publish
 ```
 
 Git 작성자 정보가 없다는 오류가 나면 자신의 이름·메일을 Git에 설정한 뒤 같은 명령을 다시 실행한다.
 명령은 main 최초 커밋과 세 브랜치를 준비해 새 origin에 올린다. 이미 다른 원격이 연결돼 있으면 바꾸거나 덮어쓰지 않고 멈춘다.
 GitHub의 기본 브랜치가 main인지 확인한다. 각 학생은 새 저장소의 **서로 다른 체크아웃**에서 자기 브랜치를 사용한다.
 이미 clone한 저장소에 이 파일을 복사했다면 변경을 커밋한 뒤 main에서 명령을 실행한다.
-원격 연결 없이 로컬 브랜치만 만들려면 `py -3.12 scripts/bootstrap_branches.py`를 실행한다.
+원격 연결 없이 로컬 브랜치만 만들려면 `py -3.14 scripts/bootstrap_branches.py`를 실행한다.
 
 | 학생 | 브랜치 | Codex에 넣을 문서 |
 | --- | --- | --- |
@@ -74,7 +74,7 @@ tests의 인공 라벨·오류 주입 텍스트는 회귀 검사용이며 사용
 
 DB 입력 → 체크섬·정확 명칭·충돌 검사 → 같은 AnalysisResult와 그래프/PDF를 생성한다. 자료가 바뀌거나 검증에 실패하면 이전 결과를 지우고 재확인을 요구한다. 명칭만 등재된 항목과 제조 공급원이 불명확한 항목은 확인 필요다. 유래는 제품의 안전·친환경성 등급이 아니다.
 
-이번 변경은 실행 의존성을 추가하지 않았다. 기존 설치 사용자는 최신 파일로 업데이트하고 `run_windows.bat`으로 다시 시작하면 된다. 최초 설치나 기존 의존성이 없는 환경에서만 `setup_windows.bat`이 필요하다. 이번 검증은 Linux Python 3.12 CPU에서 수행했으며 Windows 실기 실행과 구분한다.
+2026-10-30 데이터·OCR 변경 당시에는 실행 의존성 추가가 없어 파일 갱신과 앱 재시작으로 충분했다. 2026-10-31 Python 3.14 전환은 위 안내대로 setup을 한 번 실행한다. 최초 설치나 기존 의존성이 없는 환경에서만 `setup_windows.bat`이 필요하다. 이번 검증은 Linux Python 3.12 CPU에서 수행했으며 Windows 실기 실행과 구분한다.
 
 ### Windows 검사와 추가 유래 근거 (2026-10-30)
 
