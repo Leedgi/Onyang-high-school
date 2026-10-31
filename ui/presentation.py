@@ -15,16 +15,16 @@ def intro() -> None:
     with st.container(key="hero"):
         copy, visual = st.columns([1.2, 1], gap="large", vertical_alignment="center")
         with copy:
-            st.html('<p class="eyebrow">매일 쓰는 제품, 조금 더 알아보기</p>')
+            st.html('<p class="hero-kicker"><span aria-hidden="true"></span>매일 쓰는 제품, 조금 더 알아보기</p>')
             st.title("친환경 제품 성분 정보 분석")
             st.write("작은 글씨 속 성분, 이제 쉽게 읽어보세요.")
             st.caption("성분표 사진 한 장으로 이름을 정리하고, 원료의 유래와 근거를 차근차근 살펴보세요.")
-            st.html('''<div class="hero-actions"><a class="primary-link" href="#analyze">내 성분표 분석하기 <span aria-hidden="true">→</span></a></div>
+            st.html('''<div class="hero-actions"><a class="primary-link" href="#analyze">내 성분표 분석하기 <span class="action-arrow" aria-hidden="true">↗</span></a></div>
               <p class="privacy-note">사진을 외부 AI 서비스로 보내지 않습니다.</p>''')
         with visual:
             st.image(str(Path(__file__).with_name("assets").joinpath("ingredient-study.svg")), width="stretch")
     st.html('''<ol class="journey" aria-label="분석 순서">
-      <li><span>01</span><div><strong>사진 올리기</strong><small>성분표를 자동으로 읽어요</small></div></li>
+      <li><span>01</span><div><strong>사진 한 장 올리기</strong><small>한 제품씩, 차근차근 알아봐요</small></div></li>
       <li><span>02</span><div><strong>자동으로 정리하기</strong><small>가까운 이름을 자동 선택해요</small></div></li>
       <li><span>03</span><div><strong>성분 살펴보기</strong><small>같은 목록으로 표와 그래프를 만들어요</small></div></li>
     </ol><div id="analyze" class="section-heading"><p class="eyebrow">내 제품 알아보기</p><h2>성분표부터 시작해 볼까요?</h2><p>사진을 올리면 인식부터 이름 정리까지 자동으로 진행합니다.</p></div>''')
@@ -32,7 +32,7 @@ def intro() -> None:
 
 def upload_help() -> None:
     st.html('''<aside class="upload-help"><span class="small-label">더 잘 읽히는 사진</span>
-      <h3>글씨가 선명하게,<br>성분표가 한눈에.</h3>
+      <h3>글씨가 선명하게, <br>성분표가 한눈에.</h3>
       <ul><li>제품 뒷면의 전성분을 모두 담아주세요.</li><li>반사되는 빛을 피하고 초점을 맞춰주세요.</li><li>사진을 수평으로 찍어주세요</li></ul>
       <p>사진이 없어도 아래에서 성분명을 직접 입력할 수 있어요.</p></aside>''')
 

@@ -186,10 +186,14 @@ def main() -> None:
     with st.container(key="upload-panel"):
         upload, tips = st.columns([1.35, 1], gap="large", vertical_alignment="center")
         with upload:
-            st.html('<div class="panel-label"><span>01</span><h3>성분표 사진 올리기</h3></div>')
-            st.caption("JPG · PNG · HEIC · HEIF / 최대 10MB, 2천만 화소")
-            uploaded = st.file_uploader("성분표 사진", type=["jpg", "jpeg", "png", "heic", "heif"], key="photo")
-            st.caption("사진을 올리면 자동 인식이 시작됩니다. 서버의 공용 캐시나 로그에 사진을 남기지 않습니다.")
+            st.html('<div class="panel-label"><span>01</span><h3>성분표 사진 올리기</h3><em class="single-badge">한 번에 1장</em></div>')
+            with st.container(key="single-photo"):
+                st.html('''<div class="single-photo-intro"><span class="single-photo-icon" aria-hidden="true"></span><div><strong>사진은 한 장씩.</strong><p>전성분이 모두 보이는 사진을 선택해 주세요.</p></div></div>''')
+                uploaded = st.file_uploader("성분표 사진 1장 선택", type=["jpg", "jpeg", "png", "heic", "heif"],
+                                           accept_multiple_files=False, key="photo",
+                                           help="한 번에 사진 1장만 분석합니다. 다른 사진은 현재 파일을 삭제한 뒤 선택해 주세요.")
+                st.caption("JPG · PNG · HEIC · HEIF / 최대 10MB, 2천만 화소")
+            st.caption("선택하면 바로 자동 분석합니다. 다른 사진은 현재 파일을 삭제한 뒤 올려주세요.")
         with tips:
             upload_help()
     try:
