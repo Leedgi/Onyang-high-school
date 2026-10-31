@@ -28,7 +28,7 @@ def build(root=ROOT):
         meta=json.loads(meta_path.read_text(encoding='utf-8'))
         with p.open(encoding='utf-8-sig',newline='') as f:records=list(csv.DictReader(f))
         meta['sha256']=digest(p);meta['records']=len(records)
-        meta_path.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+        meta_path.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     path=data/'origin_taxonomy_sources.json';meta=json.loads(path.read_text(encoding='utf-8'))
     with (data/'origin_detail_audit.csv').open(encoding='utf-8-sig',newline='') as f:rows=list(csv.DictReader(f))
     from collections import Counter
@@ -38,7 +38,7 @@ def build(root=ROOT):
                 'kcia_standard_names.csv','kcia_import_conflicts.csv','origin_ingredients.csv','origin_sources.json')
     meta['base_files']={name:digest(data/name) for name in base_files}
     meta['line_endings']='CSV는 LF로 통일한다. 원본 파일 SHA는 original_import_files에 보존한다.'
-    path.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    path.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
     return meta
 
 
