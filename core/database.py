@@ -318,7 +318,10 @@ def apply_detail_taxonomy(root, records):
     try:
         meta=json.loads(path.read_text(encoding='utf-8'))
         if meta['format_version']!=1 or meta['taxonomy_version']!=1:raise ValueError('지원하지 않는 7분류 자료 버전')
-        date.fromisoformat(meta['imported_on'])
+        if date.fromisoformat(meta['imported_on'])>date.today():raise ValueError('7분류 가져온 날짜가 미래입니다.')
+        expected_base={'ingredients.csv','ingredient_names.csv','sources.json','kcia_sources.json','kcia_ingredients.csv',
+                       'kcia_standard_names.csv','kcia_import_conflicts.csv','origin_ingredients.csv','origin_sources.json'}
+        if set(meta['base_files'])!=expected_base:raise ValueError('7분류 기본 DB 파일 집계를 확인해 주세요.')
         for name,expected in meta['base_files'].items():
             if Path(name).name!=name or not (data/name).is_file() or hashlib.sha256((data/name).read_bytes()).hexdigest()!=expected:
                 raise ValueError('7분류 기본 DB 체크섬 불일치: '+name)
