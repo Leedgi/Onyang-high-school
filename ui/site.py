@@ -13,6 +13,7 @@ from ui.presentation import intro, upload_help, ratio_summary, footer
 from ui.reporting import ingredient_groups, build_pdf
 from ui.review_notes import review_notes
 from ui.cautions import render_cautions
+from ui.chemistry_panel import render_chemistry_panel
 
 from core.database import load_ingredients
 from core.ocr import OCREngine
@@ -110,7 +111,7 @@ def render_result(result) -> None:
                 render_chart(result.count_ratio)
             with summary:
                 ratio_summary(result.count_ratio)
-        ingredients, cautions_tab, evidence = st.tabs(["성분 목록", "주의 정보", "자료 안내"])
+        ingredients, chemistry_tab, cautions_tab, evidence = st.tabs(["성분 목록", "화학 분석", "주의 정보", "자료 안내"])
         with ingredients:
             st.caption("성분을 유래별로 묶었습니다. 각 묶음 안에서는 원래 목록 순서를 유지합니다.")
             for origin, rows in ingredient_groups(result):
@@ -136,6 +137,8 @@ def render_result(result) -> None:
                         st.markdown(f"**{row.canonical_name}**")
                         st.write(row.reason.removeprefix("[제조 경로 참고] "))
                         st.link_button("제조 경로 원문", row.source_url)
+        with chemistry_tab:
+            render_chemistry_panel(result)
         with cautions_tab:
             for label, description in review_notes(result):
                 st.warning(f"{label}\n\n{description}")
