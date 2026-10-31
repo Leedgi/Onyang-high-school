@@ -6,17 +6,29 @@ from pathlib import Path
 from threading import RLock
 from xml.sax.saxutils import escape
 
-from core.models import AnalysisResult, ORIGINS
+from core.models import AnalysisResult, ORIGINS, DETAIL_ORIGINS, DETAIL_ORIGIN_COLORS
 from ui.review_notes import review_notes
 
-COLORS = {"석유계": "#356351", "식물성": "#7f9d68", "기타": "#b5c7a2", "확인 필요": "#e5e7df"}
+COLORS = {"석유계": "#356351", "식물성": "#7f9d68", "기타": "#b5c7a2", "확인 필요": "#e5e7df", **DETAIL_ORIGIN_COLORS}
 FONT_PATH = Path(__file__).with_name("assets") / "fonts/NanumGothic-Regular.ttf"
 _FONT_LOCK = RLock()
 
 
+def visible_ratio(result):
+    return result.detail_count_ratio or result.count_ratio
+
+
+def origin_label(row):
+    category=row.detail_origin or row.origin
+    return category + (" (추정)" if row.detail_is_estimate and category!="확인 필요" else "")
+
+
 def ingredient_groups(result: AnalysisResult):
-    """분류를 다시 계산하지 않고 B가 반환한 유래로 묶는다. 그룹 안은 원래 순서다."""
-    return tuple((origin, tuple(row for row in result.rows if row.origin == origin)) for origin in ORIGINS)
+    """분류를 다시 계산하지 않고 같은 B 결과의7분류 또는 v1 유래로 묶는다."""
+    detailed=result.detail_count_ratio is not None
+    categories=DETAIL_ORIGINS if detailed else ORIGINS
+    return tuple((origin,tuple(row for row in result.rows
+                               if ((row.detail_origin or "확인 필요") if detailed else row.origin)==origin)) for origin in categories)
 
 
 def build_pdf(result: AnalysisResult) -> bytes:
@@ -51,7 +63,7 @@ def build_pdf(result: AnalysisResult) -> bytes:
             c = self.canv
             cx, cy, radius, hole = 105, 105, 88, 48
             angle = 90.0
-            ratio = result.count_ratio
+            ratio = visible_ratio(result)
             if ratio and ratio.denominator:
                 for origin, value in ratio.values.items():
                     if value <= 0:
@@ -80,7 +92,7 @@ def build_pdf(result: AnalysisResult) -> bytes:
     content = [p("친환경 제품 성분 정보 분석", title),
                p(datetime.now(timezone(timedelta(hours=9))).strftime("작성일: %Y-%m-%d %H:%M (한국 시간)"), small),
                p("사용자가 확인한 성분 목록의 리포트입니다. 제품의 친환경성·안전성을 인증하지 않습니다.")]
-    ratio = result.count_ratio
+    ratio = visible_ratio(result)
     if ratio:
         legend = [[p("원료 유래"), p("성분명 개수 비율")]] + [[p(k), p(f"{v:.1f}%")] for k, v in ratio.values.items()]
         chart = Table([[Donut(), Table(legend, colWidths=[105, 145])]], colWidths=[225, 290])
@@ -88,6 +100,8 @@ def build_pdf(result: AnalysisResult) -> bytes:
         content += [chart, p(f"{ratio.label} · 중복 제외 {int(ratio.denominator)}개. 확인 필요도 분모에 포함합니다. 배합 함량이 아닙니다.")]
     else:
         content.append(p("분석할 성분이 없습니다."))
+    if result.detail_count_ratio:
+        content.append(p("7분류에는 이름 규칙 기반 추정이 포함됩니다. (추정) 표시는 개별 제조사 원료 확인이 아니며, 합성은 석유계와 같은 뜻이 아닙니다. 제품의 비건·안전·친환경성을 판정하지 않습니다."))
     content.append(p("유래별 성분 목록", heading))
     for origin, rows in ingredient_groups(result):
         content.append(p(f"{origin} · {len(rows)}개", heading))
@@ -95,8 +109,8 @@ def build_pdf(result: AnalysisResult) -> bytes:
             content.append(p("해당 성분 없음"))
             continue
         table = Table([[p("성분"), p("유래"), p("기능")]] + [
-            [p(r.canonical_name), p(r.origin), p(", ".join(r.functions) or "자료 없음")] for r in rows
-        ], colWidths=[165, 65, 285], repeatRows=1, hAlign="LEFT", splitInRow=1)
+            [p(r.canonical_name), p(origin_label(r)), p(", ".join(r.functions) or "자료 없음")] for r in rows
+        ], colWidths=[165, 100, 250], repeatRows=1, hAlign="LEFT", splitInRow=1)
         table.setStyle(TableStyle([
             ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#e7eddf")),
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
@@ -123,6 +137,10 @@ def build_pdf(result: AnalysisResult) -> bytes:
         content += [p(row.canonical_name, heading), p(row.reason),
                     p(f"확인 필요 원인: {row.uncertainty_reason or '해당 없음'}", small),
                     p(f"출처: {row.source_url or '자료 없음'}\n확인일: {row.checked_on or '자료 없음'}", small)]
+
+        if row.detail_origin:
+            content += [p(f"7분류: {origin_label(row)} / 검토 수준: {row.detail_confidence}", small),
+                        p(row.detail_reason, small),p(f"7분류 자료 출처: {row.detail_source_url}", small)]
 
     def page_number(canvas, document):
         canvas.setFont("IngredientKorean", 8)

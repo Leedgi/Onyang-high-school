@@ -10,7 +10,7 @@ import pandas as pd
 import streamlit as st
 
 from ui.presentation import intro, upload_help, ratio_summary, footer
-from ui.reporting import ingredient_groups, build_pdf
+from ui.reporting import ingredient_groups, build_pdf, visible_ratio, origin_label, COLORS
 from ui.review_notes import review_notes
 from ui.cautions import render_cautions
 from ui.chemistry_panel import render_chemistry_panel
@@ -71,8 +71,8 @@ def render_chart(ratio) -> None:
         outerRadius=alt.ExprRef(expr="min(width, height) * 0.43"),
     ).encode(
         color=alt.Color("유래:N", scale=alt.Scale(
-            domain=["석유계", "식물성", "기타", "확인 필요"],
-            range=["#356351", "#7f9d68", "#b5c7a2", "#e5e7df"],
+            domain=list(COLORS),
+            range=list(COLORS.values()),
         ), legend=None),
         tooltip=[alt.Tooltip("유래:N"), alt.Tooltip("비율 (%):Q", format=".1f")],
     )
@@ -108,11 +108,13 @@ def render_result(result) -> None:
         with st.container(key="ratio-card"):
             visual, summary = st.columns([1, 1.1], gap="large", vertical_alignment="center")
             with visual:
-                render_chart(result.count_ratio)
+                render_chart(visible_ratio(result))
             with summary:
-                ratio_summary(result.count_ratio)
+                ratio_summary(visible_ratio(result))
         ingredients, chemistry_tab, cautions_tab, evidence = st.tabs(["성분 목록", "화학 분석", "주의 정보", "자료 안내"])
         with ingredients:
+            if result.detail_count_ratio:
+                st.info("7분류에는 이름 규칙 기반 추정이 포함됩니다. ‘(추정)’은 제조사의 실제 원료를 확인한 결과가 아닙니다. 합성은 석유계와 같은 뜻이 아닙니다.")
             st.caption("성분을 유래별로 묶었습니다. 각 묶음 안에서는 원래 목록 순서를 유지합니다.")
             for origin, rows in ingredient_groups(result):
                 st.subheader(f"{origin} · {len(rows)}개")
@@ -125,7 +127,7 @@ def render_result(result) -> None:
                                           if any(r.uncertainty_reason == code for r in rows)))
                 if rows:
                     st.dataframe([{
-                        "성분": row.canonical_name, "유래": row.origin, "기능": ", ".join(row.functions),
+                        "성분": row.canonical_name, "유래": origin_label(row), "기능": ", ".join(row.functions),
                     } for row in rows], hide_index=True, width="stretch")
                 else:
                     st.caption("해당 성분 없음")
@@ -148,6 +150,8 @@ def render_result(result) -> None:
             st.dataframe([{
                 "성분": row.canonical_name, "확인 필요 원인": row.uncertainty_reason,
                 "근거": row.reason, "출처": row.source_url, "확인일": row.checked_on,
+                "7분류": origin_label(row), "7분류 검토 수준": row.detail_confidence,
+                "7분류 근거": row.detail_reason, "7분류 자료 출처": row.detail_source_url,
             } for row in result.rows], hide_index=True, width="stretch")
             st.caption("일부 근거는 2019년 자료입니다. 최신 규제·안전성 검토를 대신하지 않으며, 이름 등재만으로 유래·사용 허용을 판단하지 않습니다.")
         signature = digest(asdict(result))
