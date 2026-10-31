@@ -1,7 +1,7 @@
 {
   "format_version": 1,
   "records": 2138,
-  "sha256": "9acefc7a23082231c1515f644c5d7752593a6e8b237340093cd1c348c37b6794",
+  "sha256": "2a39e49ba7eb6ba5e9226a935ae6ccb8160de0a7094452e2760964fcba16dcd1",
   "checked_on": "2026-10-31",
   "method": "Conservative INCI identity/plant genus and plant-part heuristics; no supplier-origin verification.",
   "category_counts": {

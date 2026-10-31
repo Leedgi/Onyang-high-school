@@ -21,17 +21,17 @@
     "명칭 규칙 추정(개별 검증 아님)": 1143
   },
   "files": {
-    "caution_additions.csv": "aabf919a7e937eeb9b6df5ca79fbfcf9f53ee63998f9743f4b145d48032beb6c",
-    "caution_additions_sources.json": "a6859658e559e690ac4ce6334f2f322fb0e3aeb314d95d05c4857f84b83f4b45",
-    "origin_additions.csv": "33efd4b15edd0723bec5cebc36e792e85986784bf51641e7d1c1f56c81912713",
-    "origin_additions_round2.csv": "9acefc7a23082231c1515f644c5d7752593a6e8b237340093cd1c348c37b6794",
-    "origin_additions_round2_sources.json": "5bdab65f224ba63c74b9f5b2f638eeedfe5bebf5ab17d4939bd01cd079f987de",
-    "origin_additions_round3.csv": "f664b9fe8ff461e2910ec6ee84b423081d745c8c6b3a42c5d77a4f78a7b94d24",
-    "origin_additions_round3_sources.json": "492516d314c06a9af8a30f159a44f58669614ef19c3fca128ccb7ef603baa5d7",
-    "origin_additions_round4.csv": "b9e092d998f84f0d8a9d1055fc3d8aa1ed28c139eaede70e0fdd51b0f353795e",
-    "origin_additions_round4_sources.json": "f821715f4fbdeff180a16b734c579206477aba91cbb79d6539412bf1ffb00220",
-    "origin_additions_sources.json": "7327261779db07bc05b03bcb174b16a7215da6536088e69252ae2ba5fb4e6f76",
-    "origin_detail_audit.csv": "213d1178143ca62262e2fa813ab936f6bdb9a7567548e26636afc6caa51e4e9d"
+    "caution_additions.csv": "44ab17b7445fbb857f82823f72451ee07f17e0863a894d93903cb069be1e4367",
+    "caution_additions_sources.json": "9c32de9947b70d7bfa714583a7dd726926de43176c382b3befa503ab35a02c15",
+    "origin_additions.csv": "d934b333427f7f21b4bf06b54d47753125503cbd7c134f5dc8c477109a08660a",
+    "origin_additions_round2.csv": "2a39e49ba7eb6ba5e9226a935ae6ccb8160de0a7094452e2760964fcba16dcd1",
+    "origin_additions_round2_sources.json": "5180fb9c069352182e8ae4a094686e582e2dfc96d6480bda00d8481e695b5ea4",
+    "origin_additions_round3.csv": "002801fdd9ce96de9518b648298a4c1a5c6fb1d867add76cb87a0b555b4b1d18",
+    "origin_additions_round3_sources.json": "f890cdd08437f3de4e512ceea11643892567ac091cf9bbcd99162c70be6c9128",
+    "origin_additions_round4.csv": "e73f2ba83fd87c5603b9194020b8ff552b9302adaa221e0b9d4a6063c3a2e363",
+    "origin_additions_round4_sources.json": "6bd251410f05ca9d2ac6244ce093a01953074c6aa20e97132c73977c001f1b1b",
+    "origin_additions_sources.json": "46182252b855298d305f4fad0fe5fbf5a6fa4a6278e5a3e95ca99be59b370747",
+    "origin_detail_audit.csv": "b532d477b8092e4c6396b3bdf3077498ed3d089dc8f3a901cbd5f52c1cd839b0"
   },
   "base_files": {
     "alternatives.csv": "e132d097cc9cb1f2436b25141f7300dfbad211d128b377596acefe223df8d192",
@@ -53,5 +53,20 @@
     "sources.json": "f65b5cb41f924b263755e180e2861a9c8cb384b7f5d25e2f34e8c3843400968d"
   },
   "scope": "7분류는 추정이 포함된 성분명·원료 유형 분류다. 제조사 공급원·제품의 비건/안전/환경성 확정 아님. 기존4분류 origin과 검토집계는 보존한다.",
-  "source_verification": "첨부본의 출처와 날짜를 가져왔다. 모든 개별 링크를 이번 통합에서 재검증한 것은 아니다."
+  "source_verification": "첨부본의 출처와 날짜를 가져왔다. 모든 개별 링크를 이번 통합에서 재검증한 것은 아니다.",
+  "original_import_files": {
+    "caution_additions.csv": "aabf919a7e937eeb9b6df5ca79fbfcf9f53ee63998f9743f4b145d48032beb6c",
+    "caution_additions_sources.json": "a6859658e559e690ac4ce6334f2f322fb0e3aeb314d95d05c4857f84b83f4b45",
+    "origin_additions.csv": "33efd4b15edd0723bec5cebc36e792e85986784bf51641e7d1c1f56c81912713",
+    "origin_additions_round2.csv": "9acefc7a23082231c1515f644c5d7752593a6e8b237340093cd1c348c37b6794",
+    "origin_additions_round2_sources.json": "5bdab65f224ba63c74b9f5b2f638eeedfe5bebf5ab17d4939bd01cd079f987de",
+    "origin_additions_round3.csv": "f664b9fe8ff461e2910ec6ee84b423081d745c8c6b3a42c5d77a4f78a7b94d24",
+    "origin_additions_round3_sources.json": "492516d314c06a9af8a30f159a44f58669614ef19c3fca128ccb7ef603baa5d7",
+    "origin_additions_round4.csv": "b9e092d998f84f0d8a9d1055fc3d8aa1ed28c139eaede70e0fdd51b0f353795e",
+    "origin_additions_round4_sources.json": "f821715f4fbdeff180a16b734c579206477aba91cbb79d6539412bf1ffb00220",
+    "origin_additions_sources.json": "7327261779db07bc05b03bcb174b16a7215da6536088e69252ae2ba5fb4e6f76",
+    "origin_detail_audit.csv": "213d1178143ca62262e2fa813ab936f6bdb9a7567548e26636afc6caa51e4e9d"
+  },
+  "original_zip_sha256": "efe5cb86c6ae4717c9f0a808956ebd4df483e094a8a8b67ba17d823363d50901",
+  "line_endings": "CSV는 LF로 통일한다. 원본 파일 SHA는 original_import_files에 보존한다."
 }
